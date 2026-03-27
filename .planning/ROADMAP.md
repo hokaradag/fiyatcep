@@ -25,66 +25,71 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Depends on**: Nothing (first phase)
 **Requirements**: QUAL-01, QUAL-02, QUAL-03, QUAL-04, QUAL-05, QUAL-06, QUAL-07
 **Success Criteria** (what must be TRUE):
-  1. Türkçe karakter araması tüm ekranlarda tutarlı çalışır — tek bir TextNormalizer utility kullanılır, kopya fonksiyon yoktur
-  2. Kullanıcı network hatası aldığında opaque Exception string yerine anlamlı bir hata mesajı görür
-  3. FavoritesStore singleton yerine Riverpod NotifierProvider ile yönetilir ve uygulama genelinde tutarsız CarrefourSA isimlendirmesi giderilir
-  4. Repository katmanı unit testleri ve ana kullanıcı akışı widget testleri başarıyla çalıştırılabilir
-  5. Büyük sayfa build() metodları (home, product_detail, market_detail) ayrı widget dosyalarına bölünmüştür
-**Plans**: TBD
+  1. Turkce karakter aramasi tum ekranlarda tutarli calisir — tek bir TextNormalizer utility kullanilir, kopya fonksiyon yoktur
+  2. Kullanici network hatasi aldiginda opaque Exception string yerine anlamli bir hata mesaji gorur
+  3. FavoritesStore singleton yerine Riverpod NotifierProvider ile yonetilir ve uygulama genelinde tutarsiz CarrefourSA isimlendirmesi giderilir
+  4. Repository katmani unit testleri ve ana kullanici akisi widget testleri basariyla calistirabilir
+  5. Buyuk sayfa build() metodlari (home, product_detail, market_detail) ayri widget dosyalarina bolunmustur
+**Plans**: 4 plans
+Plans:
+- [ ] 01-01-PLAN.md — TextNormalizer extraction, CarrefourSA normalization, typed error propagation
+- [ ] 01-02-PLAN.md — FavoritesStore to Riverpod AsyncNotifier migration
+- [ ] 01-03-PLAN.md — Widget decomposition of large pages (home, market_detail, product_detail)
+- [ ] 01-04-PLAN.md — Repository unit tests and widget tests
 
 ### Phase 2: Data Layer
-**Goal**: Flutter uygulaması gerçek scraping backend API'sinden veri çeker; fiyat geçmişi ve indirim tarih modelleri hazırdır
+**Goal**: Flutter uygulamasi gercek scraping backend API'sinden veri ceker; fiyat gecmisi ve indirim tarih modelleri hazirdir
 **Depends on**: Phase 1
 **Requirements**: DATA-01, DATA-02, DATA-03, DATA-04, MKTD-02
 **Success Criteria** (what must be TRUE):
-  1. Uygulama Migros, A101, BIM, CarrefourSA, Şok, Tarım Kredi ve File Market için gerçek ürün fiyatlarını ve indirimlerini API'den gösterir
-  2. Market detay sayfası o markete ait gerçek ürün listesini API'den yükler
-  3. ProductItem modeli fiyat geçmişi (List<PricePoint>) verisini taşır — chart fazı için veri mevcuttur
-  4. İndirim geçerlilik tarihi gün bazlı okunabilir DateTime olarak görüntülenir
+  1. Uygulama Migros, A101, BIM, CarrefourSA, Sok, Tarim Kredi ve File Market icin gercek urun fiyatlarini ve indirimlerini API'den gosterir
+  2. Market detay sayfasi o markete ait gercek urun listesini API'den yukler
+  3. ProductItem modeli fiyat gecmisi (List<PricePoint>) verisini tasir — chart fazi icin veri mevcuttur
+  4. Indirim gecerlilik tarihi gun bazli okunabilir DateTime olarak goruntulenir
 **Plans**: TBD
 
 ### Phase 3: Price Comparison + Market Detail
-**Goal**: Kullanıcı bir ürünün tüm marketlerdeki fiyatlarını ve geçmiş fiyat trendini görebilir; market detay sayfası görsel olarak zenginleştirilmiştir
+**Goal**: Kullanici bir urunun tum marketlerdeki fiyatlarini ve gecmis fiyat trendini gorebilir; market detay sayfasi gorsel olarak zenginlestirilmistir
 **Depends on**: Phase 2
 **Requirements**: COMP-01, COMP-02, MKTD-01
 **Success Criteria** (what must be TRUE):
-  1. Ürün detay sayfasında tüm marketlerdeki fiyatlar sıralı listelenir, en ucuz market vurgulanır ve fiyat farkı (X ₺ daha ucuz) gösterilir
-  2. Kullanıcı 1H / 1A / 3A / 1Y zaman seçici ile fiyat geçmişini çizgi grafikte görür ve belirli bir noktaya dokunarak exact fiyatı okuyabilir
-  3. Market detay sayfası markanın logosu, banner görseli ve marka rengiyle görüntülenir
+  1. Urun detay sayfasinda tum marketlerdeki fiyatlar sirali listelenir, en ucuz market vurgulanir ve fiyat farki (X TL daha ucuz) gosterilir
+  2. Kullanici 1H / 1A / 3A / 1Y zaman secici ile fiyat gecmisini cizgi grafikte gorur ve belirli bir noktaya dokunarak exact fiyati okuyabilir
+  3. Market detay sayfasi markanin logosu, banner gorseli ve marka rengiyle goruntulenir
 **Plans**: TBD
 **UI hint**: yes
 
 ### Phase 4: Cart Comparison
-**Goal**: Kullanıcı birden fazla ürünü sepete ekleyerek her market için toplam fiyatı ve eşleşme oranını karşılaştırabilir
+**Goal**: Kullanici birden fazla urunu sepete ekleyerek her market icin toplam fiyati ve esleme oranini karsilastirabilir
 **Depends on**: Phase 2
 **Requirements**: COMP-03
 **Success Criteria** (what must be TRUE):
-  1. Kullanıcı ürün detay sayfasından sepete ürün ekleyebilir; sepet uygulama yeniden başlatıldıktan sonra da korunur
-  2. Sepet karşılaştırma sayfası her market için toplam fiyatı ve eşleşme oranını (örn. "7/9 ürün mevcut") açıkça gösterir
-  3. Eksik ürünler olan marketler dürüstçe kısmi eşleşme olarak işaretlenir — toplam gizlenmez
+  1. Kullanici urun detay sayfasindan sepete urun ekleyebilir; sepet uygulama yeniden baslatildiktan sonra da korunur
+  2. Sepet karsilastirma sayfasi her market icin toplam fiyati ve esleme oranini (orn. "7/9 urun mevcut") acikca gosterir
+  3. Eksik urunler olan marketler durustce kismi esleme olarak isaretlenir — toplam gizlenmez
 **Plans**: TBD
 **UI hint**: yes
 
 ### Phase 5: FCM Push Notifications
-**Goal**: Kullanıcı takip ettiği ürün veya indirimde fiyat düşüşü olduğunda push bildirim alır
+**Goal**: Kullanici takip ettigi urun veya indirimde fiyat dususu oldugunda push bildirim alir
 **Depends on**: Phase 2
 **Requirements**: NOTIF-01, NOTIF-02, NOTIF-03
 **Success Criteria** (what must be TRUE):
-  1. Firebase Cloud Messaging Android ve iOS cihazlarda çalışır; FCM token yönetimi (ilk kayıt + token yenileme) doğru yapılır
-  2. Kullanıcı ürün veya indirim detay sayfasından "Takip Et" / "Takibi Bırak" ile takip listesini yönetebilir
-  3. Takip edilen üründe fiyat düşüşü veya yeni indirim olduğunda kullanıcı push bildirim alır
-  4. Bildirime tıklandığında uygulama ilgili ürün sayfasına yönlendirir
+  1. Firebase Cloud Messaging Android ve iOS cihazlarda calisir; FCM token yonetimi (ilk kayit + token yenileme) dogru yapilir
+  2. Kullanici urun veya indirim detay sayfasindan "Takip Et" / "Takibi Birak" ile takip listesini yonetebilir
+  3. Takip edilen urunde fiyat dususu veya yeni indirim oldugunda kullanici push bildirim alir
+  4. Bildirime tiklandiginda uygulama ilgili urun sayfasina yonlendirir
 **Plans**: TBD
 **UI hint**: yes
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Quality Foundation | 0/? | Not started | - |
+| 1. Quality Foundation | 0/4 | Planning complete | - |
 | 2. Data Layer | 0/? | Not started | - |
 | 3. Price Comparison + Market Detail | 0/? | Not started | - |
 | 4. Cart Comparison | 0/? | Not started | - |
