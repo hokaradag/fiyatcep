@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: "Completed 01-03-PLAN.md (widget decomposition: HomePage, MarketDetailPage, ProductDetailPage)"
-last_updated: "2026-03-27T19:23:53.613Z"
+status: verifying
+stopped_at: "Completed 01-04-PLAN.md (test foundation: TextNormalizer, repository tests, widget tests, widget_test.dart fix)"
+last_updated: "2026-03-27T19:31:39.114Z"
 last_activity: 2026-03-27
 progress:
   total_phases: 5
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 25
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 Phase: 01 (quality-foundation) — EXECUTING
 Plan: 4 of 4
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-03-27
 
 Progress: [██░░░░░░░░] 25%
@@ -53,6 +53,7 @@ Progress: [██░░░░░░░░] 25%
 
 *Updated after each plan completion*
 | Phase 01-quality-foundation P03 | 18min | 2 tasks | 12 files |
+| Phase 01-quality-foundation P04 | 9min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 01-03]: MarketDetailHeaderWidget bundles info card + statistics card — same data, always render together
 - [Phase 01-03]: ProductPriceSection uses MarketPriceItem not ProductItem — productMarketPricesProvider returns List<MarketPriceItem>
 - [Phase 01-03]: _HomeFavoritesSection kept private in home_page.dart — receives AsyncValue from ConsumerWidget context, separate file adds no isolation
+- [Phase 01-quality-foundation]: All widget tests must call pumpAndSettle() to drain mock datasource Future.delayed timers — bare pumpWidget leaves pending timers causing test assertion failures
+- [Phase 01-quality-foundation]: Material3 NavigationBar renders label text twice (visible + semantics) — use findsAtLeastNWidgets(1) not findsOneWidget for navigation label assertions
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-27T19:23:53.608Z
-Stopped at: Completed 01-03-PLAN.md (widget decomposition: HomePage, MarketDetailPage, ProductDetailPage)
+Last session: 2026-03-27T19:31:39.109Z
+Stopped at: Completed 01-04-PLAN.md (test foundation: TextNormalizer, repository tests, widget tests, widget_test.dart fix)
 Resume file: None

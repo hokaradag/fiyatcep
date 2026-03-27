@@ -35,7 +35,7 @@ Plans:
 - [x] 01-01-PLAN.md — TextNormalizer extraction, CarrefourSA normalization, typed error propagation
 - [x] 01-02-PLAN.md — FavoritesStore to Riverpod AsyncNotifier migration
 - [x] 01-03-PLAN.md — Widget decomposition of large pages (home, market_detail, product_detail)
-- [ ] 01-04-PLAN.md — Repository unit tests and widget tests
+- [x] 01-04-PLAN.md — Repository unit tests and widget tests
 
 ### Phase 2: Data Layer
 **Goal**: Flutter uygulamasi gercek scraping backend API'sinden veri ceker; fiyat gecmisi ve indirim tarih modelleri hazirdir

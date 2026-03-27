@@ -12,8 +12,8 @@
 - [x] **QUAL-01**: Kullanıcı tüm arama ve görüntüleme ekranlarında Türkçe karakterleri doğru eşleştirebilir (tüm `_normalizeText` kopyaları `TextNormalizer` utility'sine taşınır)
 - [x] **QUAL-02**: Kullanıcı network hatası aldığında anlamlı bir hata mesajı görür — opaque Exception string değil (tüm provider'lardaki `throw Exception(message)` typed `AppException` ile değiştirilir)
 - [x] **QUAL-03**: Geliştirici `home_page`, `product_detail_page`, `market_detail_page` sayfalarını ayrı widget dosyaları olarak okuyabilir (build() metodları küçük widget'lara bölünür)
-- [ ] **QUAL-04**: Repository katmanı için unit testler çalıştırılabilir (`ProductRepository`, `MarketRepository`, `DiscountRepository` mock'larla test edilir)
-- [ ] **QUAL-05**: Ana kullanıcı akışı için widget testleri çalıştırılabilir (en az ürün listesi ve ürün detay sayfası kapsanır)
+- [x] **QUAL-04**: Repository katmanı için unit testler çalıştırılabilir (`ProductRepository`, `MarketRepository`, `DiscountRepository` mock'larla test edilir)
+- [x] **QUAL-05**: Ana kullanıcı akışı için widget testleri çalıştırılabilir (en az ürün listesi ve ürün detay sayfası kapsanır)
 - [ ] **QUAL-06**: Favoriler uygulamanın geri kalanıyla tutarlı Riverpod state yönetimi kullanır (`FavoritesStore` singleton → `FavoritesNotifier` NotifierProvider olarak taşınır)
 - [x] **QUAL-07**: `CarrefourSA` ismi uygulama genelinde tek bir yazımla kullanılır (tüm tutarsız `Carrefoursa`/`CarrefourSA` varyasyonları normalize edilir)
 
@@ -89,8 +89,8 @@ Roadmap oluşturuldu: 2026-03-27
 | QUAL-01 | Phase 1 | Complete |
 | QUAL-02 | Phase 1 | Complete |
 | QUAL-03 | Phase 1 | Complete |
-| QUAL-04 | Phase 1 | Pending |
-| QUAL-05 | Phase 1 | Pending |
+| QUAL-04 | Phase 1 | Complete |
+| QUAL-05 | Phase 1 | Complete |
 | QUAL-06 | Phase 1 | Pending |
 | QUAL-07 | Phase 1 | Complete |
 | DATA-01 | Phase 2 | Pending |
