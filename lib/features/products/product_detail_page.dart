@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../favorites/presentation/providers/favorites_notifier.dart';
 import 'models/product_item.dart';
 import 'presentation/providers/products_provider.dart';
+import 'widgets/product_info_section.dart';
+import 'widgets/product_price_section.dart';
 
 class ProductDetailPage extends ConsumerWidget {
   final ProductItem product;
@@ -25,175 +27,13 @@ class ProductDetailPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 180,
-                  decoration: BoxDecoration(
-                    color: Colors.green.shade100,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Icon(
-                    Icons.shopping_bag,
-                    size: 64,
-                    color: Colors.green,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  product.name,
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  'Marka: ${product.brand}',
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.green.shade50,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.green.shade200),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'En Uygun Fiyat',
-                        style: TextStyle(fontSize: 15, color: Colors.black54),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        '${cheapestPrice.toStringAsFixed(2)} ₺',
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'En uygun market: $cheapestMarket',
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
+                ProductInfoSection(
+                  product: product,
+                  cheapestPrice: cheapestPrice,
+                  cheapestMarket: cheapestMarket,
                 ),
                 const SizedBox(height: 28),
-                const Text(
-                  'Marketlere Göre Fiyatlar',
-                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 14),
-                ...prices.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final item = entry.value;
-                  final isCheapest = index == 0;
-
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: isCheapest
-                                  ? Colors.green.shade100
-                                  : Colors.grey.shade200,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Icon(
-                              Icons.store,
-                              color: isCheapest ? Colors.green : Colors.black54,
-                            ),
-                          ),
-                          const SizedBox(width: 14),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  item.market,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 6),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '${item.price.toStringAsFixed(2)} ₺',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: isCheapest
-                                            ? Colors.green
-                                            : Colors.black87,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    if (isCheapest)
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 4,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.green.shade100,
-                                          borderRadius: BorderRadius.circular(
-                                            20,
-                                          ),
-                                        ),
-                                        child: const Text(
-                                          'En Uygun',
-                                          style: TextStyle(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    if (item.isDiscounted) ...[
-                                      const SizedBox(width: 8),
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 4,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.red.shade100,
-                                          borderRadius: BorderRadius.circular(
-                                            20,
-                                          ),
-                                        ),
-                                        child: const Text(
-                                          'İndirimli',
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
+                ProductPriceSection(prices: prices),
                 const SizedBox(height: 20),
                 const Text(
                   'Ürün Açıklaması',
