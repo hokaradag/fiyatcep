@@ -1,0 +1,58 @@
+import '../models/product_item.dart';
+
+const List<ProductItem> mockProducts = [
+  ProductItem(
+    id: 'p1',
+    marketId: 'm2',
+    name: 'Ayçiçek Yağı 1L',
+    brand: 'Yudum',
+    market: 'A101',
+    price: 74.95,
+    isDiscounted: true,
+  ),
+  ProductItem(
+    id: 'p2',
+    marketId: 'm1',
+    name: 'Yarım Yağlı Süt 1L',
+    brand: 'Sütaş',
+    market: 'Migros',
+    price: 36.50,
+    isDiscounted: true,
+  ),
+  ProductItem(
+    id: 'p3',
+    marketId: 'm3',
+    name: 'Makarna 500g',
+    brand: 'Filiz',
+    market: 'BİM',
+    price: 17.50,
+    isDiscounted: true,
+  ),
+  ProductItem(
+    id: 'p4',
+    marketId: 'm4',
+    name: 'Türk Kahvesi 100g',
+    brand: 'Mehmet Efendi',
+    market: 'ŞOK',
+    price: 79.90,
+    isDiscounted: false,
+  ),
+  ProductItem(
+    id: 'p5',
+    marketId: 'm5',
+    name: 'Çamaşır Deterjanı 3kg',
+    brand: 'Omo',
+    market: 'CarrefourSA',
+    price: 189.90,
+    isDiscounted: true,
+  ),
+  ProductItem(
+    id: 'p6',
+    marketId: 'm4',
+    name: 'Bisküvi',
+    brand: 'Eti',
+    market: 'ŞOK',
+    price: 12.75,
+    isDiscounted: false,
+  ),
+];
