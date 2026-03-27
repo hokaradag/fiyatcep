@@ -42,13 +42,14 @@ Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmi�
 - [ ] MKTD-02: Market detay sayfası o markete ait gerçek ürün listesini gösterir
 - [ ] MKTD-03: Market kart avantajları ve sadakat programı bilgileri görüntülenir
 
-**Kalite ve Sürdürülebilirlik**
-- [ ] QUAL-01: Tüm `_normalizeText` kopyaları tek bir `TextNormalizer` utility'sine taşınır
-- [ ] QUAL-02: Provider'lardaki `throw Exception(message)` pattern'i typed error'lara dönüştürülür
-- [ ] QUAL-03: `home_page.dart`, `product_detail_page.dart`, `market_detail_page.dart` build() metodları küçük widget'lara bölünür
-- [ ] QUAL-04: Repository katmanı için temel unit testler yazılır
-- [ ] QUAL-05: Kritik sayfalar için widget testleri eklenir
-- [ ] QUAL-06: `CarrefourSA` / `Carrefoursa` isimlendirme tutarsızlığı giderilir
+**Kalite ve Sürdürülebilirlik** — Validated in Phase 1: quality-foundation
+- [x] QUAL-01: Tüm `_normalizeText` kopyaları tek bir `TextNormalizer` utility'sine taşınır
+- [x] QUAL-02: Provider'lardaki `throw Exception(message)` pattern'i typed error'lara dönüştürülür
+- [x] QUAL-03: `home_page.dart`, `product_detail_page.dart`, `market_detail_page.dart` build() metodları küçük widget'lara bölünür
+- [x] QUAL-04: Repository katmanı için temel unit testler yazılır
+- [x] QUAL-05: Kritik sayfalar için widget testleri eklenir
+- [x] QUAL-06: `FavoritesStore` Riverpod AsyncNotifier'a migrate edilir
+- [x] QUAL-07: `CarrefourSA` / `Carrefoursa` isimlendirme tutarsızlığı giderilir
 
 ### Out of Scope
 
@@ -110,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-27 after initialization*
+*Last updated: 2026-03-27 — Phase 1 complete (quality-foundation): TextNormalizer extracted, typed errors, widget decomposition, Riverpod favorites migration, 50 tests passing*
