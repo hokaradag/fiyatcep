@@ -32,9 +32,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Buyuk sayfa build() metodlari (home, product_detail, market_detail) ayri widget dosyalarina bolunmustur
 **Plans**: 4 plans
 Plans:
-- [ ] 01-01-PLAN.md — TextNormalizer extraction, CarrefourSA normalization, typed error propagation
-- [ ] 01-02-PLAN.md — FavoritesStore to Riverpod AsyncNotifier migration
-- [ ] 01-03-PLAN.md — Widget decomposition of large pages (home, market_detail, product_detail)
+- [x] 01-01-PLAN.md — TextNormalizer extraction, CarrefourSA normalization, typed error propagation
+- [x] 01-02-PLAN.md — FavoritesStore to Riverpod AsyncNotifier migration
+- [x] 01-03-PLAN.md — Widget decomposition of large pages (home, market_detail, product_detail)
 - [ ] 01-04-PLAN.md — Repository unit tests and widget tests
 
 ### Phase 2: Data Layer
@@ -89,7 +89,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Quality Foundation | 0/4 | Planning complete | - |
+| 1. Quality Foundation | 3/4 | In Progress|  |
 | 2. Data Layer | 0/? | Not started | - |
 | 3. Price Comparison + Market Detail | 0/? | Not started | - |
 | 4. Cart Comparison | 0/? | Not started | - |

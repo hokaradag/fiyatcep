@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-02-PLAN.md (FavoritesStore to Riverpod AsyncNotifier migration)
-last_updated: "2026-03-27T19:51:43Z"
-last_activity: 2026-03-27 -- Phase 01 execution started
+stopped_at: "Completed 01-03-PLAN.md (widget decomposition: HomePage, MarketDetailPage, ProductDetailPage)"
+last_updated: "2026-03-27T19:23:53.613Z"
+last_activity: 2026-03-27
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 4
-  completed_plans: 0
-  percent: 0
+  completed_plans: 3
+  percent: 25
 ---
 
 # Project State
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 01 (quality-foundation) — EXECUTING
-Plan: 3 of 4
-Status: Executing Phase 01
-Last activity: 2026-03-27 -- Plan 01-02 complete (FavoritesStore migration)
+Plan: 4 of 4
+Status: Ready to execute
+Last activity: 2026-03-27
 
 Progress: [██░░░░░░░░] 25%
 
@@ -52,6 +52,7 @@ Progress: [██░░░░░░░░] 25%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-quality-foundation P03 | 18min | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - [01-02]: AsyncNotifier used for FavoritesNotifier — build() handles async SharedPreferences init, eliminating manual init() in main()
 - [01-02]: Same SharedPreferences key 'favorite_products' preserved — existing user favorites survive migration without data loss
 - [01-02]: FavoritesStore retained with deprecation comment; deletion deferred to Phase 1 verification
+- [Phase 01-03]: MarketDetailHeaderWidget bundles info card + statistics card — same data, always render together
+- [Phase 01-03]: ProductPriceSection uses MarketPriceItem not ProductItem — productMarketPricesProvider returns List<MarketPriceItem>
+- [Phase 01-03]: _HomeFavoritesSection kept private in home_page.dart — receives AsyncValue from ConsumerWidget context, separate file adds no isolation
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-27T19:51:43Z
-Stopped at: Completed 01-02-PLAN.md (FavoritesStore to Riverpod AsyncNotifier migration)
-Resume file: .planning/phases/01-quality-foundation/01-03-PLAN.md
+Last session: 2026-03-27T19:23:53.608Z
+Stopped at: Completed 01-03-PLAN.md (widget decomposition: HomePage, MarketDetailPage, ProductDetailPage)
+Resume file: None
