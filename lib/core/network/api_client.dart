@@ -122,16 +122,24 @@ class ApiClient {
       switch (exception.type) {
         case DioExceptionType.badResponse:
           if (exception.response?.statusCode != null) {
+            final body = exception.response?.data;
+            final errorObj = body is Map ? body['error'] : null;
+            final message = (errorObj is Map ? errorObj['message'] : null)
+                ?? (body is Map ? body['message'] : null)
+                ?? 'Unknown error';
+            final errorCode = (errorObj is Map ? errorObj['code'] : null) as String?;
             if (exception.response!.statusCode! >= 500) {
               throw ServerException(
-                message: exception.response?.data['message'] ?? 'Server error',
+                message: message,
                 statusCode: exception.response?.statusCode,
+                code: errorCode,
                 originalException: exception,
               );
             } else if (exception.response!.statusCode! >= 400) {
               throw ClientException(
-                message: exception.response?.data['message'] ?? 'Client error',
+                message: message,
                 statusCode: exception.response?.statusCode,
+                code: errorCode,
                 originalException: exception,
               );
             }

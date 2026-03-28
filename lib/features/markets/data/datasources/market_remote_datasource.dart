@@ -62,10 +62,23 @@ class MarketRemoteDataSourceImpl implements MarketRemoteDataSource {
 
   AppException _handleDioException(DioException e) {
     if (e.type == DioExceptionType.badResponse) {
+      final body = e.response?.data;
+      final errorObj = body is Map ? body['error'] : null;
+      final message = (errorObj is Map ? errorObj['message'] : null)
+          ?? (body is Map ? body['message'] : null)
+          ?? 'Server error';
+      final errorCode = (errorObj is Map ? errorObj['code'] : null) as String?;
       if (e.response?.statusCode != null && e.response!.statusCode! >= 500) {
         return ServerException(
-          message: e.response?.data['message'] ?? 'Server error',
+          message: message,
           statusCode: e.response?.statusCode,
+          code: errorCode,
+        );
+      } else if (e.response?.statusCode != null && e.response!.statusCode! >= 400) {
+        return ClientException(
+          message: message,
+          statusCode: e.response?.statusCode,
+          code: errorCode,
         );
       }
     }
