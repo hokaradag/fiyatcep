@@ -92,5 +92,20 @@ void main() {
         loading: () => fail('Unexpected loading state'),
       );
     });
+
+    test('getProductsByMarket returns products filtered by marketId', () async {
+      final result = await repo.getProductsByMarket('m1');
+      expect(result, isA<SuccessResult<List<ProductItem>>>());
+      result.when(
+        success: (data) {
+          expect(data, isNotEmpty);
+          for (final product in data) {
+            expect(product.marketId, equals('m1'));
+          }
+        },
+        failure: (_, _) => fail('Expected success'),
+        loading: () => fail('Expected success'),
+      );
+    });
   });
 }

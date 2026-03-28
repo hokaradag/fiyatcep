@@ -60,6 +60,26 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     }
   }
 
+  @override
+  Future<List<ProductItem>> getProductsByMarket(String marketId) async {
+    try {
+      return await apiClient
+          .get(
+            endpoint: '/products',
+            queryParameters: {'marketId': marketId},
+            fromJson: (json) {
+              final list = json['data'] as List? ?? [];
+              return list.cast<Map<String, dynamic>>();
+            },
+          )
+          .then(
+            (list) => list.map((item) => ProductItem.fromJson(item)).toList(),
+          );
+    } on DioException catch (e) {
+      throw _handleDioException(e);
+    }
+  }
+
   AppException _handleDioException(DioException e) {
     if (e.type == DioExceptionType.badResponse) {
       final body = e.response?.data;

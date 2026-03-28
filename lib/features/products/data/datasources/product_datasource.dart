@@ -4,6 +4,7 @@ abstract class ProductRemoteDataSource {
   Future<List<ProductItem>> getAllProducts();
   Future<ProductItem> getProductById(String id);
   Future<List<ProductItem>> searchProducts(String query);
+  Future<List<ProductItem>> getProductsByMarket(String marketId);
 }
 
 abstract class ProductLocalDataSource {

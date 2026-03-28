@@ -79,6 +79,13 @@ class ProductMockDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
+  Future<List<ProductItem>> getProductsByMarket(String marketId) async {
+    await Future.delayed(const Duration(milliseconds: 600));
+    final products = await getAllProducts();
+    return products.where((p) => p.marketId == marketId).toList();
+  }
+
+  @override
   Future<List<ProductItem>> searchProducts(String query) async {
     await Future.delayed(const Duration(milliseconds: 600));
 

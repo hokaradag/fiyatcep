@@ -53,4 +53,16 @@ class ProductRepositoryImpl implements ProductRepository {
       return FailureResult(message: 'Unknown error occurred');
     }
   }
+
+  @override
+  Future<Result<List<ProductItem>>> getProductsByMarket(String marketId) async {
+    try {
+      final products = await remoteDataSource.getProductsByMarket(marketId);
+      return SuccessResult(products);
+    } on AppException catch (e) {
+      return FailureResult(message: e.message, code: e.code);
+    } catch (e) {
+      return FailureResult(message: 'Unknown error occurred');
+    }
+  }
 }
