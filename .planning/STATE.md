@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: "Completed 01-04-PLAN.md (test foundation: TextNormalizer, repository tests, widget tests, widget_test.dart fix)"
-last_updated: "2026-03-27T19:36:11.561Z"
-last_activity: 2026-03-27
+status: executing
+stopped_at: Completed 01-05-PLAN.md (Turkish İ normalization fix, eliminate duplicate _normalizeText in discounts_page)
+last_updated: "2026-03-28T12:15:36.978Z"
+last_activity: 2026-03-28
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 5
+  completed_plans: 5
   percent: 25
 ---
 
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-03-27
+Phase: 01 (quality-foundation) — EXECUTING
+Plan: 2 of 5
+Status: Ready to execute
+Last activity: 2026-03-28
 
 Progress: [██░░░░░░░░] 25%
 
@@ -54,6 +54,7 @@ Progress: [██░░░░░░░░] 25%
 *Updated after each plan completion*
 | Phase 01-quality-foundation P03 | 18min | 2 tasks | 12 files |
 | Phase 01-quality-foundation P04 | 9min | 2 tasks | 8 files |
+| Phase 01 P05 | 15 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting current work:
 - [Phase 01-03]: _HomeFavoritesSection kept private in home_page.dart — receives AsyncValue from ConsumerWidget context, separate file adds no isolation
 - [Phase 01-quality-foundation]: All widget tests must call pumpAndSettle() to drain mock datasource Future.delayed timers — bare pumpWidget leaves pending timers causing test assertion failures
 - [Phase 01-quality-foundation]: Material3 NavigationBar renders label text twice (visible + semantics) — use findsAtLeastNWidgets(1) not findsOneWidget for navigation label assertions
+- [Phase 01]: Uppercase Turkish replacements placed before toLowerCase() — platform-inconsistent Unicode folding means İ.toLowerCase() may not yield i on all Flutter targets
+- [Phase 01]: Added .trim() to TextNormalizer.normalize() to preserve discounts_page original behavior when duplicate _normalizeText() was removed
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-27T19:31:39.109Z
-Stopped at: Completed 01-04-PLAN.md (test foundation: TextNormalizer, repository tests, widget tests, widget_test.dart fix)
+Last session: 2026-03-28T12:15:36.973Z
+Stopped at: Completed 01-05-PLAN.md (Turkish İ normalization fix, eliminate duplicate _normalizeText in discounts_page)
 Resume file: None
