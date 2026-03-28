@@ -60,7 +60,12 @@ final productMarketPricesProvider =
 
 final productsByMarketProvider =
     FutureProvider.family<List<ProductItem>, String>((ref, marketId) async {
-      final products = await ref.watch(productsProvider.future);
+      final repository = ref.watch(productRepositoryProvider);
+      final result = await repository.getProductsByMarket(marketId);
 
-      return products.where((product) => product.marketId == marketId).toList();
+      return result.when(
+        success: (data) => data,
+        failure: (message, code) => throw AppException(message: message, code: code),
+        loading: () => throw StateError('Unexpected loading state in provider'),
+      );
     });
