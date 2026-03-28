@@ -1,39 +1,46 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-27T19:40:02.319Z",
-  "phase": "01",
-  "phase_name": "quality-foundation",
-  "phase_dir": ".planning/phases/01-quality-foundation",
-  "plan": 4,
-  "task": 2,
-  "total_tasks": 2,
-  "status": "phase_complete",
-  "completed_tasks": [
-    {"id": 1, "name": "Repository unit tests + TextNormalizer tests (50 tests)", "status": "done", "commit": "1d21b8b"},
-    {"id": 2, "name": "Widget tests for ProductsPage + ProductDetailPage + widget_test.dart fix", "status": "done", "commit": "cb3640a"}
+  "timestamp": "2026-03-28T13:27:51.140Z",
+  "phase": "03",
+  "phase_name": "price-comparison-+-market-detail",
+  "phase_dir": ".planning/phases/03-price-comparison-+-market-detail",
+  "plan": 0,
+  "task": 0,
+  "total_tasks": 0,
+  "status": "paused",
+  "completed_tasks": [],
+  "remaining_tasks": [
+    {"id": 1, "name": "Plan phase 03 before execution", "status": "not_started"}
   ],
-  "remaining_tasks": [],
   "blockers": [],
   "human_actions_pending": [
     {
-      "action": "Launch app on device/simulator, add a favorite, close and reopen",
-      "context": "Verify FavoritesNotifier SharedPreferences persistence survives process restart — cannot be automated",
-      "blocking": false
-    },
-    {
-      "action": "Disable wifi, navigate to Products page",
-      "context": "Verify AppException typed errors surface as meaningful Turkish error messages, not raw 'Exception: ...' strings",
+      "action": "Live backend integration test for DATA-01 (7-market runtime coverage)",
+      "context": "Verifier noted this cannot be verified statically — Flutter contract is correct but needs deployed backend to confirm end-to-end data flow",
       "blocking": false
     }
   ],
   "decisions": [
-    {"decision": "AsyncNotifier for FavoritesNotifier", "rationale": "build() handles async SharedPreferences init, no manual init() needed in main()", "phase": "01"},
-    {"decision": "Same SharedPreferences key 'favorite_products' preserved", "rationale": "Existing user favorites survive migration without data loss", "phase": "01"},
-    {"decision": "ProductPriceSection uses MarketPriceItem not ProductItem", "rationale": "productMarketPricesProvider returns List<MarketPriceItem>", "phase": "01"},
-    {"decision": "Use pumpAndSettle() in all widget tests", "rationale": "Mock datasources use Future.delayed — bare pumpWidget leaves pending timers causing failures", "phase": "01"},
-    {"decision": "findsAtLeastNWidgets(1) for navigation labels", "rationale": "Material3 NavigationBar renders label text twice (visible + semantics)", "phase": "01"}
+    {
+      "decision": "Migrated DiscountItem.validUntil from String to DateTime with Turkish displayDate getter",
+      "rationale": "Enables proper date arithmetic and consistent formatting across the app",
+      "phase": "02"
+    },
+    {
+      "decision": "Added ProviderScope.overrides in widget tests after global datasource swap to remote",
+      "rationale": "Tests broke when mock datasources were removed from global wiring; override injects mock at test level",
+      "phase": "02"
+    },
+    {
+      "decision": "Base URL set to https://api.fiyatcep.com/api/v1",
+      "rationale": "Replaced placeholder api.example.com with production domain",
+      "phase": "02"
+    }
   ],
-  "uncommitted_files": [],
-  "next_action": "Run /gsd:plan-phase 2 to plan the data-layer phase (API contract, remote datasources, model extensions)",
-  "context_notes": "Phase 1 fully complete — 13/13 must-haves verified, 50 tests passing, flutter analyze clean. Phase 2 requires backend API contract to be finalized before remote datasource implementations can be written. Backend scraping service is being developed in parallel."
+  "uncommitted_files": [
+    ".planning/config.json",
+    ".planning/phases/01-quality-foundation/01-UAT.md"
+  ],
+  "next_action": "Run /gsd:plan-phase 3 to plan the price-comparison + market-detail phase",
+  "context_notes": "Phase 02 (data-layer) fully complete and verified. 3/3 plans done, 71 tests passing, all datasources swapped to remote. Phase 03 is next: price comparison UI and market detail screens. The data layer foundation (PricePoint, getProductsByMarket, remote datasources) is ready for the UI to build on."
 }
