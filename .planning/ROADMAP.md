@@ -60,7 +60,11 @@ Plans:
   1. Urun detay sayfasinda tum marketlerdeki fiyatlar sirali listelenir, en ucuz market vurgulanir ve fiyat farki (X TL daha ucuz) gosterilir
   2. Kullanici 1H / 1A / 3A / 1Y zaman secici ile fiyat gecmisini cizgi grafikte gorur ve belirli bir noktaya dokunarak exact fiyati okuyabilir
   3. Market detay sayfasi markanin logosu, banner gorseli ve marka rengiyle goruntulenir
-**Plans**: TBD
+**Plans**: 3 plans
+Plans:
+- [ ] 03-01-PLAN.md — fl_chart dependency, MarketBrand config, PricePoint.displayDate getter, asset directories
+- [ ] 03-02-PLAN.md — Price diff labels in ProductPriceSection + ProductPriceHistorySection chart widget
+- [ ] 03-03-PLAN.md — Market branding banner and logo in MarketDetailHeaderWidget
 **UI hint**: yes
 
 ### Phase 4: Cart Comparison
@@ -95,6 +99,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Quality Foundation | 3/4 | In Progress|  |
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
-| 3. Price Comparison + Market Detail | 0/? | Not started | - |
+| 3. Price Comparison + Market Detail | 0/3 | Not started | - |
 | 4. Cart Comparison | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
