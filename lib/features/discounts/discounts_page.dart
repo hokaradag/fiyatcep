@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fiyatcep/core/utils/text_normalizer.dart';
 
 import '../products/models/product_item.dart';
 import '../products/product_detail_page.dart';
@@ -31,18 +32,6 @@ class _DiscountsPageState extends ConsumerState<DiscountsPage> {
     super.dispose();
   }
 
-  String _normalizeText(String text) {
-    return text
-        .toLowerCase()
-        .replaceAll('ç', 'c')
-        .replaceAll('ğ', 'g')
-        .replaceAll('ı', 'i')
-        .replaceAll('ö', 'o')
-        .replaceAll('ş', 's')
-        .replaceAll('ü', 'u')
-        .trim();
-  }
-
   List<String> _getMarketOptions(List<DiscountItem> discounts) {
     final markets = discounts.map((item) => item.marketName).toSet().toList()
       ..sort();
@@ -51,9 +40,9 @@ class _DiscountsPageState extends ConsumerState<DiscountsPage> {
 
   List<DiscountItem> _filterDiscounts(List<DiscountItem> discounts) {
     return discounts.where((item) {
-      final normalizedQuery = _normalizeText(searchText);
-      final normalizedProductName = _normalizeText(item.productName);
-      final normalizedMarketName = _normalizeText(item.marketName);
+      final normalizedQuery = TextNormalizer.normalize(searchText);
+      final normalizedProductName = TextNormalizer.normalize(item.productName);
+      final normalizedMarketName = TextNormalizer.normalize(item.marketName);
 
       final matchesSearch =
           normalizedQuery.isEmpty ||
