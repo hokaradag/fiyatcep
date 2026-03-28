@@ -111,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-27 — Phase 1 complete (quality-foundation): TextNormalizer extracted, typed errors, widget decomposition, Riverpod favorites migration, 50 tests passing*
+*Last updated: 2026-03-28 — Phase 1 complete (quality-foundation): Turkish uppercase İ normalization fixed, duplicate _normalizeText() eliminated, 57 tests passing*
