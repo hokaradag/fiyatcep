@@ -51,5 +51,36 @@ void main() {
       expect(TextNormalizer.normalize('makarna'), equals('makarna'));
       expect(TextNormalizer.normalize('PASTA'), equals('pasta'));
     });
+
+    group('handles uppercase Turkish characters', () {
+      test('normalizes uppercase dotted-I (İ) to i', () {
+        expect(TextNormalizer.normalize('İ'), equals('i'));
+        expect(TextNormalizer.normalize('İstanbul'), equals('istanbul'));
+      });
+
+      test('normalizes uppercase C-cedilla (Ç) to c', () {
+        expect(TextNormalizer.normalize('Ç'), equals('c'));
+      });
+
+      test('normalizes uppercase G-breve (Ğ) to g', () {
+        expect(TextNormalizer.normalize('Ğ'), equals('g'));
+      });
+
+      test('normalizes uppercase O-umlaut (Ö) to o', () {
+        expect(TextNormalizer.normalize('Ö'), equals('o'));
+      });
+
+      test('normalizes uppercase S-cedilla (Ş) to s', () {
+        expect(TextNormalizer.normalize('Ş'), equals('s'));
+      });
+
+      test('normalizes uppercase U-umlaut (Ü) to u', () {
+        expect(TextNormalizer.normalize('Ü'), equals('u'));
+      });
+
+      test('normalizes ŞOK to sok (UAT scenario)', () {
+        expect(TextNormalizer.normalize('ŞOK'), equals('sok'));
+      });
+    });
   });
 }
