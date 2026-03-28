@@ -21,8 +21,8 @@
 
 - [ ] **DATA-01**: Scraping backend Migros, A101, BIM, CarrefourSA, Şok, Tarım Kredi ve File Market için ürün fiyatlarını ve indirimleri sağlar
 - [ ] **DATA-02**: Flutter uygulaması mock datasource yerine gerçek backend API'ye bağlanır (products, markets, discounts için remote datasource aktif edilir)
-- [ ] **DATA-03**: Kullanıcı bir ürünün fiyat geçmişini görmek için veri mevcuttur (`ProductItem` modeline `List<PricePoint> priceHistory` eklenir)
-- [ ] **DATA-04**: Kullanıcı bir indirimin geçerlilik tarihine gün bazlı bakabilir (`DiscountItem.validUntil` String'den `DateTime`'a dönüştürülür)
+- [x] **DATA-03**: Kullanıcı bir ürünün fiyat geçmişini görmek için veri mevcuttur (`ProductItem` modeline `List<PricePoint> priceHistory` eklenir)
+- [x] **DATA-04**: Kullanıcı bir indirimin geçerlilik tarihine gün bazlı bakabilir (`DiscountItem.validUntil` String'den `DateTime`'a dönüştürülür)
 
 ### Price Comparison (COMP)
 
@@ -95,8 +95,8 @@ Roadmap oluşturuldu: 2026-03-27
 | QUAL-07 | Phase 1 | Complete |
 | DATA-01 | Phase 2 | Pending |
 | DATA-02 | Phase 2 | Pending |
-| DATA-03 | Phase 2 | Pending |
-| DATA-04 | Phase 2 | Pending |
+| DATA-03 | Phase 2 | Complete |
+| DATA-04 | Phase 2 | Complete |
 | MKTD-02 | Phase 2 | Pending |
 | COMP-01 | Phase 3 | Pending |
 | COMP-02 | Phase 3 | Pending |

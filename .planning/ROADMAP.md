@@ -48,7 +48,7 @@ Plans:
   4. Indirim gecerlilik tarihi gun bazli okunabilir DateTime olarak goruntulenir
 **Plans**: 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — PricePoint model, ProductItem priceHistory extension, DiscountItem DateTime migration
+- [x] 02-01-PLAN.md — PricePoint model, ProductItem priceHistory extension, DiscountItem DateTime migration
 - [ ] 02-02-PLAN.md — Error response parsing update, getProductsByMarket across all layers
 - [ ] 02-03-PLAN.md — Datasource wiring swap to remote implementations, productsByMarketProvider update
 
