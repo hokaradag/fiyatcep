@@ -19,7 +19,7 @@
 
 ### Data Layer (DATA)
 
-- [ ] **DATA-01**: Scraping backend Migros, A101, BIM, CarrefourSA, Şok, Tarım Kredi ve File Market için ürün fiyatlarını ve indirimleri sağlar
+- [x] **DATA-01**: Scraping backend Migros, A101, BIM, CarrefourSA, Şok, Tarım Kredi ve File Market için ürün fiyatlarını ve indirimleri sağlar
 - [ ] **DATA-02**: Flutter uygulaması mock datasource yerine gerçek backend API'ye bağlanır (products, markets, discounts için remote datasource aktif edilir)
 - [x] **DATA-03**: Kullanıcı bir ürünün fiyat geçmişini görmek için veri mevcuttur (`ProductItem` modeline `List<PricePoint> priceHistory` eklenir)
 - [x] **DATA-04**: Kullanıcı bir indirimin geçerlilik tarihine gün bazlı bakabilir (`DiscountItem.validUntil` String'den `DateTime`'a dönüştürülür)
@@ -33,7 +33,7 @@
 ### Market Detail (MKTD)
 
 - [ ] **MKTD-01**: Market detay sayfası markanın logosu, banner görseli ve marka rengiyle görsel olarak zenginleştirilir
-- [ ] **MKTD-02**: Market detay sayfası o markete ait gerçek ürün ve fiyat listesini API'den gösterir
+- [x] **MKTD-02**: Market detay sayfası o markete ait gerçek ürün ve fiyat listesini API'den gösterir
 
 ### Notifications (NOTIF)
 
@@ -93,11 +93,11 @@ Roadmap oluşturuldu: 2026-03-27
 | QUAL-05 | Phase 1 | Complete |
 | QUAL-06 | Phase 1 | Pending |
 | QUAL-07 | Phase 1 | Complete |
-| DATA-01 | Phase 2 | Pending |
+| DATA-01 | Phase 2 | Complete |
 | DATA-02 | Phase 2 | Pending |
 | DATA-03 | Phase 2 | Complete |
 | DATA-04 | Phase 2 | Complete |
-| MKTD-02 | Phase 2 | Pending |
+| MKTD-02 | Phase 2 | Complete |
 | COMP-01 | Phase 3 | Pending |
 | COMP-02 | Phase 3 | Pending |
 | MKTD-01 | Phase 3 | Pending |

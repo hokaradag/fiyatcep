@@ -49,7 +49,7 @@ Plans:
 **Plans**: 3 plans
 Plans:
 - [x] 02-01-PLAN.md — PricePoint model, ProductItem priceHistory extension, DiscountItem DateTime migration
-- [ ] 02-02-PLAN.md — Error response parsing update, getProductsByMarket across all layers
+- [x] 02-02-PLAN.md — Error response parsing update, getProductsByMarket across all layers
 - [ ] 02-03-PLAN.md — Datasource wiring swap to remote implementations, productsByMarketProvider update
 
 ### Phase 3: Price Comparison + Market Detail
@@ -94,7 +94,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Quality Foundation | 3/4 | In Progress|  |
-| 2. Data Layer | 0/3 | Not started | - |
+| 2. Data Layer | 2/3 | In Progress|  |
 | 3. Price Comparison + Market Detail | 0/? | Not started | - |
 | 4. Cart Comparison | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
