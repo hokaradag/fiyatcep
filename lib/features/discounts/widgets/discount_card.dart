@@ -112,7 +112,7 @@ class DiscountCard extends StatelessWidget {
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(
-                      'Son tarih: ${item.validUntil}',
+                      'Son tarih: ${item.displayDate}',
                       style: TextStyle(
                         color: Colors.orange.shade800,
                         fontWeight: FontWeight.w500,

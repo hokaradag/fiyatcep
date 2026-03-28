@@ -28,7 +28,7 @@ mixin _$DiscountItem {
   String get marketName => throw _privateConstructorUsedError;
   double get oldPrice => throw _privateConstructorUsedError;
   double get newPrice => throw _privateConstructorUsedError;
-  String get validUntil => throw _privateConstructorUsedError;
+  DateTime get validUntil => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
 
   /// Serializes this DiscountItem to a JSON map.
@@ -56,7 +56,7 @@ abstract class $DiscountItemCopyWith<$Res> {
     String marketName,
     double oldPrice,
     double newPrice,
-    String validUntil,
+    DateTime validUntil,
     String? note,
   });
 }
@@ -119,7 +119,7 @@ class _$DiscountItemCopyWithImpl<$Res, $Val extends DiscountItem>
             validUntil: null == validUntil
                 ? _value.validUntil
                 : validUntil // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as DateTime,
             note: freezed == note
                 ? _value.note
                 : note // ignore: cast_nullable_to_non_nullable
@@ -147,7 +147,7 @@ abstract class _$$DiscountItemImplCopyWith<$Res>
     String marketName,
     double oldPrice,
     double newPrice,
-    String validUntil,
+    DateTime validUntil,
     String? note,
   });
 }
@@ -209,7 +209,7 @@ class __$$DiscountItemImplCopyWithImpl<$Res>
         validUntil: null == validUntil
             ? _value.validUntil
             : validUntil // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as DateTime,
         note: freezed == note
             ? _value.note
             : note // ignore: cast_nullable_to_non_nullable
@@ -252,7 +252,7 @@ class _$DiscountItemImpl extends _DiscountItem {
   @override
   final double newPrice;
   @override
-  final String validUntil;
+  final DateTime validUntil;
   @override
   final String? note;
 
@@ -322,7 +322,7 @@ abstract class _DiscountItem extends DiscountItem {
     required final String marketName,
     required final double oldPrice,
     required final double newPrice,
-    required final String validUntil,
+    required final DateTime validUntil,
     final String? note,
   }) = _$DiscountItemImpl;
   const _DiscountItem._() : super._();
@@ -345,7 +345,7 @@ abstract class _DiscountItem extends DiscountItem {
   @override
   double get newPrice;
   @override
-  String get validUntil;
+  DateTime get validUntil;
   @override
   String? get note;
 

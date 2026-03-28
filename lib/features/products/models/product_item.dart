@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'price_point.dart';
+
 part 'product_item.freezed.dart';
 part 'product_item.g.dart';
 
@@ -13,6 +15,7 @@ class ProductItem with _$ProductItem {
     required String market,
     required double price,
     required bool isDiscounted,
+    @Default([]) List<PricePoint> priceHistory,
   }) = _ProductItem;
 
   factory ProductItem.fromJson(Map<String, dynamic> json) =>

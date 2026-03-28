@@ -28,6 +28,7 @@ mixin _$ProductItem {
   String get market => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   bool get isDiscounted => throw _privateConstructorUsedError;
+  List<PricePoint> get priceHistory => throw _privateConstructorUsedError;
 
   /// Serializes this ProductItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $ProductItemCopyWith<$Res> {
     String market,
     double price,
     bool isDiscounted,
+    List<PricePoint> priceHistory,
   });
 }
 
@@ -79,6 +81,7 @@ class _$ProductItemCopyWithImpl<$Res, $Val extends ProductItem>
     Object? market = null,
     Object? price = null,
     Object? isDiscounted = null,
+    Object? priceHistory = null,
   }) {
     return _then(
       _value.copyWith(
@@ -110,6 +113,10 @@ class _$ProductItemCopyWithImpl<$Res, $Val extends ProductItem>
                 ? _value.isDiscounted
                 : isDiscounted // ignore: cast_nullable_to_non_nullable
                       as bool,
+            priceHistory: null == priceHistory
+                ? _value.priceHistory
+                : priceHistory // ignore: cast_nullable_to_non_nullable
+                      as List<PricePoint>,
           )
           as $Val,
     );
@@ -133,6 +140,7 @@ abstract class _$$ProductItemImplCopyWith<$Res>
     String market,
     double price,
     bool isDiscounted,
+    List<PricePoint> priceHistory,
   });
 }
 
@@ -157,6 +165,7 @@ class __$$ProductItemImplCopyWithImpl<$Res>
     Object? market = null,
     Object? price = null,
     Object? isDiscounted = null,
+    Object? priceHistory = null,
   }) {
     return _then(
       _$ProductItemImpl(
@@ -188,6 +197,10 @@ class __$$ProductItemImplCopyWithImpl<$Res>
             ? _value.isDiscounted
             : isDiscounted // ignore: cast_nullable_to_non_nullable
                   as bool,
+        priceHistory: null == priceHistory
+            ? _value._priceHistory
+            : priceHistory // ignore: cast_nullable_to_non_nullable
+                  as List<PricePoint>,
       ),
     );
   }
@@ -204,7 +217,9 @@ class _$ProductItemImpl extends _ProductItem {
     required this.market,
     required this.price,
     required this.isDiscounted,
-  }) : super._();
+    final List<PricePoint> priceHistory = const [],
+  }) : _priceHistory = priceHistory,
+       super._();
 
   factory _$ProductItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductItemImplFromJson(json);
@@ -223,10 +238,18 @@ class _$ProductItemImpl extends _ProductItem {
   final double price;
   @override
   final bool isDiscounted;
+  final List<PricePoint> _priceHistory;
+  @override
+  @JsonKey()
+  List<PricePoint> get priceHistory {
+    if (_priceHistory is EqualUnmodifiableListView) return _priceHistory;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_priceHistory);
+  }
 
   @override
   String toString() {
-    return 'ProductItem(id: $id, marketId: $marketId, name: $name, brand: $brand, market: $market, price: $price, isDiscounted: $isDiscounted)';
+    return 'ProductItem(id: $id, marketId: $marketId, name: $name, brand: $brand, market: $market, price: $price, isDiscounted: $isDiscounted, priceHistory: $priceHistory)';
   }
 
   @override
@@ -242,7 +265,11 @@ class _$ProductItemImpl extends _ProductItem {
             (identical(other.market, market) || other.market == market) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.isDiscounted, isDiscounted) ||
-                other.isDiscounted == isDiscounted));
+                other.isDiscounted == isDiscounted) &&
+            const DeepCollectionEquality().equals(
+              other._priceHistory,
+              _priceHistory,
+            ));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -256,6 +283,7 @@ class _$ProductItemImpl extends _ProductItem {
     market,
     price,
     isDiscounted,
+    const DeepCollectionEquality().hash(_priceHistory),
   );
 
   /// Create a copy of ProductItem
@@ -281,6 +309,7 @@ abstract class _ProductItem extends ProductItem {
     required final String market,
     required final double price,
     required final bool isDiscounted,
+    final List<PricePoint> priceHistory,
   }) = _$ProductItemImpl;
   const _ProductItem._() : super._();
 
@@ -301,6 +330,8 @@ abstract class _ProductItem extends ProductItem {
   double get price;
   @override
   bool get isDiscounted;
+  @override
+  List<PricePoint> get priceHistory;
 
   /// Create a copy of ProductItem
   /// with the given fields replaced by the non-null parameter values.

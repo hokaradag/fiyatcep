@@ -8,7 +8,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
   Future<List<DiscountItem>> getAllDiscounts() async {
     await Future.delayed(const Duration(milliseconds: 800));
 
-    return const [
+    return [
       DiscountItem(
         id: 'd1',
         productId: 'p2',
@@ -17,7 +17,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
         marketName: 'Migros',
         oldPrice: 42.95,
         newPrice: 36.50,
-        validUntil: '30 Mart 2026',
+        validUntil: DateTime(2026, 3, 30),
         note: 'Money üyelerine özel',
       ),
       DiscountItem(
@@ -28,7 +28,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
         marketName: 'A101',
         oldPrice: 89.90,
         newPrice: 74.95,
-        validUntil: '29 Mart 2026',
+        validUntil: DateTime(2026, 3, 29),
         note: 'Haftanın fırsatı',
       ),
       DiscountItem(
@@ -39,7 +39,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
         marketName: 'BİM',
         oldPrice: 21.75,
         newPrice: 17.50,
-        validUntil: '1 Nisan 2026',
+        validUntil: DateTime(2026, 4, 1),
         note: 'Seçili ürünlerde',
       ),
       DiscountItem(
@@ -50,7 +50,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
         marketName: 'CarrefourSA',
         oldPrice: 175.00,
         newPrice: 145.00,
-        validUntil: '2 Nisan 2026',
+        validUntil: DateTime(2026, 4, 2),
         note: null,
       ),
       DiscountItem(
@@ -61,7 +61,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
         marketName: 'ŞOK',
         oldPrice: 99.90,
         newPrice: 79.90,
-        validUntil: '31 Mart 2026',
+        validUntil: DateTime(2026, 3, 31),
         note: 'Stoklarla sınırlı',
       ),
     ];

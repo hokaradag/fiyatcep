@@ -15,6 +15,11 @@ _$ProductItemImpl _$$ProductItemImplFromJson(Map<String, dynamic> json) =>
       market: json['market'] as String,
       price: (json['price'] as num).toDouble(),
       isDiscounted: json['isDiscounted'] as bool,
+      priceHistory:
+          (json['priceHistory'] as List<dynamic>?)
+              ?.map((e) => PricePoint.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$ProductItemImplToJson(_$ProductItemImpl instance) =>
@@ -26,4 +31,5 @@ Map<String, dynamic> _$$ProductItemImplToJson(_$ProductItemImpl instance) =>
       'market': instance.market,
       'price': instance.price,
       'isDiscounted': instance.isDiscounted,
+      'priceHistory': instance.priceHistory,
     };

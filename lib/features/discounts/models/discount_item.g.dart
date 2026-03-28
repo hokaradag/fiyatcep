@@ -15,7 +15,7 @@ _$DiscountItemImpl _$$DiscountItemImplFromJson(Map<String, dynamic> json) =>
       marketName: json['marketName'] as String,
       oldPrice: (json['oldPrice'] as num).toDouble(),
       newPrice: (json['newPrice'] as num).toDouble(),
-      validUntil: json['validUntil'] as String,
+      validUntil: DateTime.parse(json['validUntil'] as String),
       note: json['note'] as String?,
     );
 
@@ -28,6 +28,6 @@ Map<String, dynamic> _$$DiscountItemImplToJson(_$DiscountItemImpl instance) =>
       'marketName': instance.marketName,
       'oldPrice': instance.oldPrice,
       'newPrice': instance.newPrice,
-      'validUntil': instance.validUntil,
+      'validUntil': instance.validUntil.toIso8601String(),
       'note': instance.note,
     };

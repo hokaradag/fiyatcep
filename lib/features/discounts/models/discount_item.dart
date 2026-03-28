@@ -13,7 +13,7 @@ class DiscountItem with _$DiscountItem {
     required String marketName,
     required double oldPrice,
     required double newPrice,
-    required String validUntil,
+    required DateTime validUntil,
     String? note,
   }) = _DiscountItem;
 
@@ -27,5 +27,24 @@ class DiscountItem with _$DiscountItem {
   int get discountPercent {
     if (oldPrice <= 0) return 0;
     return (((oldPrice - newPrice) / oldPrice) * 100).round();
+  }
+
+  String get displayDate {
+    const months = [
+      '',
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
+    ];
+    return '${validUntil.day} ${months[validUntil.month]} ${validUntil.year}';
   }
 }
