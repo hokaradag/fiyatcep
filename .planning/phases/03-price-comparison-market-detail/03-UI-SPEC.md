@@ -56,15 +56,21 @@ Exceptions:
 
 All sizes in logical pixels (Flutter dp). No custom fonts — system default.
 
+**4-size scale (fixed — do not add sizes outside this table):**
+
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
-| Body | 14px | 400 (normal) | 1.5 | Chart tooltip date line, empty-state body text, description text |
-| Label | 16px | 400 (normal) | 1.45 | Market name in price rows, secondary info text in header |
+| Body | 14px | 400 (normal) | 1.5 | Price diff label (`+X.XX ₺`), chart tooltip date line, empty-state body text, description text |
+| Label | 16px | 400 (normal) | 1.45 | Market name in price rows, secondary info text in header, price values in ProductPriceSection (existing code uses 16–18px range; map to 16px Label tier for new additions) |
 | Heading | 20px | 700 (bold) | 1.2 | Section headings ("Marketlere Göre Fiyatlar", "Fiyat Geçmişi") |
 | Display | 24px | 700 (bold) | 1.2 | Market name in MarketDetailHeaderWidget (already established) |
 
-Price values in ProductPriceSection use 18px / weight 700 (already established — preserve as-is).
-Price diff label (`+X.XX ₺`) uses 13px / weight 400 / muted color (new addition, below Label tier).
+**Mapping of existing code to this scale:**
+- Existing price values in ProductPriceSection (17–18px bold in current code): map to Label 16px at weight 700 for any new price value text added in this phase. Existing lines are preserved as-is without a size change; no new out-of-scale sizes are introduced.
+- Price diff label (`+X.XX ₺`): Body 14px / weight 400 / `Colors.grey.shade600` — visual distinction via muted color, not smaller size.
+- Chart tooltip date (`"dd MMM"`): Body 14px / weight 400 / `Colors.grey.shade600` — same tier as other secondary text.
+
+**Font weights in use: exactly 2 — 400 (normal) and 700 (bold). No other weights.**
 
 **Source:** Existing widget code: market_detail_header_widget.dart line 58 (24px bold), product_price_section.dart line 53 (17px bold), line 64 (18px bold), product_detail_page.dart line 40 (20px bold), line 45 (15px/1.5).
 
@@ -94,7 +100,7 @@ Flutter Material colors used throughout. No hex tokens — reference Material co
 - `Colors.blue` — branch count info chip (already established, preserve)
 - `Colors.indigo` — online order chip (already established, preserve)
 - `Colors.purple` — loyalty program chip (already established, preserve)
-- `Colors.grey.shade500` — price diff label (`+X.XX ₺`) for non-cheapest rows — muted, not accent
+- `Colors.grey.shade600` — price diff label (`+X.XX ₺`) and tooltip date text for non-cheapest rows — muted, not accent
 
 **Market brand `primaryColor` (in `MarketBrand` config):**
 Used exclusively in `MarketDetailHeaderWidget` banner background and as tint on the info card header stripe. Does NOT replace the app's accent color — it is display-only within that widget.
@@ -113,6 +119,14 @@ Used exclusively in `MarketDetailHeaderWidget` banner background and as tint on 
 
 ---
 
+## Visual Focal Points
+
+**Primary focal point:** The cheapest-market price row (green styling + "En Uygun" badge) in ProductPriceSection. This is the single most decision-relevant element on the product detail page — green accent color, bold price text, and the badge combine to direct attention immediately.
+
+**Secondary focal point:** The "Fiyat Geçmişi" chart section heading and the line chart below it. The chart occupies the most vertical space of any single element on the page (200px minimum) and provides context for the price comparison above it.
+
+---
+
 ## Component Inventory
 
 ### New: ProductPriceHistorySection
@@ -125,7 +139,7 @@ Column
   ├── Text "Fiyat Geçmişi"  [Heading 20px bold]
   ├── SizedBox(height: 16)
   ├── [Empty state OR chart]
-  │    EMPTY: Text "Fiyat geçmişi henüz mevcut değil"  [Body 14px, grey.shade500]
+  │    EMPTY: Text "Fiyat geçmişi henüz mevcut değil"  [Body 14px, grey.shade600]
   │    CHART:
   │      ├── _TimeRangeSelector  (SegmentedButton or custom tab row, height 44px)
   │      │     tabs: 1H | 1A | 3A | 1Y
@@ -138,7 +152,8 @@ Column
   │                  stroke width: 2px
   │                  grid lines: horizontal only, Colors.grey.shade200, dashed
   │                  touch: LineTouchData enabled — tooltip on press
-  │                  tooltip format: "XX.XX ₺" (primary line) + "dd MMM" (secondary line, 12px)
+  │                  tooltip format: "XX.XX ₺" (primary line, 14px bold green)
+  │                            + "dd MMM" (secondary line, 14px, grey.shade600)
   │                  Y-axis: show min/max prices only (2 labels)
   │                  X-axis: show first and last date labels only
 ```
@@ -164,7 +179,7 @@ Row
   ├── [existing "İndirimli" badge — if isDiscounted]
   └── [NEW] if !isCheapest:
         Text "+X.XX ₺"
-          style: 13px, weight 400, color Colors.grey.shade500
+          style: 14px, weight 400, color Colors.grey.shade600
           padding-left: 8px
 ```
 
@@ -231,7 +246,7 @@ flutter:
 
 | State | Visual | Behavior |
 |-------|--------|----------|
-| Selected tab | Brand green background, white text, weight 600 | No action |
+| Selected tab | Brand green background, white text, weight 700 | No action |
 | Unselected tab | `Colors.grey.shade100` background, `Colors.black87` text | Tap → update chart data, update selected state |
 | Disabled tab | `Colors.grey.shade200` background, `Colors.grey.shade400` text | No tap response, shows label grayed |
 
@@ -243,7 +258,7 @@ Default selection: 1A tab on widget initialization.
 |-------|--------|
 | No touch | No tooltip visible |
 | Press/hold on chart | Tooltip bubble appears at nearest data point |
-| Tooltip content | Line 1: price value `"XX.XX ₺"` at 14px bold green; Line 2: date `"dd MMM"` at 12px grey.shade600 |
+| Tooltip content | Line 1: price value `"XX.XX ₺"` at 14px bold green; Line 2: date `"dd MMM"` at 14px grey.shade600 |
 | Release | Tooltip disappears |
 
 ### Price Row Layout (ProductPriceSection)
@@ -252,7 +267,7 @@ Default selection: 1A tab on widget initialization.
 |-------|--------|
 | Cheapest row | Green icon container, green price text, "En Uygun" green badge |
 | Cheapest + discounted | Above + red "İndirimli" badge |
-| Non-cheapest row | Grey icon container, black87 price text, grey "+X.XX ₺" diff label |
+| Non-cheapest row | Grey icon container, black87 price text, grey "+X.XX ₺" diff label at 14px muted |
 | Non-cheapest + discounted | Above + red "İndirimli" badge |
 
 ### Market Detail Banner
@@ -283,7 +298,7 @@ Default selection: 1A tab on widget initialization.
 | Empty state body (no price history) | (no body copy needed — heading is self-contained) |
 | Empty state (no prices for product) | "Bu ürün için fiyat bilgisi bulunamadı" |
 | Error state heading | "Fiyatlar yüklenemedi" |
-| Error state action | "Tekrar Dene" (existing pattern — preserve as-is) |
+| Error state action | "Tekrar Dene" (preserved existing pattern — single-verb CTA without noun object is consistent with the rest of the app's error retry pattern) |
 | Error state detail | "Hata: {error.toString()}" (existing pattern — preserve) |
 | Loading state | `CircularProgressIndicator()` centered (existing pattern — preserve) |
 | Tooltip price | "XX.XX ₺" |
