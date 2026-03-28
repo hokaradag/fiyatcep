@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 02-data-layer-02-PLAN.md
-last_updated: "2026-03-28T13:17:12.559Z"
+status: verifying
+stopped_at: Completed 02-data-layer-03-PLAN.md
+last_updated: "2026-03-28T13:21:11.688Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
   percent: 25
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 Phase: 02 (data-layer) — EXECUTING
 Plan: 3 of 3
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-03-28
 
 Progress: [██░░░░░░░░] 25%
@@ -58,6 +58,7 @@ Progress: [██░░░░░░░░] 25%
 | Phase 02-data-layer P01 | 525711min | 1 tasks | 13 files |
 | Phase 02-data-layer P01 | 35min | 1 tasks | 13 files |
 | Phase 02-data-layer P02 | 3min | 2 tasks | 9 files |
+| Phase 02-data-layer P03 | 2min | 1 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,7 @@ Recent decisions affecting current work:
 - [Phase 02-data-layer]: DateTime type for DiscountItem.validUntil — json_serializable 6.x parses ISO 8601 natively, no custom converter needed
 - [Phase 02-data-layer]: Error envelope extraction placed before status-code branches in _handleException — avoids repeating body/errorObj locals per branch, backward-compat fallback to body[message] preserved
 - [Phase 02-data-layer]: getProductsByMarket added only to ProductRemoteDataSource, not ProductLocalDataSource — market-filtered lists are always fetched live, no caching needed
+- [Phase 02-data-layer]: Widget tests must use ProviderScope.overrides to inject mock repository — global provider wiring is now remote, not mock
 
 ### Pending Todos
 
@@ -97,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T13:17:12.555Z
-Stopped at: Completed 02-data-layer-02-PLAN.md
+Last session: 2026-03-28T13:21:11.683Z
+Stopped at: Completed 02-data-layer-03-PLAN.md
 Resume file: None
