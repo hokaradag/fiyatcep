@@ -118,8 +118,8 @@ class __$$PricePointImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PricePointImpl implements _PricePoint {
-  const _$PricePointImpl({required this.price, required this.date});
+class _$PricePointImpl extends _PricePoint {
+  const _$PricePointImpl({required this.price, required this.date}) : super._();
 
   factory _$PricePointImpl.fromJson(Map<String, dynamic> json) =>
       _$$PricePointImplFromJson(json);
@@ -161,11 +161,12 @@ class _$PricePointImpl implements _PricePoint {
   }
 }
 
-abstract class _PricePoint implements PricePoint {
+abstract class _PricePoint extends PricePoint {
   const factory _PricePoint({
     required final double price,
     required final DateTime date,
   }) = _$PricePointImpl;
+  const _PricePoint._() : super._();
 
   factory _PricePoint.fromJson(Map<String, dynamic> json) =
       _$PricePointImpl.fromJson;
