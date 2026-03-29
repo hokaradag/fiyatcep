@@ -65,7 +65,7 @@ Plans:
 - [x] 03-01-PLAN.md — fl_chart dependency, MarketBrand config, PricePoint.displayDate getter, asset directories
 - [x] 03-02-PLAN.md — Price diff labels in ProductPriceSection + ProductPriceHistorySection chart widget
 - [x] 03-03-PLAN.md — Market branding banner and logo in MarketDetailHeaderWidget
-- [ ] 03-04-PLAN.md — Populate priceHistory mock data for price history chart (gap closure)
+- [x] 03-04-PLAN.md — Populate priceHistory mock data for price history chart (gap closure)
 - [ ] 03-05-PLAN.md — Fix mock market IDs to slug keys for brand color lookup (gap closure)
 **UI hint**: yes
 
@@ -101,6 +101,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Quality Foundation | 3/4 | In Progress|  |
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
-| 3. Price Comparison + Market Detail | 3/5 | In Progress|  |
+| 3. Price Comparison + Market Detail | 4/5 | In Progress|  |
 | 4. Cart Comparison | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
