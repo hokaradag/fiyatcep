@@ -10,7 +10,7 @@ class MarketMockDataSourceImpl implements MarketRemoteDataSource {
 
     return const [
       MarketItem(
-        id: 'm1',
+        id: 'migros',
         name: 'Migros',
         description: 'Geniş ürün yelpazesi ve düzenli kampanyalar sunar.',
         branchCount: 2450,
@@ -19,7 +19,7 @@ class MarketMockDataSourceImpl implements MarketRemoteDataSource {
         hasLoyaltyProgram: true,
       ),
       MarketItem(
-        id: 'm2',
+        id: 'a101',
         name: 'A101',
         description: 'Uygun fiyatlı temel ihtiyaç ürünleriyle öne çıkar.',
         branchCount: 12500,
@@ -28,7 +28,7 @@ class MarketMockDataSourceImpl implements MarketRemoteDataSource {
         hasLoyaltyProgram: false,
       ),
       MarketItem(
-        id: 'm3',
+        id: 'bim',
         name: 'BİM',
         description: 'Günlük alışverişte ekonomik fiyatlarıyla tercih edilir.',
         branchCount: 11000,
@@ -37,7 +37,7 @@ class MarketMockDataSourceImpl implements MarketRemoteDataSource {
         hasLoyaltyProgram: false,
       ),
       MarketItem(
-        id: 'm4',
+        id: 'sok',
         name: 'ŞOK',
         description: 'Kaliteli ürünleri uygun fiyatlarla sunmaktadır.',
         branchCount: 8500,
@@ -46,7 +46,7 @@ class MarketMockDataSourceImpl implements MarketRemoteDataSource {
         hasLoyaltyProgram: true,
       ),
       MarketItem(
-        id: 'm5',
+        id: 'carrefoursa',
         name: 'CarrefourSA',
         description: 'Uluslararası mağaza zinciri, premium ürünler.',
         branchCount: 3200,

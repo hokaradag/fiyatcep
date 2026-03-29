@@ -2,7 +2,7 @@ import '../models/market_item.dart';
 
 const List<MarketItem> mockMarkets = [
   MarketItem(
-    id: 'm1',
+    id: 'migros',
     name: 'Migros',
     description: 'Geniş ürün yelpazesi ve düzenli kampanyalar sunar.',
     branchCount: 2450,
@@ -11,7 +11,7 @@ const List<MarketItem> mockMarkets = [
     hasLoyaltyProgram: true,
   ),
   MarketItem(
-    id: 'm2',
+    id: 'a101',
     name: 'A101',
     description: 'Uygun fiyatlı temel ihtiyaç ürünleriyle öne çıkar.',
     branchCount: 12500,
@@ -20,7 +20,7 @@ const List<MarketItem> mockMarkets = [
     hasLoyaltyProgram: false,
   ),
   MarketItem(
-    id: 'm3',
+    id: 'bim',
     name: 'BİM',
     description: 'Günlük alışverişte ekonomik fiyatlarıyla tercih edilir.',
     branchCount: 11000,
@@ -29,7 +29,7 @@ const List<MarketItem> mockMarkets = [
     hasLoyaltyProgram: false,
   ),
   MarketItem(
-    id: 'm4',
+    id: 'sok',
     name: 'ŞOK',
     description: 'Haftalık aktüel ürünler ve indirimli fırsatlar sunar.',
     branchCount: 10500,
@@ -38,7 +38,7 @@ const List<MarketItem> mockMarkets = [
     hasLoyaltyProgram: true,
   ),
   MarketItem(
-    id: 'm5',
+    id: 'carrefoursa',
     name: 'CarrefourSA',
     description: 'Süpermarket deneyimi ve çeşitli marka seçenekleri sunar.',
     branchCount: 950,
