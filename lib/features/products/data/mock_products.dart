@@ -4,7 +4,7 @@ import '../models/product_item.dart';
 final List<ProductItem> mockProducts = [
   ProductItem(
     id: 'p1',
-    marketId: 'm2',
+    marketId: 'a101',
     name: 'Ayçiçek Yağı 1L',
     brand: 'Yudum',
     market: 'A101',
@@ -29,7 +29,7 @@ final List<ProductItem> mockProducts = [
   ),
   ProductItem(
     id: 'p2',
-    marketId: 'm1',
+    marketId: 'migros',
     name: 'Yarım Yağlı Süt 1L',
     brand: 'Sütaş',
     market: 'Migros',
@@ -52,7 +52,7 @@ final List<ProductItem> mockProducts = [
   ),
   const ProductItem(
     id: 'p3',
-    marketId: 'm3',
+    marketId: 'bim',
     name: 'Makarna 500g',
     brand: 'Filiz',
     market: 'BİM',
@@ -61,7 +61,7 @@ final List<ProductItem> mockProducts = [
   ),
   const ProductItem(
     id: 'p4',
-    marketId: 'm4',
+    marketId: 'sok',
     name: 'Türk Kahvesi 100g',
     brand: 'Mehmet Efendi',
     market: 'ŞOK',
@@ -70,7 +70,7 @@ final List<ProductItem> mockProducts = [
   ),
   const ProductItem(
     id: 'p5',
-    marketId: 'm5',
+    marketId: 'carrefoursa',
     name: 'Çamaşır Deterjanı 3kg',
     brand: 'Omo',
     market: 'CarrefourSA',
@@ -79,7 +79,7 @@ final List<ProductItem> mockProducts = [
   ),
   const ProductItem(
     id: 'p6',
-    marketId: 'm4',
+    marketId: 'sok',
     name: 'Bisküvi',
     brand: 'Eti',
     market: 'ŞOK',

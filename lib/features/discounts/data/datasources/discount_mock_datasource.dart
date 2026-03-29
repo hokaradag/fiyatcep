@@ -12,7 +12,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
       DiscountItem(
         id: 'd1',
         productId: 'p2',
-        marketId: 'm1',
+        marketId: 'migros',
         productName: 'Yarım Yağlı Süt 1L',
         marketName: 'Migros',
         oldPrice: 42.95,
@@ -23,7 +23,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
       DiscountItem(
         id: 'd2',
         productId: 'p1',
-        marketId: 'm2',
+        marketId: 'a101',
         productName: 'Ayçiçek Yağı 1L',
         marketName: 'A101',
         oldPrice: 89.90,
@@ -34,7 +34,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
       DiscountItem(
         id: 'd3',
         productId: 'p3',
-        marketId: 'm3',
+        marketId: 'bim',
         productName: 'Makarna 500g',
         marketName: 'BİM',
         oldPrice: 21.75,
@@ -45,7 +45,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
       DiscountItem(
         id: 'd4',
         productId: 'p5',
-        marketId: 'm5',
+        marketId: 'carrefoursa',
         productName: 'Çamaşır Deterjanı 3kg',
         marketName: 'CarrefourSA',
         oldPrice: 175.00,
@@ -56,7 +56,7 @@ class DiscountMockDataSourceImpl implements DiscountRemoteDataSource {
       DiscountItem(
         id: 'd5',
         productId: 'p4',
-        marketId: 'm4',
+        marketId: 'sok',
         productName: 'Türk Kahvesi 100g',
         marketName: 'ŞOK',
         oldPrice: 99.90,
