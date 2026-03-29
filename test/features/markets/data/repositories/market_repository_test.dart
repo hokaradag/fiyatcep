@@ -67,11 +67,11 @@ void main() {
     });
 
     test('getMarketById with valid ID returns SuccessResult', () async {
-      final result = await repo.getMarketById('m1');
+      final result = await repo.getMarketById('migros');
       expect(result, isA<SuccessResult<MarketItem>>());
       result.when(
         success: (data) {
-          expect(data.id, equals('m1'));
+          expect(data.id, equals('migros'));
           expect(data.name, equals('Migros'));
         },
         failure: (message, code) => fail('Expected success but got failure: $message'),

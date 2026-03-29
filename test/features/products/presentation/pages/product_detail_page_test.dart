@@ -8,7 +8,7 @@ import 'package:fiyatcep/features/products/models/product_item.dart';
 // Product with ID 'p1' which has entries in mockMarketPrices
 const _testProduct = ProductItem(
   id: 'p1',
-  marketId: 'm2',
+  marketId: 'a101',
   name: 'Ayçiçek Yağı 1L',
   brand: 'Yudum',
   market: 'A101',

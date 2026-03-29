@@ -67,12 +67,12 @@ void main() {
     });
 
     test('getDiscountsByMarket with valid marketId returns SuccessResult', () async {
-      final result = await repo.getDiscountsByMarket('m1');
+      final result = await repo.getDiscountsByMarket('migros');
       expect(result, isA<SuccessResult<List<DiscountItem>>>());
       result.when(
         success: (data) {
           expect(data, isNotEmpty);
-          expect(data.every((d) => d.marketId == 'm1'), isTrue);
+          expect(data.every((d) => d.marketId == 'migros'), isTrue);
         },
         failure: (message, code) => fail('Expected success but got failure: $message'),
         loading: () => fail('Unexpected loading state'),

@@ -6,7 +6,7 @@ import 'package:fiyatcep/features/products/models/product_item.dart';
 
 const _testProduct = ProductItem(
   id: 'p1',
-  marketId: 'm1',
+  marketId: 'migros',
   name: 'Test Ürün',
   brand: 'Test Marka',
   market: 'Test Market',
@@ -16,7 +16,7 @@ const _testProduct = ProductItem(
 
 const _testProduct2 = ProductItem(
   id: 'p2',
-  marketId: 'm2',
+  marketId: 'a101',
   name: 'Test Ürün 2',
   brand: 'Test Marka 2',
   market: 'Test Market 2',
@@ -41,7 +41,7 @@ void main() {
     test('build() loads stored favorites from SharedPreferences', () async {
       SharedPreferences.setMockInitialValues({
         'favorite_products': [
-          '{"id":"p1","marketId":"m1","name":"Test Ürün","brand":"Test Marka","market":"Test Market","price":10.0,"isDiscounted":false}',
+          '{"id":"p1","marketId":"migros","name":"Test Ürün","brand":"Test Marka","market":"Test Market","price":10.0,"isDiscounted":false}',
         ],
       });
 

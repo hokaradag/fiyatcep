@@ -11,7 +11,7 @@ void main() {
       return DiscountItem(
         id: 'd1',
         productId: 'p1',
-        marketId: 'm1',
+        marketId: 'migros',
         productName: 'Test Ürün',
         marketName: 'Test Market',
         oldPrice: oldPrice,

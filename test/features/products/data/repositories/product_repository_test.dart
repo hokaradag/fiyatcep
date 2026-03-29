@@ -94,13 +94,13 @@ void main() {
     });
 
     test('getProductsByMarket returns products filtered by marketId', () async {
-      final result = await repo.getProductsByMarket('m1');
+      final result = await repo.getProductsByMarket('migros');
       expect(result, isA<SuccessResult<List<ProductItem>>>());
       result.when(
         success: (data) {
           expect(data, isNotEmpty);
           for (final product in data) {
-            expect(product.marketId, equals('m1'));
+            expect(product.marketId, equals('migros'));
           }
         },
         failure: (_, _) => fail('Expected success'),
