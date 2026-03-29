@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-29T09:38:52.915Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-29T09:43:00.278Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 11
-  completed_plans: 9
+  completed_plans: 10
   percent: 25
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 03 (price-comparison-market-detail) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-03-29
 
@@ -60,6 +60,7 @@ Progress: [██░░░░░░░░] 25%
 | Phase 02-data-layer P02 | 3min | 2 tasks | 9 files |
 | Phase 02-data-layer P03 | 2min | 1 tasks | 4 files |
 | Phase 03-price-comparison-market-detail P01 | 3 | 3 tasks | 10 files |
+| Phase 03-price-comparison-market-detail P02 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,9 @@ Recent decisions affecting current work:
 - [Phase 03-price-comparison-market-detail]: fl_chart ^0.69.0 chosen over 1.x — Flutter SDK constraint ^3.11.1 does not guarantee Flutter 3.27.4+ required by fl_chart 1.x
 - [Phase 03-price-comparison-market-detail]: MarketBrand logoAsset and bannerAsset set to null initially — fallback rendering (solid color + Icons.store) activates in Plans 02/03
 - [Phase 03-price-comparison-market-detail]: Turkish month names as const array in PricePoint.displayDate — avoids intl dependency for a 12-element string lookup
+- [Phase 03-price-comparison-market-detail]: filteredPoints reused for tooltip lookup — avoids index mismatch if only a date-range subset of priceHistory is charted
+- [Phase 03-price-comparison-market-detail]: Disabled tabs use onTap: null not just grey color — satisfies UI-SPEC D-09 interaction contract and prevents ghost taps
+- [Phase 03-price-comparison-market-detail]: TimeRange enum defined in same file as widget — no shared usage across features, co-located avoids premature abstraction
 
 ### Pending Todos
 
@@ -103,6 +107,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:38:52.910Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-29T09:43:00.273Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
