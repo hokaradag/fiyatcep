@@ -4,6 +4,7 @@ import '../favorites/presentation/providers/favorites_notifier.dart';
 import 'models/product_item.dart';
 import 'presentation/providers/products_provider.dart';
 import 'widgets/product_info_section.dart';
+import 'widgets/product_price_history_section.dart';
 import 'widgets/product_price_section.dart';
 
 class ProductDetailPage extends ConsumerWidget {
@@ -34,16 +35,8 @@ class ProductDetailPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 28),
                 ProductPriceSection(prices: prices),
-                const SizedBox(height: 20),
-                const Text(
-                  'Ürün Açıklaması',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Bu alan ileride ürün detay açıklaması, fiyat geçmişi, kampanya bilgileri ve kullanıcı favori işlemleri için geliştirilecek.',
-                  style: TextStyle(fontSize: 15, height: 1.5),
-                ),
+                const SizedBox(height: 24),
+                ProductPriceHistorySection(priceHistory: product.priceHistory),
                 const SizedBox(height: 28),
                 Consumer(
                   builder: (context, ref, child) {
