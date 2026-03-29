@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 3 context gathered (discuss mode)
-last_updated: "2026-03-28T23:18:08.883Z"
-last_activity: 2026-03-28
+status: executing
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-29T09:38:52.915Z"
+last_activity: 2026-03-29
 progress:
   total_phases: 5
   completed_phases: 2
-  total_plans: 8
-  completed_plans: 8
+  total_plans: 11
+  completed_plans: 9
   percent: 25
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmiş fiyat değişimini ve indirim fırsatlarını görünür kılmak — kullanıcı alışveriş kararını vermeden önce gerçek veriye bakabilmeli.
-**Current focus:** Phase 02 — data-layer
+**Current focus:** Phase 03 — price-comparison-market-detail
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-03-28
+Phase: 03 (price-comparison-market-detail) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
+Last activity: 2026-03-29
 
 Progress: [██░░░░░░░░] 25%
 
@@ -59,6 +59,7 @@ Progress: [██░░░░░░░░] 25%
 | Phase 02-data-layer P01 | 35min | 1 tasks | 13 files |
 | Phase 02-data-layer P02 | 3min | 2 tasks | 9 files |
 | Phase 02-data-layer P03 | 2min | 1 tasks | 4 files |
+| Phase 03-price-comparison-market-detail P01 | 3 | 3 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 02-data-layer]: Error envelope extraction placed before status-code branches in _handleException — avoids repeating body/errorObj locals per branch, backward-compat fallback to body[message] preserved
 - [Phase 02-data-layer]: getProductsByMarket added only to ProductRemoteDataSource, not ProductLocalDataSource — market-filtered lists are always fetched live, no caching needed
 - [Phase 02-data-layer]: Widget tests must use ProviderScope.overrides to inject mock repository — global provider wiring is now remote, not mock
+- [Phase 03-price-comparison-market-detail]: fl_chart ^0.69.0 chosen over 1.x — Flutter SDK constraint ^3.11.1 does not guarantee Flutter 3.27.4+ required by fl_chart 1.x
+- [Phase 03-price-comparison-market-detail]: MarketBrand logoAsset and bannerAsset set to null initially — fallback rendering (solid color + Icons.store) activates in Plans 02/03
+- [Phase 03-price-comparison-market-detail]: Turkish month names as const array in PricePoint.displayDate — avoids intl dependency for a 12-element string lookup
 
 ### Pending Todos
 
@@ -99,6 +103,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T23:18:08.878Z
-Stopped at: Phase 3 context gathered (discuss mode)
-Resume file: .planning/phases/03-price-comparison-market-detail/03-CONTEXT.md
+Last session: 2026-03-29T09:38:52.910Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: None

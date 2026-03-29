@@ -62,7 +62,7 @@ Plans:
   3. Market detay sayfasi markanin logosu, banner gorseli ve marka rengiyle goruntulenir
 **Plans**: 3 plans
 Plans:
-- [ ] 03-01-PLAN.md — fl_chart dependency, MarketBrand config, PricePoint.displayDate getter, asset directories
+- [x] 03-01-PLAN.md — fl_chart dependency, MarketBrand config, PricePoint.displayDate getter, asset directories
 - [ ] 03-02-PLAN.md — Price diff labels in ProductPriceSection + ProductPriceHistorySection chart widget
 - [ ] 03-03-PLAN.md — Market branding banner and logo in MarketDetailHeaderWidget
 **UI hint**: yes
@@ -99,6 +99,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Quality Foundation | 3/4 | In Progress|  |
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
-| 3. Price Comparison + Market Detail | 0/3 | Not started | - |
+| 3. Price Comparison + Market Detail | 1/3 | In Progress|  |
 | 4. Cart Comparison | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |

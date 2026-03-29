@@ -27,12 +27,12 @@
 ### Price Comparison (COMP)
 
 - [ ] **COMP-01**: Kullanıcı bir ürünün tüm marketlerdeki fiyatlarını tek ekranda sıralı olarak karşılaştırabilir (en ucuz market vurgulanır, fiyat farkı gösterilir)
-- [ ] **COMP-02**: Kullanıcı bir ürünün fiyat geçmişini zaman grafiğinde görebilir (1H / 1A / 3A / 1Y zaman seçici, dokunma ile exact fiyat tooltip'i)
+- [x] **COMP-02**: Kullanıcı bir ürünün fiyat geçmişini zaman grafiğinde görebilir (1H / 1A / 3A / 1Y zaman seçici, dokunma ile exact fiyat tooltip'i)
 - [ ] **COMP-03**: Kullanıcı birden fazla ürün ekleyerek sepet oluşturabilir ve her market için toplam fiyatı karşılaştırabilir (eşleşme oranı açıkça gösterilir — örn. "7/9 ürün mevcut")
 
 ### Market Detail (MKTD)
 
-- [ ] **MKTD-01**: Market detay sayfası markanın logosu, banner görseli ve marka rengiyle görsel olarak zenginleştirilir
+- [x] **MKTD-01**: Market detay sayfası markanın logosu, banner görseli ve marka rengiyle görsel olarak zenginleştirilir
 - [x] **MKTD-02**: Market detay sayfası o markete ait gerçek ürün ve fiyat listesini API'den gösterir
 
 ### Notifications (NOTIF)
@@ -99,8 +99,8 @@ Roadmap oluşturuldu: 2026-03-27
 | DATA-04 | Phase 2 | Complete |
 | MKTD-02 | Phase 2 | Complete |
 | COMP-01 | Phase 3 | Pending |
-| COMP-02 | Phase 3 | Pending |
-| MKTD-01 | Phase 3 | Pending |
+| COMP-02 | Phase 3 | Complete |
+| MKTD-01 | Phase 3 | Complete |
 | COMP-03 | Phase 4 | Pending |
 | NOTIF-01 | Phase 5 | Pending |
 | NOTIF-02 | Phase 5 | Pending |
