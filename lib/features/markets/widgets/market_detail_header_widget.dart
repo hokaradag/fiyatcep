@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data/market_brand_config.dart';
 import '../models/market_item.dart';
 
 class MarketDetailHeaderWidget extends StatelessWidget {
@@ -43,6 +44,65 @@ class MarketDetailHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Brand banner + logo block
+        Builder(builder: (context) {
+          final brand = marketBrands[market.id];
+          return Stack(
+            clipBehavior: Clip.none,
+            children: [
+              // Banner: solid brand color (or banner image if available)
+              Container(
+                height: 120,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: brand?.primaryColor ?? Colors.grey.shade300,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(18),
+                    topRight: Radius.circular(18),
+                  ),
+                ),
+                child: brand?.bannerAsset != null
+                    ? ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(18),
+                          topRight: Radius.circular(18),
+                        ),
+                        child: Image.asset(brand!.bannerAsset!, fit: BoxFit.cover,
+                            width: double.infinity, height: 120),
+                      )
+                    : null,
+              ),
+              // Logo: white container overlapping bottom edge of banner
+              Positioned(
+                bottom: -28,
+                left: 16,
+                child: Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: const [
+                      BoxShadow(blurRadius: 4, color: Colors.black26),
+                    ],
+                  ),
+                  child: brand?.logoAsset != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(brand!.logoAsset!, fit: BoxFit.contain),
+                        )
+                      : Icon(
+                          Icons.store,
+                          color: brand?.primaryColor ?? Colors.grey.shade600,
+                          size: 28,
+                        ),
+                ),
+              ),
+            ],
+          );
+        }),
+        const SizedBox(height: 36), // 28px overlap + 8px gap
+
         // Market Info Card
         Card(
           elevation: 2,
