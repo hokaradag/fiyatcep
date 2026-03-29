@@ -64,7 +64,7 @@ Plans:
 Plans:
 - [x] 03-01-PLAN.md — fl_chart dependency, MarketBrand config, PricePoint.displayDate getter, asset directories
 - [x] 03-02-PLAN.md — Price diff labels in ProductPriceSection + ProductPriceHistorySection chart widget
-- [ ] 03-03-PLAN.md — Market branding banner and logo in MarketDetailHeaderWidget
+- [x] 03-03-PLAN.md — Market branding banner and logo in MarketDetailHeaderWidget
 **UI hint**: yes
 
 ### Phase 4: Cart Comparison
