@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 Phase: 03 (price-comparison-market-detail) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-03-29
+Last activity: 2026-03-29 - Completed quick task 260329-ogy: Restore mock datasources for Phase 3 UAT
 
 Progress: [██░░░░░░░░] 25%
 
@@ -107,6 +107,12 @@ None yet.
 - [Phase 2 readiness]: Backend scraping API contract must be finalized before remote datasource implementations are written
 - [Phase 5 readiness]: iOS APNs Auth Key (p8 file) must be uploaded to Firebase Console before any FCM Dart code is written; budget 1-3 days provisioning time
 - [Phase 5 readiness]: Verify android/app/build.gradle minSdkVersion is 21+ before starting Phase 5 (FCM v1 API requirement)
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260329-ogy | Restore mock datasources for Phase 3 UAT | 2026-03-29 | 35ba4e3 | [260329-ogy-restore-mock-datasources-for-phase-3-uat](.planning/quick/260329-ogy-restore-mock-datasources-for-phase-3-uat/) |
 
 ## Session Continuity
 
