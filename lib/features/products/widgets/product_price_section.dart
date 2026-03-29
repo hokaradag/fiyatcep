@@ -107,6 +107,17 @@ class ProductPriceSection extends StatelessWidget {
                                 ),
                               ),
                             ],
+                            if (!isCheapest) ...[
+                              const SizedBox(width: 8),
+                              Text(
+                                '+${(item.price - prices.first.price).toStringAsFixed(2)} ₺',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                            ],
                           ],
                         ),
                       ],
