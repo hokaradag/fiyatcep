@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Quality Foundation** - Fix structural blockers and migrate FavoritesStore before any new features are built
 - [x] **Phase 2: Data Layer** - Wire real scraping backend, extend models, swap mock datasources (completed 2026-03-28)
-- [ ] **Phase 3: Price Comparison + Market Detail** - Price comparison UI, price history chart, enriched market detail page
+- [x] **Phase 3: Price Comparison + Market Detail** - Price comparison UI, price history chart, enriched market detail page (completed 2026-03-29)
 - [ ] **Phase 4: Cart Comparison** - Multi-product cart with per-market total comparison
 - [ ] **Phase 5: FCM Push Notifications** - Firebase push notification SDK, watch list UI, price-drop alerts
 
@@ -66,7 +66,7 @@ Plans:
 - [x] 03-02-PLAN.md — Price diff labels in ProductPriceSection + ProductPriceHistorySection chart widget
 - [x] 03-03-PLAN.md — Market branding banner and logo in MarketDetailHeaderWidget
 - [x] 03-04-PLAN.md — Populate priceHistory mock data for price history chart (gap closure)
-- [ ] 03-05-PLAN.md — Fix mock market IDs to slug keys for brand color lookup (gap closure)
+- [x] 03-05-PLAN.md — Fix mock market IDs to slug keys for brand color lookup (gap closure)
 **UI hint**: yes
 
 ### Phase 4: Cart Comparison
@@ -101,6 +101,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Quality Foundation | 3/4 | In Progress|  |
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
-| 3. Price Comparison + Market Detail | 4/5 | In Progress|  |
+| 3. Price Comparison + Market Detail | 5/5 | Complete   | 2026-03-29 |
 | 4. Cart Comparison | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
