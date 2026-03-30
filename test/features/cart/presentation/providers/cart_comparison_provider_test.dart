@@ -38,29 +38,34 @@ const _p2Prices = [
   MarketPriceItem(marketId: 'migros', market: 'Migros', price: 6.0, isDiscounted: false),
 ];
 
-/// Creates a ProviderContainer with cart and price overrides.
-ProviderContainer _makeContainer({
+/// Notifier that returns a fixed cart without touching SharedPreferences.
+class _FixedCartNotifier extends CartNotifier {
+  final List<ProductItem> cart;
+  _FixedCartNotifier(this.cart);
+
+  @override
+  Future<List<ProductItem>> build() async => cart;
+}
+
+/// Creates a ProviderContainer with controlled cart and price data,
+/// and awaits cart initialization so cartNotifierProvider is in AsyncData
+/// state before callers use cartComparisonProvider.
+Future<ProviderContainer> _makeContainer({
   List<ProductItem> cart = const [],
   Map<String, List<MarketPriceItem>> prices = const {},
-}) {
-  return ProviderContainer(
+}) async {
+  final container = ProviderContainer(
     overrides: [
-      // Override cartNotifierProvider with controlled cart state
-      cartNotifierProvider.overrideWith(() => _FakeCartNotifier(cart)),
-      // Override productMarketPricesProvider per product id
+      cartNotifierProvider.overrideWith(() => _FixedCartNotifier(cart)),
       productMarketPricesProvider.overrideWith((ref, id) async {
         return prices[id] ?? [];
       }),
     ],
   );
-}
-
-class _FakeCartNotifier extends CartNotifier {
-  final List<ProductItem> _initialCart;
-  _FakeCartNotifier(this._initialCart);
-
-  @override
-  Future<List<ProductItem>> build() async => _initialCart;
+  // Prime the cart notifier so it is in AsyncData state (not AsyncLoading)
+  // before cartComparisonProvider reads it via ref.watch.
+  await container.read(cartNotifierProvider.future);
+  return container;
 }
 
 void main() {
@@ -70,7 +75,7 @@ void main() {
 
   group('cartComparisonProvider', () {
     test('Test 1: Returns empty list when cart is empty', () async {
-      final container = _makeContainer();
+      final container = await _makeContainer();
       addTearDown(container.dispose);
 
       final results = await container.read(cartComparisonProvider.future);
@@ -78,7 +83,7 @@ void main() {
     });
 
     test('Test 2: Returns 7 CartMarketResult entries (one per marketBrands key) when cart has items', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1],
         prices: {'p1': _p1Prices},
       );
@@ -89,7 +94,7 @@ void main() {
     });
 
     test('Test 3: Correct matchedCount — p1 in migros+a101, p2 in migros only', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1, _p2],
         prices: {'p1': _p1Prices, 'p2': _p2Prices},
       );
@@ -107,7 +112,7 @@ void main() {
     });
 
     test('Test 4: Correct partialTotal — sum of matched prices per market', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1, _p2],
         prices: {'p1': _p1Prices, 'p2': _p2Prices},
       );
@@ -125,7 +130,7 @@ void main() {
     });
 
     test('Test 5: Results sorted by partialTotal ascending, 0-match markets at bottom', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1, _p2],
         prices: {'p1': _p1Prices, 'p2': _p2Prices},
       );
@@ -133,26 +138,26 @@ void main() {
 
       final results = await container.read(cartComparisonProvider.future);
 
-      // First market (position 0) should be migros (total 18.0) because it has 2 matches
-      // Wait: a101 has total 13.0 which is less than migros 18.0 — so a101 should be first
-      // sorted ascending: a101 (13.0) < migros (18.0), then 0-match markets at bottom
+      // a101 (13.0) < migros (18.0), so a101 should be first (position 0)
+      // then migros (18.0) at position 1
+      // then 5 zero-match markets at the bottom
       expect(results.first.marketId, equals('a101'));
       expect(results[1].marketId, equals('migros'));
 
-      // All 0-match markets at the bottom
+      // All 0-match markets are at the bottom
       final zeroMatchResults = results.where((r) => r.matchedCount == 0).toList();
       final nonZeroResults = results.where((r) => r.matchedCount > 0).toList();
-      expect(nonZeroResults.length, equals(2)); // migros + a101
-      expect(zeroMatchResults.length, equals(5)); // remaining 5 markets
+      expect(nonZeroResults.length, equals(2));
+      expect(zeroMatchResults.length, equals(5));
 
-      // Verify 0-match markets come after non-zero ones
+      // First zero-match index must come after last non-zero index
       final firstZeroIndex = results.indexWhere((r) => r.matchedCount == 0);
       final lastNonZeroIndex = results.lastIndexWhere((r) => r.matchedCount > 0);
       expect(firstZeroIndex, greaterThan(lastNonZeroIndex));
     });
 
     test('Test 6: matchFraction getter returns correct string format "N/M urun mevcut"', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1, _p2],
         prices: {'p1': _p1Prices, 'p2': _p2Prices},
       );
@@ -170,7 +175,7 @@ void main() {
     });
 
     test('Cheapest market is marked isCheapest=true', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1, _p2],
         prices: {'p1': _p1Prices, 'p2': _p2Prices},
       );
@@ -185,7 +190,7 @@ void main() {
     });
 
     test('isFullMatch and missingCount helpers work correctly', () async {
-      final container = _makeContainer(
+      final container = await _makeContainer(
         cart: [_p1, _p2],
         prices: {'p1': _p1Prices, 'p2': _p2Prices},
       );
@@ -196,11 +201,11 @@ void main() {
       final migros = results.firstWhere((r) => r.marketId == 'migros');
       final a101 = results.firstWhere((r) => r.marketId == 'a101');
 
-      // migros has all 2 products — full match
+      // migros has both products — full match
       expect(migros.isFullMatch, isTrue);
       expect(migros.missingCount, equals(0));
 
-      // a101 has only 1 of 2 — partial match
+      // a101 has 1 of 2 products — partial match
       expect(a101.isFullMatch, isFalse);
       expect(a101.missingCount, equals(1));
     });
