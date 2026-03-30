@@ -1,5 +1,5 @@
 ---
-status: complete
+status: diagnosed
 phase: 01-quality-foundation
 source: [01-01-SUMMARY.md, 01-02-SUMMARY.md, 01-03-SUMMARY.md, 01-04-SUMMARY.md]
 started: 2026-03-28T00:00:00Z
@@ -66,7 +66,13 @@ blocked: 0
   reason: "User reported: when I write sok, it matches ŞOK but I can't write ŞOK so ş,ğ,ü etc. can't be written."
   severity: major
   test: 8
-  root_cause: ""
-  artifacts: []
-  missing: []
+  root_cause: "TextNormalizer.normalize() missing explicit 'İ' (U+0130) replacement before toLowerCase(). On some Flutter target platforms, 'İ'.toLowerCase() does not reliably produce 'i' — it can produce a two-character sequence. Also, lib/features/discounts/discounts_page.dart has a duplicate private _normalizeText() with the same defect instead of delegating to TextNormalizer."
+  artifacts:
+    - path: "lib/core/utils/text_normalizer.dart"
+      issue: "Missing .replaceAll('İ', 'i') before .toLowerCase() — capital dotted I (U+0130) does not reliably fold to 'i' on all platforms"
+    - path: "lib/features/discounts/discounts_page.dart"
+      issue: "Private _normalizeText() duplicate (lines 34-44) has same defect; should delegate to TextNormalizer.normalize() instead"
+  missing:
+    - "Add .replaceAll('İ', 'i') before .toLowerCase() in TextNormalizer.normalize()"
+    - "Remove duplicate _normalizeText() from discounts_page.dart and replace calls with TextNormalizer.normalize()"
   debug_session: ""

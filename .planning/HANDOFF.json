@@ -1,46 +1,63 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-28T13:27:51.140Z",
-  "phase": "03",
-  "phase_name": "price-comparison-+-market-detail",
-  "phase_dir": ".planning/phases/03-price-comparison-+-market-detail",
-  "plan": 0,
+  "timestamp": "2026-03-30T11:24:03.596Z",
+  "phase": "cross-phase",
+  "phase_name": "UAT Bug Fixes (post Phase 04)",
+  "phase_dir": ".planning/phases/04-cart-comparison",
+  "plan": null,
   "task": 0,
-  "total_tasks": 0,
+  "total_tasks": 2,
   "status": "paused",
-  "completed_tasks": [],
+  "completed_tasks": [
+    {"id": 1, "name": "Phase 01 - Quality Foundation", "status": "done", "commit": "68abd9b"},
+    {"id": 2, "name": "Phase 02 - Data Layer", "status": "done", "commit": "68abd9b"},
+    {"id": 3, "name": "Phase 03 - Price Comparison + Market Detail", "status": "done", "commit": "ed7962f"},
+    {"id": 4, "name": "Phase 04 - Cart Comparison", "status": "done", "commit": "966574f"},
+    {"id": 5, "name": "Cross-phase UAT audit + bug diagnosis", "status": "done", "commit": "uncommitted"}
+  ],
   "remaining_tasks": [
-    {"id": 1, "name": "Plan phase 03 before execution", "status": "not_started"}
-  ],
-  "blockers": [],
-  "human_actions_pending": [
     {
-      "action": "Live backend integration test for DATA-01 (7-market runtime coverage)",
-      "context": "Verifier noted this cannot be verified statically — Flutter contract is correct but needs deployed backend to confirm end-to-end data flow",
-      "blocking": false
+      "id": 6,
+      "name": "Bug Fix: Turkish char normalization (Phase 01 UAT)",
+      "status": "not_started",
+      "files": [
+        "lib/core/utils/text_normalizer.dart",
+        "lib/features/discounts/discounts_page.dart"
+      ],
+      "fix": "Add .replaceAll('İ', 'i') before .toLowerCase() in TextNormalizer.normalize(); remove duplicate _normalizeText() in discounts_page.dart"
+    },
+    {
+      "id": 7,
+      "name": "Bug Fix: Market brand colors show grey (Phase 03 UAT)",
+      "status": "not_started",
+      "files": [
+        "lib/features/markets/data/mock_markets.dart",
+        "lib/features/markets/presentation/widgets/market_detail_header_widget.dart"
+      ],
+      "fix": "Change mock market IDs from m1-m5 to slugs (migros, a101, bim, sok, carrefoursa); verify downstream ID-based filters still work"
     }
   ],
+  "blockers": [
+    {
+      "description": "Market ID slug change may break downstream providers/widgets that filter by market.id",
+      "type": "technical",
+      "workaround": "Grep for market.id usages before committing the ID change"
+    }
+  ],
+  "human_actions_pending": [],
   "decisions": [
-    {
-      "decision": "Migrated DiscountItem.validUntil from String to DateTime with Turkish displayDate getter",
-      "rationale": "Enables proper date arithmetic and consistent formatting across the app",
-      "phase": "02"
-    },
-    {
-      "decision": "Added ProviderScope.overrides in widget tests after global datasource swap to remote",
-      "rationale": "Tests broke when mock datasources were removed from global wiring; override injects mock at test level",
-      "phase": "02"
-    },
-    {
-      "decision": "Base URL set to https://api.fiyatcep.com/api/v1",
-      "rationale": "Replaced placeholder api.example.com with production domain",
-      "phase": "02"
-    }
+    {"decision": "CartNotifier clones FavoritesNotifier pattern with SharedPreferences key 'cart_products'", "rationale": "Consistency with existing local persistence approach", "phase": "04"},
+    {"decision": "Cart dedup by id not Freezed equality", "rationale": "Avoids priceHistory comparison pitfall in Freezed-generated ==", "phase": "04"},
+    {"decision": "Market comparison sorted by partialTotal ascending, 0-match markets at bottom", "rationale": "Dishonesty guard — markets with no matching products shouldn't appear cheap", "phase": "04"}
   ],
   "uncommitted_files": [
     ".planning/config.json",
-    ".planning/phases/01-quality-foundation/01-UAT.md"
+    ".planning/phases/01-quality-foundation/01-UAT.md",
+    ".planning/phases/03-price-comparison-market-detail/03-02-SUMMARY.md",
+    ".planning/phases/03-price-comparison-market-detail/03-UAT.md",
+    ".planning/phases/04-cart-comparison/.continue-here.md",
+    ".planning/HANDOFF.json"
   ],
-  "next_action": "Run /gsd:plan-phase 3 to plan the price-comparison + market-detail phase",
-  "context_notes": "Phase 02 (data-layer) fully complete and verified. 3/3 plans done, 71 tests passing, all datasources swapped to remote. Phase 03 is next: price comparison UI and market detail screens. The data layer foundation (PricePoint, getProductsByMarket, remote datasources) is ready for the UI to build on."
+  "next_action": "Fix Turkish char normalization: add .replaceAll('İ', 'i') to TextNormalizer.normalize() and remove duplicate _normalizeText() in discounts_page.dart. Use /gsd:quick.",
+  "context_notes": "All 4 milestone phases are DONE. Two UAT bugs remain unimplemented — both diagnosed with clear root causes. After fixing these two bugs, the milestone is ready for /gsd:complete-milestone."
 }

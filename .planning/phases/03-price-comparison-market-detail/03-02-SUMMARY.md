@@ -108,3 +108,7 @@ None - no external service configuration required.
 ---
 *Phase: 03-price-comparison-market-detail*
 *Completed: 2026-03-29*
+
+## Self-Check: PASSED
+
+All 3 files verified present on disk. Both task commits (5ca1946, a0f732f) verified in git log. 74/74 tests passing.

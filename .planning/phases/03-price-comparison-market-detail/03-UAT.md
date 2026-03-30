@@ -1,5 +1,5 @@
 ---
-status: complete
+status: diagnosed
 phase: 03-price-comparison-market-detail
 source: [03-01-SUMMARY.md, 03-02-SUMMARY.md, 03-03-SUMMARY.md]
 started: 2026-03-29T10:00:00Z
@@ -34,13 +34,13 @@ result: pass
 ### 5. Market Brand Banner
 expected: Open any market detail page (e.g., tap a market from the markets list). At the top of the page, a solid-color banner (approximately 120px tall) appears in that market's brand color — Migros in orange, BIM in yellow-green, A101 in red, etc.
 result: issue
-reported: "no"
+reported: "Large light grey rounded banner/background area appears at the top instead of the market's brand color. No branded color treatment visible — Migros shows grey instead of orange."
 severity: major
 
 ### 6. Market Logo Placeholder
 expected: On the market detail page, a white rounded square (approximately 56x56) overlaps the bottom edge of the brand banner, with a store icon (Icons.store) displayed inside it as a logo placeholder.
 result: issue
-reported: "no"
+reported: "A small generic-looking square icon card is visible overlapping the banner on the left, but it does not match the expected white rounded square with a store icon — appears as a generic fallback rather than the designed placeholder."
 severity: major
 
 ## Summary
@@ -56,20 +56,29 @@ blocked: 1
 
 - truth: "Market detail page shows a solid-color banner (~120px tall) in the market's brand color — Migros orange, BIM yellow-green, A101 red, etc."
   status: failed
-  reason: "User reported: no"
+  reason: "User reported: Large light grey rounded banner appears instead of brand color. Migros shows grey, not orange. Layout structure present but brand color not applied."
   severity: major
   test: 5
-  root_cause: ""
-  artifacts: []
-  missing: []
+  root_cause: "Mock market IDs ('m1'–'m5') don't match marketBrands lookup keys ('migros', 'a101', etc.) in market_brand_config.dart. Header widget does `marketBrands[market.id]` which always returns null, falling back to Colors.grey.shade300."
+  artifacts:
+    - path: "lib/features/markets/data/mock_markets.dart"
+      issue: "Market id fields use 'm1'–'m5' instead of slug keys expected by marketBrands map"
+    - path: "lib/features/markets/presentation/widgets/market_detail_header_widget.dart"
+      issue: "Line 49: `marketBrands[market.id]` — lookup always returns null due to ID mismatch"
+  missing:
+    - "Change mock market IDs to slugs: m1→migros, m2→a101, m3→bim, m4→sok, m5→carrefoursa"
+    - "Verify downstream providers that filter by market.id still work after ID change"
   debug_session: ""
 
 - truth: "Market detail page shows a white rounded square (~56x56) overlapping the bottom edge of the brand banner, with a store icon inside as a logo placeholder."
   status: failed
-  reason: "User reported: no"
+  reason: "User reported: A small generic-looking square icon card is visible but does not match expected white rounded square with Icons.store — appears as a generic fallback rather than the designed placeholder."
   severity: major
   test: 6
-  root_cause: ""
-  artifacts: []
-  missing: []
+  root_cause: "Same root cause as test 5 — brand is null due to ID mismatch, so icon color falls back to Colors.grey.shade600 (grey icon on white background). Container styling is correct but appears generic without brand color applied."
+  artifacts:
+    - path: "lib/features/markets/data/mock_markets.dart"
+      issue: "Same ID mismatch causes brand lookup to return null"
+  missing:
+    - "Fix resolved by same ID slug change as test 5 — no separate widget fix needed"
   debug_session: ""
