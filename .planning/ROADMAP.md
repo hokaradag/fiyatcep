@@ -79,7 +79,7 @@ Plans:
   3. Eksik urunler olan marketler durustce kismi esleme olarak isaretlenir — toplam gizlenmez
 **Plans**: 2 plans
 Plans:
-- [ ] 04-01-PLAN.md — CartNotifier state provider with SharedPreferences persistence and unit tests
+- [x] 04-01-PLAN.md — CartNotifier state provider with SharedPreferences persistence and unit tests
 - [ ] 04-02-PLAN.md — Cart comparison provider, UI widgets, CartComparisonPage, and wiring into existing pages
 **UI hint**: yes
 

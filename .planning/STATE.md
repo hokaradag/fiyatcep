@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 04 context gathered (discuss mode)
-last_updated: "2026-03-30T00:55:48.424Z"
-last_activity: 2026-03-29
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-30T10:24:43.994Z"
+last_activity: 2026-03-30
 progress:
   total_phases: 5
   completed_phases: 3
-  total_plans: 13
-  completed_plans: 13
+  total_plans: 15
+  completed_plans: 14
   percent: 25
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmiş fiyat değişimini ve indirim fırsatlarını görünür kılmak — kullanıcı alışveriş kararını vermeden önce gerçek veriye bakabilmeli.
-**Current focus:** Phase 03 — price-comparison-market-detail
+**Current focus:** Phase 04 — cart-comparison
 
 ## Current Position
 
-Phase: 03 (price-comparison-market-detail) — EXECUTING
-Plan: 3 of 5
+Phase: 04 (cart-comparison) — EXECUTING
+Plan: 2 of 2
 Status: Ready to execute
-Last activity: 2026-03-29
+Last activity: 2026-03-30
 
 Progress: [██░░░░░░░░] 25%
 
@@ -64,6 +64,7 @@ Progress: [██░░░░░░░░] 25%
 | Phase 03-price-comparison-market-detail P03 | 2 | 1 tasks | 1 files |
 | Phase 03-price-comparison-market-detail P04 | 2 | 1 tasks | 2 files |
 | Phase 03-price-comparison-market-detail P05 | 5 | 3 tasks | 13 files |
+| Phase 04-cart-comparison P01 | 10 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,8 @@ Recent decisions affecting current work:
 - [Phase 03-price-comparison-market-detail]: DateTime.utc() for all PricePoint dates — platform-consistent time arithmetic ensures tab filter cutoffs work on all platforms
 - [Phase 03-price-comparison-market-detail]: p2 intentionally missing 365d priceHistory data — demonstrates disabled 1Y tab for products with limited price history
 - [Phase 03-price-comparison-market-detail]: Slug IDs (migros, a101, bim, sok, carrefoursa) replace numeric IDs (m1-m5) as primary keys — aligns mock data with marketBrands map keys
+- [Phase 04-cart-comparison]: Id-based dedup (p.id == product.id) in CartNotifier — Freezed equality on ProductItem with List<PricePoint> priceHistory is fragile for cart dedup semantics
+- [Phase 04-cart-comparison]: No toggle() on CartNotifier — cart add/remove are asymmetric operations; favorites toggle is primary UX verb but cart is not
 
 ### Pending Todos
 
@@ -121,6 +124,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T00:55:48.418Z
-Stopped at: Phase 04 context gathered (discuss mode)
-Resume file: .planning/phases/04-cart-comparison/04-CONTEXT.md
+Last session: 2026-03-30T10:24:43.989Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None
