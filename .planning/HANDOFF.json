@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-30T11:24:03.596Z",
+  "timestamp": "2026-03-30T11:52:05.692Z",
   "phase": "cross-phase",
   "phase_name": "UAT Bug Fixes (post Phase 04)",
   "phase_dir": ".planning/phases/04-cart-comparison",
@@ -13,11 +13,12 @@
     {"id": 2, "name": "Phase 02 - Data Layer", "status": "done", "commit": "68abd9b"},
     {"id": 3, "name": "Phase 03 - Price Comparison + Market Detail", "status": "done", "commit": "ed7962f"},
     {"id": 4, "name": "Phase 04 - Cart Comparison", "status": "done", "commit": "966574f"},
-    {"id": 5, "name": "Cross-phase UAT audit + bug diagnosis", "status": "done", "commit": "uncommitted"}
+    {"id": 5, "name": "Cross-phase UAT audit + bug diagnosis", "status": "done", "commit": "24f88e8"},
+    {"id": 6, "name": "Phase 04 human UAT - 5/5 tests passed", "status": "done", "commit": "d3f1252"}
   ],
   "remaining_tasks": [
     {
-      "id": 6,
+      "id": 7,
       "name": "Bug Fix: Turkish char normalization (Phase 01 UAT)",
       "status": "not_started",
       "files": [
@@ -27,7 +28,7 @@
       "fix": "Add .replaceAll('İ', 'i') before .toLowerCase() in TextNormalizer.normalize(); remove duplicate _normalizeText() in discounts_page.dart"
     },
     {
-      "id": 7,
+      "id": 8,
       "name": "Bug Fix: Market brand colors show grey (Phase 03 UAT)",
       "status": "not_started",
       "files": [
@@ -50,14 +51,7 @@
     {"decision": "Cart dedup by id not Freezed equality", "rationale": "Avoids priceHistory comparison pitfall in Freezed-generated ==", "phase": "04"},
     {"decision": "Market comparison sorted by partialTotal ascending, 0-match markets at bottom", "rationale": "Dishonesty guard — markets with no matching products shouldn't appear cheap", "phase": "04"}
   ],
-  "uncommitted_files": [
-    ".planning/config.json",
-    ".planning/phases/01-quality-foundation/01-UAT.md",
-    ".planning/phases/03-price-comparison-market-detail/03-02-SUMMARY.md",
-    ".planning/phases/03-price-comparison-market-detail/03-UAT.md",
-    ".planning/phases/04-cart-comparison/.continue-here.md",
-    ".planning/HANDOFF.json"
-  ],
+  "uncommitted_files": [],
   "next_action": "Fix Turkish char normalization: add .replaceAll('İ', 'i') to TextNormalizer.normalize() and remove duplicate _normalizeText() in discounts_page.dart. Use /gsd:quick.",
-  "context_notes": "All 4 milestone phases are DONE. Two UAT bugs remain unimplemented — both diagnosed with clear root causes. After fixing these two bugs, the milestone is ready for /gsd:complete-milestone."
+  "context_notes": "All 4 milestone phases DONE. Phase 04 human UAT passed 5/5. Two UAT bugs remain — both root-caused. After fixing these, milestone is ready for /gsd:complete-milestone."
 }
