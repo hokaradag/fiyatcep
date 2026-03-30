@@ -27,10 +27,10 @@ Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmi�
 - [ ] DATA-03: ProductItem modeli fiyat geçmişi (List<PricePoint>) alanı ile genişletilir
 - [ ] DATA-04: DiscountItem.validUntil String'den DateTime'a dönüştürülür
 
-**Fiyat Karşılaştırma**
-- [ ] COMP-01: Ürün detay sayfası aynı ürünün tüm marketlerdeki fiyatlarını yan yana gösterir
-- [ ] COMP-02: Ürün detay sayfasında fiyat geçmişi/trend grafiği görüntülenir
-- [ ] COMP-03: Kullanıcı sepet oluşturabilir, sepet toplamını markete göre karşılaştırabilir
+**Fiyat Karşılaştırma** — COMP-01, COMP-02 validated in Phase 3: price-comparison-market-detail; COMP-03 validated in Phase 4: cart-comparison
+- [x] COMP-01: Ürün detay sayfası aynı ürünün tüm marketlerdeki fiyatlarını yan yana gösterir
+- [x] COMP-02: Ürün detay sayfasında fiyat geçmişi/trend grafiği görüntülenir
+- [x] COMP-03: Kullanıcı sepet oluşturabilir, sepet toplamını markete göre karşılaştırabilir
 
 **Bildirim Sistemi**
 - [ ] NOTIF-01: Firebase Cloud Messaging (FCM) Android ve iOS için entegre edilir
@@ -111,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-28 — Phase 2 complete (data-layer): PricePoint model added, DiscountItem.validUntil migrated to DateTime, getProductsByMarket() added across all layers, all datasources swapped to remote, base URL set to api.fiyatcep.com, 71 tests passing*
+*Last updated: 2026-03-30 — Phase 4 complete (cart-comparison): CartNotifier + cartComparisonProvider implemented, full cart comparison UI (CartComparisonPage, CartMarketComparisonCard, CartAppBarIcon) built and wired, COMP-01/02/03 all validated, 90 tests passing*
