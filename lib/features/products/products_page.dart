@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../cart/widgets/cart_app_bar_icon.dart';
 import 'models/product_item.dart';
 import 'presentation/providers/products_provider.dart';
 import 'product_detail_page.dart';
@@ -34,7 +35,11 @@ class _ProductsPageState extends ConsumerState<ProductsPage> {
         : ref.watch(productSearchProvider(searchText));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Ürünler'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Ürünler'),
+        centerTitle: true,
+        actions: const [CartAppBarIcon()],
+      ),
       body: Column(
         children: [
           Padding(

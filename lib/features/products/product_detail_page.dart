@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../cart/cart_comparison_page.dart';
+import '../cart/presentation/providers/cart_notifier.dart';
+import '../cart/widgets/cart_app_bar_icon.dart';
 import '../favorites/presentation/providers/favorites_notifier.dart';
 import 'models/product_item.dart';
 import 'presentation/providers/products_provider.dart';
@@ -17,7 +20,11 @@ class ProductDetailPage extends ConsumerWidget {
     final pricesAsync = ref.watch(productMarketPricesProvider(product.id));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Ürün Detayı'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Ürün Detayı'),
+        centerTitle: true,
+        actions: const [CartAppBarIcon()],
+      ),
       body: pricesAsync.when(
         data: (prices) {
           final cheapestPrice = prices.first.price;
@@ -68,6 +75,64 @@ class ProductDetailPage extends ConsumerWidget {
                         ),
                         label: Text(
                           isFav ? 'Favorilerden Çıkar' : 'Favorilere Ekle',
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                // 12dp gap between favorites and cart buttons (UI-SPEC exception)
+                const SizedBox(height: 12),
+                Consumer(
+                  builder: (context, ref, child) {
+                    final cart =
+                        ref.watch(cartNotifierProvider).valueOrNull ?? [];
+                    final inCart = cart.any((p) => p.id == product.id);
+                    final notifier = ref.read(cartNotifierProvider.notifier);
+
+                    return SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          if (inCart) {
+                            await notifier.remove(product);
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Ürün sepetten çıkarıldı'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          } else {
+                            await notifier.add(product);
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      const Text('Ürün sepete eklendi'),
+                                  duration: const Duration(seconds: 3),
+                                  action: SnackBarAction(
+                                    label: 'Sepete Git',
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            const CartComparisonPage(),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        icon: Icon(
+                          inCart
+                              ? Icons.remove_shopping_cart
+                              : Icons.shopping_cart_outlined,
+                        ),
+                        label: Text(
+                          inCart ? 'Sepetten Çıkar' : 'Sepete Ekle',
                         ),
                       ),
                     );

@@ -80,7 +80,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 04-01-PLAN.md — CartNotifier state provider with SharedPreferences persistence and unit tests
-- [ ] 04-02-PLAN.md — Cart comparison provider, UI widgets, CartComparisonPage, and wiring into existing pages
+- [x] 04-02-PLAN.md — Cart comparison provider, UI widgets, CartComparisonPage, and wiring into existing pages
 **UI hint**: yes
 
 ### Phase 5: FCM Push Notifications
@@ -105,5 +105,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 1. Quality Foundation | 3/4 | In Progress|  |
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
 | 3. Price Comparison + Market Detail | 5/5 | Complete   | 2026-03-29 |
-| 4. Cart Comparison | 0/2 | Not started | - |
+| 4. Cart Comparison | 2/2 | In Progress | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
