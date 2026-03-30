@@ -47,6 +47,7 @@ Exceptions:
 - AppBar badge: 16px minimum diameter, positioned at (-4, -4) offset from icon
 - Card border radius: 16dp (consistent with existing cards in phases 1-3)
 - Snackbar duration: 3 seconds (longer than favorites 1s to allow "Sepete Git" action tap)
+- **12dp card gap:** used for `SizedBox(height: 12)` between the "Market Karşılaştırması" section header and the card list, and as the bottom margin per `CartMarketComparisonCard`. Rationale: sits between sm (8dp) and md (16dp); matches the visual rhythm of existing market cards in Phase 3 where tighter card stacking is preferred. Both usages are consistent with each other.
 
 ---
 
@@ -101,12 +102,14 @@ New components to implement for this phase:
 - Pattern: `IconButton(icon: Icon(Icons.shopping_cart_outlined))` wrapped in a `Stack` with a positioned badge
 - Badge: `CircleAvatar(radius: 8, backgroundColor: Colors.red, child: Text('N', style: TextStyle(fontSize: 10, color: Colors.white)))`
 - Visibility rule: icon always rendered; badge only shown when `cartCount > 0` (Claude's discretion from D-02, resolved to: always-visible icon, badge conditionally shown)
+- Accessibility: wrap `IconButton` in `Tooltip(message: 'Sepeti Aç')` so screen readers and long-press reveal the action label
 - Used in: `ProductsPage` AppBar actions, `ProductDetailPage` AppBar actions
 
 ### 2. CartProductListSection (widget)
 - Location: `lib/features/cart/widgets/cart_product_list_section.dart`
 - Renders the reviewable cart at the top of CartComparisonPage (D-09)
 - Each row: `ListTile` with product name (14sp bold) + brand (12sp muted) + trailing `IconButton(icon: Icon(Icons.remove_circle_outline, color: Colors.red))` to remove item
+- Remove button accessibility: wrap the trailing `IconButton` in `Semantics(label: 'Sepetten çıkar', button: true)` so screen readers announce the action instead of reading the generic icon
 - Section header: "Sepetim" (20sp bold) + item count "(N ürün)" in 14sp muted inline
 - Empty state: not reachable from CartComparisonPage (page only accessible with items)
 - Remove interaction: tapping remove icon calls `cartNotifier.remove(product)` — no confirmation dialog (non-destructive, product can be re-added)
@@ -126,8 +129,8 @@ New components to implement for this phase:
   1. `CartProductListSection` (padded 16dp)
   2. `SizedBox(height: 24)`
   3. Section header "Market Karşılaştırması" (20sp bold) padded 16dp
-  4. `SizedBox(height: 12)`
-  5. `ListView.builder` (shrinkWrap, NeverScrollableScrollPhysics) of `CartMarketComparisonCard`, bottom margin 12dp per card, horizontal padding 16dp
+  4. `SizedBox(height: 12)` — declared 12dp exception (see Spacing Scale)
+  5. `ListView.builder` (shrinkWrap, NeverScrollableScrollPhysics) of `CartMarketComparisonCard`, bottom margin 12dp per card (declared 12dp exception), horizontal padding 16dp
 - Loading state: `Center(child: CircularProgressIndicator())`
 - Error state: standard error pattern (Icons.error_outline 48px red + error text + "Tekrar Dene" ElevatedButton.icon)
 
@@ -144,7 +147,7 @@ New components to implement for this phase:
 
 ### Add to cart (ProductDetailPage)
 - Button placed below "Favorilere Ekle" / "Favorilerden Çıkar" button
-- `SizedBox(height: 12)` between the two buttons
+- `SizedBox(height: 12)` between the two buttons — declared 12dp exception (see Spacing Scale)
 - Button copy: "Sepete Ekle" (not in cart) / "Sepetten Çıkar" (in cart)
 - Button icon: `Icons.shopping_cart_outlined` (not in cart) / `Icons.remove_shopping_cart` (in cart)
 - On "Sepete Ekle" tap: add product, show snackbar "Ürün sepete eklendi" with action "Sepete Git" (navigates to CartComparisonPage)
@@ -200,6 +203,8 @@ All copy in Turkish.
 | AppBar title (CartComparisonPage) | "Sepet Karşılaştırması" |
 | AppBar clear action label | "Sepeti Temizle" |
 | Product detail page AppBar | "Ürün Detayı" (unchanged) |
+| CartAppBarIcon tooltip | "Sepeti Aç" |
+| Remove product button semantics label | "Sepetten çıkar" |
 
 **Tone:** Honest, direct, non-alarming. Partial match ("bulunamadı") is stated plainly — no apologetic or alarming language. Consistent with existing Turkish copy in the app.
 
