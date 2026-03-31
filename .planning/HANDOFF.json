@@ -1,57 +1,42 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-30T11:52:05.692Z",
-  "phase": "cross-phase",
-  "phase_name": "UAT Bug Fixes (post Phase 04)",
-  "phase_dir": ".planning/phases/04-cart-comparison",
-  "plan": null,
+  "timestamp": "2026-03-31T00:16:42.350Z",
+  "phase": "04.1",
+  "phase_name": "live-data-foundation",
+  "phase_dir": ".planning/phases/04.1-live-data-foundation",
+  "plan": 0,
   "task": 0,
-  "total_tasks": 2,
+  "total_tasks": 0,
   "status": "paused",
   "completed_tasks": [
     {"id": 1, "name": "Phase 01 - Quality Foundation", "status": "done", "commit": "68abd9b"},
     {"id": 2, "name": "Phase 02 - Data Layer", "status": "done", "commit": "68abd9b"},
     {"id": 3, "name": "Phase 03 - Price Comparison + Market Detail", "status": "done", "commit": "ed7962f"},
     {"id": 4, "name": "Phase 04 - Cart Comparison", "status": "done", "commit": "966574f"},
-    {"id": 5, "name": "Cross-phase UAT audit + bug diagnosis", "status": "done", "commit": "24f88e8"},
-    {"id": 6, "name": "Phase 04 human UAT - 5/5 tests passed", "status": "done", "commit": "d3f1252"}
+    {"id": 5, "name": "Phase 04 UAT (5/5 tests passed)", "status": "done", "commit": "d3f1252"},
+    {"id": 6, "name": "Cross-phase UAT bugs (both already resolved, verified 2026-03-31)", "status": "done", "commit": "b99cdc3"},
+    {"id": 7, "name": "LIVE_DATA_ROADMAP.md - live data transition plan written", "status": "done", "commit": "uncommitted"}
   ],
   "remaining_tasks": [
-    {
-      "id": 7,
-      "name": "Bug Fix: Turkish char normalization (Phase 01 UAT)",
-      "status": "not_started",
-      "files": [
-        "lib/core/utils/text_normalizer.dart",
-        "lib/features/discounts/discounts_page.dart"
-      ],
-      "fix": "Add .replaceAll('İ', 'i') before .toLowerCase() in TextNormalizer.normalize(); remove duplicate _normalizeText() in discounts_page.dart"
-    },
-    {
-      "id": 8,
-      "name": "Bug Fix: Market brand colors show grey (Phase 03 UAT)",
-      "status": "not_started",
-      "files": [
-        "lib/features/markets/data/mock_markets.dart",
-        "lib/features/markets/presentation/widgets/market_detail_header_widget.dart"
-      ],
-      "fix": "Change mock market IDs from m1-m5 to slugs (migros, a101, bim, sok, carrefoursa); verify downstream ID-based filters still work"
-    }
+    {"id": 8, "name": "Commit modified planning artifacts (ROADMAP.md, STATE.md, .continue-here.md, LIVE_DATA_ROADMAP.md, project_tree.txt)", "status": "not_started"},
+    {"id": 9, "name": "Plan Phase 04.1 - Live Data Foundation (API contract, DB schema)", "status": "not_started"},
+    {"id": 10, "name": "Plan Phase 04.2 - Backend Data Pipeline (scraper service)", "status": "not_started"},
+    {"id": 11, "name": "Plan Phase 04.3 - Backend API and Flutter Integration", "status": "not_started"}
   ],
-  "blockers": [
-    {
-      "description": "Market ID slug change may break downstream providers/widgets that filter by market.id",
-      "type": "technical",
-      "workaround": "Grep for market.id usages before committing the ID change"
-    }
-  ],
+  "blockers": [],
   "human_actions_pending": [],
   "decisions": [
-    {"decision": "CartNotifier clones FavoritesNotifier pattern with SharedPreferences key 'cart_products'", "rationale": "Consistency with existing local persistence approach", "phase": "04"},
-    {"decision": "Cart dedup by id not Freezed equality", "rationale": "Avoids priceHistory comparison pitfall in Freezed-generated ==", "phase": "04"},
-    {"decision": "Market comparison sorted by partialTotal ascending, 0-match markets at bottom", "rationale": "Dishonesty guard — markets with no matching products shouldn't appear cheap", "phase": "04"}
+    {"decision": "Scraping runs in a separate backend service, not in Flutter", "rationale": "App-side scraping is fragile and unmaintainable; backend-API model aligns with project vision", "phase": "04.1"},
+    {"decision": "Phases 04.1/4.2/4.3 inserted after Phase 04 to bridge mock→live data gap before Phase 5 (FCM)", "rationale": "FCM notifications require reliable live data infrastructure first", "phase": "04.1"},
+    {"decision": "Market slug IDs (migros, a101, bim, sok, carrefoursa) are canonical primary keys — already implemented in mock_markets.dart", "rationale": "Aligns mock data with marketBrands map keys", "phase": "04"}
   ],
-  "uncommitted_files": [],
-  "next_action": "Fix Turkish char normalization: add .replaceAll('İ', 'i') to TextNormalizer.normalize() and remove duplicate _normalizeText() in discounts_page.dart. Use /gsd:quick.",
-  "context_notes": "All 4 milestone phases DONE. Phase 04 human UAT passed 5/5. Two UAT bugs remain — both root-caused. After fixing these, milestone is ready for /gsd:complete-milestone."
+  "uncommitted_files": [
+    ".planning/ROADMAP.md",
+    ".planning/STATE.md",
+    ".planning/phases/04-cart-comparison/.continue-here.md",
+    "LIVE_DATA_ROADMAP.md",
+    "project_tree.txt"
+  ],
+  "next_action": "Run /gsd:plan-phase for Phase 04.1 (live-data-foundation). API contract + DB schema are the deliverables. Reference LIVE_DATA_ROADMAP.md for scope.",
+  "context_notes": "All 4 milestone Flutter phases are complete and verified. The project is at a clean handoff: mock-data Flutter app is production-ready UI-wise. The live data backend (phases 04.1→04.3) is next. LIVE_DATA_ROADMAP.md was written this session as a Turkish-language planning doc covering the full backend path. Empty phase directories 04.1/04.2/04.3 exist in .planning/phases/ but no PLANs exist yet. Uncommitted files include the roadmap doc and planning state updates."
 }

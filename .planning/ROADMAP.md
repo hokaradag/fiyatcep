@@ -16,6 +16,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Data Layer** - Wire real scraping backend, extend models, swap mock datasources (completed 2026-03-28)
 - [x] **Phase 3: Price Comparison + Market Detail** - Price comparison UI, price history chart, enriched market detail page (completed 2026-03-29)
 - [ ] **Phase 4: Cart Comparison** - Multi-product cart with per-market total comparison
+- [ ] **Phase 4.1: Live Data Foundation** (INSERTED) - API contract, DB schema, product-market matching, price-history model
+- [ ] **Phase 4.2: Backend Data Pipeline** (INSERTED) - Scraper service, DB writes, price-history persistence, scheduled refresh, logging
+- [ ] **Phase 4.3: Backend API and Flutter Integration** (INSERTED) - REST API endpoints, mock→remote datasource switch, end-to-end verification
 - [ ] **Phase 5: FCM Push Notifications** - Firebase push notification SDK, watch list UI, price-drop alerts
 
 ## Phase Details
@@ -83,6 +86,36 @@ Plans:
 - [x] 04-02-PLAN.md — Cart comparison provider, UI widgets, CartComparisonPage, and wiring into existing pages
 **UI hint**: yes
 
+### Phase 04.1: Live Data Foundation (INSERTED)
+
+**Goal:** API contract, database schema, product-market matching modeli ve price-history veri yapisi netlestirilir; backend gelistirme icin temel sozlesme dondurulur
+**Requirements**: TBD
+**Depends on:** Phase 4
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 04.1 to break down)
+
+### Phase 04.2: Backend Data Pipeline (INSERTED)
+
+**Goal:** Scraper/importer servisi calisir; en az 1 marketten urun/fiyat verisi veritabanina yazilir; fiyat gecmisi olusur; zamanlanmis refresh ve scrape/error logging aktif
+**Requirements**: TBD
+**Depends on:** Phase 4.1
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 04.2 to break down)
+
+### Phase 04.3: Backend API and Flutter Integration (INSERTED)
+
+**Goal:** REST API endpointleri acilir; Flutter uygulama products, markets, discounts akislari mock datasource'dan remote datasource'a gecilir; gercek backend verisiyle entegrasyon dogrulanir
+**Requirements**: TBD
+**Depends on:** Phase 4.2
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 04.3 to break down)
+
 ### Phase 5: FCM Push Notifications
 **Goal**: Kullanici takip ettigi urun veya indirimde fiyat dususu oldugunda push bildirim alir
 **Depends on**: Phase 2
@@ -98,7 +131,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 4.2 -> 4.3 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -106,4 +139,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
 | 3. Price Comparison + Market Detail | 5/5 | Complete   | 2026-03-29 |
 | 4. Cart Comparison | 2/2 | In Progress | - |
+| 4.1. Live Data Foundation | 0/? | Not started | - |
+| 4.2. Backend Data Pipeline | 0/? | Not started | - |
+| 4.3. Backend API and Flutter Integration | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |

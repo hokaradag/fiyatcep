@@ -110,6 +110,12 @@ Recent decisions affecting current work:
 - [Phase 04-cart-comparison]: CartMarketResult as plain Dart class (not Freezed) — no serialization needed, simpler for isCheapest mutation pattern
 - [Phase 04-cart-comparison]: 0-match markets sorted to bottom in cartComparisonProvider — showing 0.00 TL total at top would falsely appear cheapest
 
+### Roadmap Evolution
+
+- Phase 4.1 inserted after Phase 4: Live Data Foundation (INSERTED) — API contract, DB schema, product-market matching, price-history model
+- Phase 4.2 inserted after Phase 4.1: Backend Data Pipeline (INSERTED) — scraper service, DB writes, price-history persistence, scheduled refresh, logging
+- Phase 4.3 inserted after Phase 4.2: Backend API and Flutter Integration (INSERTED) — REST API endpoints, mock→remote datasource switch, e2e verification
+
 ### Pending Todos
 
 None yet.
