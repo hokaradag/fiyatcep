@@ -1,42 +1,37 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-31T00:16:42.350Z",
-  "phase": "04.1",
-  "phase_name": "live-data-foundation",
-  "phase_dir": ".planning/phases/04.1-live-data-foundation",
-  "plan": 0,
-  "task": 0,
-  "total_tasks": 0,
+  "timestamp": "2026-04-01T20:50:44.788Z",
+  "phase": "04.2",
+  "phase_name": "Backend Data Pipeline",
+  "phase_dir": ".planning/phases/04.2-backend-data-pipeline",
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
   "status": "paused",
-  "completed_tasks": [
-    {"id": 1, "name": "Phase 01 - Quality Foundation", "status": "done", "commit": "68abd9b"},
-    {"id": 2, "name": "Phase 02 - Data Layer", "status": "done", "commit": "68abd9b"},
-    {"id": 3, "name": "Phase 03 - Price Comparison + Market Detail", "status": "done", "commit": "ed7962f"},
-    {"id": 4, "name": "Phase 04 - Cart Comparison", "status": "done", "commit": "966574f"},
-    {"id": 5, "name": "Phase 04 UAT (5/5 tests passed)", "status": "done", "commit": "d3f1252"},
-    {"id": 6, "name": "Cross-phase UAT bugs (both already resolved, verified 2026-03-31)", "status": "done", "commit": "b99cdc3"},
-    {"id": 7, "name": "LIVE_DATA_ROADMAP.md - live data transition plan written", "status": "done", "commit": "uncommitted"}
-  ],
+  "completed_tasks": [],
   "remaining_tasks": [
-    {"id": 8, "name": "Commit modified planning artifacts (ROADMAP.md, STATE.md, .continue-here.md, LIVE_DATA_ROADMAP.md, project_tree.txt)", "status": "not_started"},
-    {"id": 9, "name": "Plan Phase 04.1 - Live Data Foundation (API contract, DB schema)", "status": "not_started"},
-    {"id": 10, "name": "Plan Phase 04.2 - Backend Data Pipeline (scraper service)", "status": "not_started"},
-    {"id": 11, "name": "Plan Phase 04.3 - Backend API and Flutter Integration", "status": "not_started"}
+    {"id": null, "name": "Phase 04.2 not yet planned or started", "status": "not_started"}
   ],
   "blockers": [],
   "human_actions_pending": [],
   "decisions": [
-    {"decision": "Scraping runs in a separate backend service, not in Flutter", "rationale": "App-side scraping is fragile and unmaintainable; backend-API model aligns with project vision", "phase": "04.1"},
-    {"decision": "Phases 04.1/4.2/4.3 inserted after Phase 04 to bridge mock→live data gap before Phase 5 (FCM)", "rationale": "FCM notifications require reliable live data infrastructure first", "phase": "04.1"},
-    {"decision": "Market slug IDs (migros, a101, bim, sok, carrefoursa) are canonical primary keys — already implemented in mock_markets.dart", "rationale": "Aligns mock data with marketBrands map keys", "phase": "04"}
+    {
+      "decision": "Phase 04.1 artifacts frozen — DB-SCHEMA.sql (5 tables, 7-market seed) and API-CONTRACT.md (11 endpoints) are the source of truth for backend and Flutter integration",
+      "rationale": "Phase 04.1 verification passed 6/6. Both artifacts verified wired to Flutter Freezed models and marketBrands map keys.",
+      "phase": "04.1"
+    },
+    {
+      "decision": "LDF requirement IDs (LDF-01, LDF-02, LDF-03) exist in ROADMAP.md and PLAN but not in REQUIREMENTS.md",
+      "rationale": "Documentation gap — does not block work but REQUIREMENTS.md should be updated to include these under a Live Data Foundation section.",
+      "phase": "04.1"
+    }
   ],
   "uncommitted_files": [
-    ".planning/ROADMAP.md",
-    ".planning/STATE.md",
-    ".planning/phases/04-cart-comparison/.continue-here.md",
-    "LIVE_DATA_ROADMAP.md",
-    "project_tree.txt"
+    ".planning/HANDOFF.json (was deleted from prior session)",
+    ".planning/config.json (line-ending only change — no real content delta)",
+    ".planning/phases/04.2-backend-data-pipeline/ (empty directory, untracked)",
+    ".planning/phases/04.3-backend-api-and-flutter-integration/ (empty directory, untracked)"
   ],
-  "next_action": "Run /gsd:plan-phase for Phase 04.1 (live-data-foundation). API contract + DB schema are the deliverables. Reference LIVE_DATA_ROADMAP.md for scope.",
-  "context_notes": "All 4 milestone Flutter phases are complete and verified. The project is at a clean handoff: mock-data Flutter app is production-ready UI-wise. The live data backend (phases 04.1→04.3) is next. LIVE_DATA_ROADMAP.md was written this session as a Turkish-language planning doc covering the full backend path. Empty phase directories 04.1/04.2/04.3 exist in .planning/phases/ but no PLANs exist yet. Uncommitted files include the roadmap doc and planning state updates."
+  "next_action": "Run /gsd:discuss-phase or /gsd:plan-phase for phase 04.2-backend-data-pipeline. Key inputs: .planning/phases/04.1-live-data-foundation/DB-SCHEMA.sql and API-CONTRACT.md are the frozen contracts.",
+  "context_notes": "Phase 04.1 is fully done and committed (11 commits ahead of origin). Pausing cleanly between phases. The two new phase directories (04.2 and 04.3) are empty stubs created by GSD — no work has started in either. Phase 04.2 builds the scraper service, DB writes, price-history persistence, and scheduled refresh. Phase 04.3 wires the REST API and switches Flutter from mock to remote datasources."
 }
