@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Phase 04.1 context gathered (discuss mode)
-last_updated: "2026-04-01T19:47:36.170Z"
-last_activity: 2026-03-30
+stopped_at: Completed 04.1-01-PLAN.md
+last_updated: "2026-04-01T20:42:35.895Z"
+last_activity: 2026-04-01
 progress:
   total_phases: 8
-  completed_phases: 4
-  total_plans: 15
-  completed_plans: 15
+  completed_phases: 5
+  total_plans: 16
+  completed_plans: 16
   percent: 93
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmiş fiyat değişimini ve indirim fırsatlarını görünür kılmak — kullanıcı alışveriş kararını vermeden önce gerçek veriye bakabilmeli.
-**Current focus:** Phase 04 — cart-comparison
+**Current focus:** Phase 04.1 — live-data-foundation
 
 ## Current Position
 
-Phase: 5
-Plan: Not started
+Phase: 04.1 (live-data-foundation) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
-Last activity: 2026-03-30
+Last activity: 2026-04-01
 
 Progress: [█████████░] 93%
 
@@ -66,6 +66,7 @@ Progress: [█████████░] 93%
 | Phase 03-price-comparison-market-detail P05 | 5 | 3 tasks | 13 files |
 | Phase 04-cart-comparison P01 | 10 | 2 tasks | 2 files |
 | Phase 04-cart-comparison P02 | 36 | 2 tasks | 10 files |
+| Phase 04.1 P01 | 3 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,9 @@ Recent decisions affecting current work:
 - [Phase 04-cart-comparison]: await cartNotifierProvider.future before reading cartComparisonProvider in tests — FutureProvider watching AsyncNotifier requires notifier to be in AsyncData state first
 - [Phase 04-cart-comparison]: CartMarketResult as plain Dart class (not Freezed) — no serialization needed, simpler for isCheapest mutation pattern
 - [Phase 04-cart-comparison]: 0-match markets sorted to bottom in cartComparisonProvider — showing 0.00 TL total at top would falsely appear cheapest
+- [Phase 04.1]: market_products.id is Flutter ProductItem.id — canonical products.id is internal to backend (D-02)
+- [Phase 04.1]: GET /products/{id}/prices: {id} is market_products.id, backend resolves canonical product_id via JOIN (D-05)
+- [Phase 04.1]: Dedicated discounts table chosen over view — discounts have own lifecycle (valid_until, old_price, new_price) not derivable from price_history
 
 ### Roadmap Evolution
 
@@ -134,6 +138,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T19:47:36.163Z
-Stopped at: Phase 04.1 context gathered (discuss mode)
-Resume file: .planning/phases/04.1-live-data-foundation/04.1-CONTEXT.md
+Last session: 2026-04-01T20:42:35.890Z
+Stopped at: Completed 04.1-01-PLAN.md
+Resume file: None

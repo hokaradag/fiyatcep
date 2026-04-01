@@ -97,9 +97,9 @@ Plans:
   3. GET /products/{id}/prices endpointi market_products.id semantigini acikca belirtir
   4. Tum datetime alanlari UTC ISO 8601 formatinda Z suffix ile dondurulur
   5. Market slug ID'leri (migros, a101, bim, carrefoursa, sok, tarim-kredi, file-market) Flutter marketBrands anahtarlariyla birebir eslesir
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 Plans:
-- [ ] 04.1-01-PLAN.md — DB schema (5 tables + seed data) and API contract (11 endpoints with JSON examples)
+- [x] 04.1-01-PLAN.md — DB schema (5 tables + seed data) and API contract (11 endpoints with JSON examples)
 
 ### Phase 04.2: Backend Data Pipeline (INSERTED)
 
