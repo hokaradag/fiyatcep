@@ -89,12 +89,17 @@ Plans:
 ### Phase 04.1: Live Data Foundation (INSERTED)
 
 **Goal:** API contract, database schema, product-market matching modeli ve price-history veri yapisi netlestirilir; backend gelistirme icin temel sozlesme dondurulur
-**Requirements**: TBD
+**Requirements**: LDF-01, LDF-02, LDF-03
 **Depends on:** Phase 4
-**Plans:** 0 plans
-
+**Success Criteria** (what must be TRUE):
+  1. DB-SCHEMA.sql dosyasi 5 tablo (products, markets, market_products, price_history, discounts) icin CREATE TABLE ifadeleri icerir
+  2. API-CONTRACT.md dosyasi tum 11 endpoint icin JSON request/response ornekleriyle birlikte tanimlanmistir
+  3. GET /products/{id}/prices endpointi market_products.id semantigini acikca belirtir
+  4. Tum datetime alanlari UTC ISO 8601 formatinda Z suffix ile dondurulur
+  5. Market slug ID'leri (migros, a101, bim, carrefoursa, sok, tarim-kredi, file-market) Flutter marketBrands anahtarlariyla birebir eslesir
+**Plans:** 1 plan
 Plans:
-- [ ] TBD (run /gsd:plan-phase 04.1 to break down)
+- [ ] 04.1-01-PLAN.md — DB schema (5 tables + seed data) and API contract (11 endpoints with JSON examples)
 
 ### Phase 04.2: Backend Data Pipeline (INSERTED)
 
@@ -139,7 +144,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 4.2 -> 4.3 -> 5
 | 2. Data Layer | 3/3 | Complete   | 2026-03-28 |
 | 3. Price Comparison + Market Detail | 5/5 | Complete   | 2026-03-29 |
 | 4. Cart Comparison | 2/2 | In Progress | - |
-| 4.1. Live Data Foundation | 0/? | Not started | - |
+| 4.1. Live Data Foundation | 0/1 | Not started | - |
 | 4.2. Backend Data Pipeline | 0/? | Not started | - |
 | 4.3. Backend API and Flutter Integration | 0/? | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
