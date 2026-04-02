@@ -1,0 +1,25 @@
+[project]
+name = "fiyatcep-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy>=2.0",
+    "apscheduler>=3.10,<4",
+    "requests",
+    "beautifulsoup4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "httpx",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*", "scraper*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
