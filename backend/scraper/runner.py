@@ -11,6 +11,7 @@ import logging
 from sqlalchemy import text
 
 from app.database import SessionLocal
+from scraper.logger import write_scrape_log
 from scraper.migros import MigrosScraper
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,7 @@ def run_scrape_cycle() -> list[dict]:
             _update_discount_counts(db)
             db.commit()
             results.append(log_entry)
+            write_scrape_log(log_entry)
             logger.info(
                 "Scrape complete: %s — %d products found, %d prices inserted",
                 log_entry.get("market", "unknown"),
@@ -49,7 +51,7 @@ def run_scrape_cycle() -> list[dict]:
         except Exception as e:
             logger.error("Scraper %s failed: %s", type(scraper).__name__, e)
             db.rollback()
-            results.append({
+            error_entry = {
                 "market": getattr(scraper, "MARKET_ID", "unknown"),
                 "error": str(e),
                 "products_found": 0,
@@ -58,7 +60,9 @@ def run_scrape_cycle() -> list[dict]:
                 "prices_inserted": 0,
                 "errors": [str(e)],
                 "duration_ms": 0,
-            })
+            }
+            results.append(error_entry)
+            write_scrape_log(error_entry)
         finally:
             db.close()
 
