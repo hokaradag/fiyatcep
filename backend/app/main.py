@@ -1,24 +1,88 @@
-"""FiyatCep Backend — FastAPI application entry point."""
-import os
-from pathlib import Path
+"""FiyatCep Backend — FastAPI application entry point.
 
+Per Research §State of the Art: uses lifespan context manager instead of
+deprecated @app.on_event("startup"/"shutdown").
+
+Per Pitfall 4: DB initialized BEFORE scheduler starts — prevents OperationalError
+if scheduler fires immediately on startup before tables exist.
+"""
+import logging
+import os
+from contextlib import asynccontextmanager
+
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import FastAPI
 
 from app.database import init_db
+from app.routers.admin import router as admin_router
 
-app = FastAPI(title="FiyatCep Backend", version="0.1.0")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(name)s %(levelname)s %(message)s",
+)
+logger = logging.getLogger(__name__)
 
-# DB-SCHEMA.sql path: backend/app/main.py -> ../../.planning/phases/04.1-live-data-foundation/DB-SCHEMA.sql
-SCHEMA_PATH = str(
-    Path(__file__).parent.parent.parent
-    / ".planning"
-    / "phases"
-    / "04.1-live-data-foundation"
-    / "DB-SCHEMA.sql"
+# Resolve schema path: backend/app/main.py -> repo_root/.planning/phases/04.1-.../DB-SCHEMA.sql
+_APP_DIR = os.path.dirname(os.path.abspath(__file__))
+_BACKEND_DIR = os.path.dirname(_APP_DIR)
+_REPO_ROOT = os.path.dirname(_BACKEND_DIR)
+SCHEMA_PATH = os.path.join(
+    _REPO_ROOT,
+    ".planning",
+    "phases",
+    "04.1-live-data-foundation",
+    "DB-SCHEMA.sql",
 )
 
+scheduler = AsyncIOScheduler(timezone="Europe/Istanbul")
 
-@app.on_event("startup")
-async def startup_event() -> None:
-    """Initialize DB on application startup if not already initialized."""
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """FastAPI lifespan — manages startup and shutdown of DB and scheduler.
+
+    Ordering is critical (Pitfall 4):
+    1. init_db() FIRST — creates tables if DB file doesn't exist
+    2. scheduler.start() SECOND — after tables guaranteed to exist
+
+    On shutdown: scheduler.shutdown() gracefully stops the background job.
+    """
+    # Step 1: Init DB BEFORE scheduler starts (Pitfall 4)
     init_db(SCHEMA_PATH)
+    logger.info("Database initialized")
+
+    # Step 2: Register and start daily scrape job (D-08)
+    # Import inside lifespan to avoid circular imports at module load time
+    from scraper.runner import run_scrape_cycle
+
+    def _scheduled_scrape():
+        """Wrapper for scheduler — catches all exceptions per D-11.
+
+        Synchronous wrapper around run_scrape_cycle. APScheduler 3.x runs
+        synchronous jobs in a thread pool executor automatically.
+        """
+        try:
+            results = run_scrape_cycle()
+            logger.info("Scheduled scrape complete: %d market(s)", len(results))
+        except Exception as exc:  # noqa: BLE001
+            logger.error("Scheduled scrape failed: %s", exc)
+
+    scheduler.add_job(
+        _scheduled_scrape,
+        "interval",
+        hours=24,
+        id="daily_scrape",
+        replace_existing=True,
+    )
+    scheduler.start()
+    logger.info("Scheduler started — daily scrape job registered")
+
+    yield
+
+    # Shutdown: stop scheduler gracefully
+    scheduler.shutdown()
+    logger.info("Scheduler shut down")
+
+
+app = FastAPI(title="FiyatCep Backend", version="0.1.0", lifespan=lifespan)
+app.include_router(admin_router)
