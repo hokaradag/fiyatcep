@@ -111,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 — Phase 04.1 complete (live-data-foundation): DB-SCHEMA.sql (5 tables, 7-market seed data) and API-CONTRACT.md (11 endpoints) written as frozen spec — unblocks Phase 04.2 (backend) and Phase 04.3 (Flutter integration) for parallel development*
+*Last updated: 2026-04-02 — Phase 04.2 complete (backend-data-pipeline): Python backend bootstrapped (FastAPI + SQLAlchemy ORM, 5 tables), MigrosScraper fetches real product data via JSON API, price_history rows inserted per run (D-07), failure isolation (D-11), APScheduler daily scrape wired in lifespan, POST /admin/scrape/run endpoint, JSONL logging — 26 tests passing. Unblocks Phase 04.3 (Flutter remote integration).*
