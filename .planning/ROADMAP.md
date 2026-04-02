@@ -106,7 +106,7 @@ Plans:
 **Goal:** Scraper/importer servisi calisir; en az 1 marketten urun/fiyat verisi veritabanina yazilir; fiyat gecmisi olusur; zamanlanmis refresh ve scrape/error logging aktif
 **Requirements**: TBD
 **Depends on:** Phase 4.1
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 04.2 to break down)

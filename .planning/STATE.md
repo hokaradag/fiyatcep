@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04.2-01-PLAN.md
-last_updated: "2026-04-02T20:49:27.263Z"
+stopped_at: Completed 04.2-02-PLAN.md
+last_updated: "2026-04-02T20:55:49.920Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 8
   completed_phases: 5
   total_plans: 19
-  completed_plans: 17
+  completed_plans: 18
   percent: 93
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 04.2 (backend-data-pipeline) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-04-02
 
@@ -68,6 +68,7 @@ Progress: [█████████░] 93%
 | Phase 04-cart-comparison P02 | 36 | 2 tasks | 10 files |
 | Phase 04.1 P01 | 3 | 2 tasks | 2 files |
 | Phase 04.2-backend-data-pipeline P01 | 18 | 2 tasks | 16 files |
+| Phase 04.2-backend-data-pipeline P02 | 3 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -117,6 +118,8 @@ Recent decisions affecting current work:
 - [Phase 04.2-01]: pyproject.toml uses unpinned/range versions to survive Python 3.14 pip resolution — pinned versions from plan were reference targets
 - [Phase 04.2-01]: init_db() uses sqlite3.executescript() not SQLAlchemy create_all() — DB-SCHEMA.sql is frozen source of truth
 - [Phase 04.2-01]: upsert_product() returns market_product.id (Flutter ProductItem.id, D-02), flushes without committing — caller batches commits
+- [Phase 04.2-02]: Migros endpoint: GET /rest/products/search?q={kw}&sayfa={page} returns JSON; prices in kurus (divide by 100 for TL); brand is dict with name key; homepage prefetch obtains Cloudflare cookie
+- [Phase 04.2-02]: 3 search keywords (sut/ekmek/yag) x 2 pages = ~120-180 unique products for demo data; dedup by product id across keywords using seen_ids set
 
 ### Roadmap Evolution
 
@@ -142,6 +145,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T20:49:27.257Z
-Stopped at: Completed 04.2-01-PLAN.md
+Last session: 2026-04-02T20:55:49.914Z
+Stopped at: Completed 04.2-02-PLAN.md
 Resume file: None
