@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 04.2 context gathered (discuss mode)
-last_updated: "2026-04-02T15:39:17.606Z"
-last_activity: 2026-04-01
+status: executing
+stopped_at: Completed 04.2-01-PLAN.md
+last_updated: "2026-04-02T20:49:27.263Z"
+last_activity: 2026-04-02
 progress:
   total_phases: 8
   completed_phases: 5
-  total_plans: 16
-  completed_plans: 16
+  total_plans: 19
+  completed_plans: 17
   percent: 93
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmiş fiyat değişimini ve indirim fırsatlarını görünür kılmak — kullanıcı alışveriş kararını vermeden önce gerçek veriye bakabilmeli.
-**Current focus:** Phase 04.1 — live-data-foundation
+**Current focus:** Phase 04.2 — backend-data-pipeline
 
 ## Current Position
 
-Phase: 04.2
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-01
+Phase: 04.2 (backend-data-pipeline) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
+Last activity: 2026-04-02
 
 Progress: [█████████░] 93%
 
@@ -67,6 +67,7 @@ Progress: [█████████░] 93%
 | Phase 04-cart-comparison P01 | 10 | 2 tasks | 2 files |
 | Phase 04-cart-comparison P02 | 36 | 2 tasks | 10 files |
 | Phase 04.1 P01 | 3 | 2 tasks | 2 files |
+| Phase 04.2-backend-data-pipeline P01 | 18 | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -113,6 +114,9 @@ Recent decisions affecting current work:
 - [Phase 04.1]: market_products.id is Flutter ProductItem.id — canonical products.id is internal to backend (D-02)
 - [Phase 04.1]: GET /products/{id}/prices: {id} is market_products.id, backend resolves canonical product_id via JOIN (D-05)
 - [Phase 04.1]: Dedicated discounts table chosen over view — discounts have own lifecycle (valid_until, old_price, new_price) not derivable from price_history
+- [Phase 04.2-01]: pyproject.toml uses unpinned/range versions to survive Python 3.14 pip resolution — pinned versions from plan were reference targets
+- [Phase 04.2-01]: init_db() uses sqlite3.executescript() not SQLAlchemy create_all() — DB-SCHEMA.sql is frozen source of truth
+- [Phase 04.2-01]: upsert_product() returns market_product.id (Flutter ProductItem.id, D-02), flushes without committing — caller batches commits
 
 ### Roadmap Evolution
 
@@ -138,6 +142,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T15:39:17.597Z
-Stopped at: Phase 04.2 context gathered (discuss mode)
-Resume file: .planning/phases/04.2-backend-data-pipeline/04.2-CONTEXT.md
+Last session: 2026-04-02T20:49:27.257Z
+Stopped at: Completed 04.2-01-PLAN.md
+Resume file: None
