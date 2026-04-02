@@ -1,37 +1,54 @@
 {
   "version": "1.0",
-  "timestamp": "2026-04-01T20:50:44.788Z",
-  "phase": "04.2",
-  "phase_name": "Backend Data Pipeline",
-  "phase_dir": ".planning/phases/04.2-backend-data-pipeline",
+  "timestamp": "2026-04-02T21:09:58.591Z",
+  "phase": "04.3",
+  "phase_name": "backend-api-and-flutter-integration",
+  "phase_dir": ".planning/phases/04.3-backend-api-and-flutter-integration",
   "plan": null,
-  "task": null,
+  "task": 0,
   "total_tasks": null,
   "status": "paused",
   "completed_tasks": [],
   "remaining_tasks": [
-    {"id": null, "name": "Phase 04.2 not yet planned or started", "status": "not_started"}
+    {"id": 1, "name": "Plan and execute phase 04.3", "status": "not_started"}
   ],
   "blockers": [],
-  "human_actions_pending": [],
+  "human_actions_pending": [
+    {
+      "action": "Run POST /admin/scrape/run against a live server and confirm real Migros products appear in DB",
+      "context": "Phase 04.2 human verification gap — requires live network access to migros.com.tr; cannot verify in CI",
+      "blocking": false
+    }
+  ],
   "decisions": [
     {
-      "decision": "Phase 04.1 artifacts frozen — DB-SCHEMA.sql (5 tables, 7-market seed) and API-CONTRACT.md (11 endpoints) are the source of truth for backend and Flutter integration",
-      "rationale": "Phase 04.1 verification passed 6/6. Both artifacts verified wired to Flutter Freezed models and marketBrands map keys.",
-      "phase": "04.1"
+      "decision": "MigrosScraper uses discovered JSON API endpoint (not HTML scraping)",
+      "rationale": "migros.com.tr returns structured JSON via a category API — more stable than HTML parsing",
+      "phase": "04.2"
     },
     {
-      "decision": "LDF requirement IDs (LDF-01, LDF-02, LDF-03) exist in ROADMAP.md and PLAN but not in REQUIREMENTS.md",
-      "rationale": "Documentation gap — does not block work but REQUIREMENTS.md should be updated to include these under a Live Data Foundation section.",
+      "decision": "APScheduler wired in FastAPI lifespan (not a separate worker process)",
+      "rationale": "Simpler deployment for the current milestone scope; avoids Celery/Redis overhead",
+      "phase": "04.2"
+    },
+    {
+      "decision": "JSONL format for scrape logs",
+      "rationale": "Structured and appendable; easy to tail and grep without a log management system",
+      "phase": "04.2"
+    },
+    {
+      "decision": "Phase 04.1 artifacts (DB-SCHEMA.sql, API-CONTRACT.md) frozen as source of truth",
+      "rationale": "Phase 04.1 verification passed 6/6. Both artifacts verified wired to Flutter Freezed models and marketBrands map keys.",
       "phase": "04.1"
     }
   ],
   "uncommitted_files": [
-    ".planning/HANDOFF.json (was deleted from prior session)",
-    ".planning/config.json (line-ending only change — no real content delta)",
-    ".planning/phases/04.2-backend-data-pipeline/ (empty directory, untracked)",
-    ".planning/phases/04.3-backend-api-and-flutter-integration/ (empty directory, untracked)"
+    ".planning/phases/04.2-backend-data-pipeline/.gitkeep",
+    ".planning/phases/04.2-backend-data-pipeline/04.2-01-PLAN.md",
+    ".planning/phases/04.2-backend-data-pipeline/04.2-02-PLAN.md",
+    ".planning/phases/04.2-backend-data-pipeline/04.2-03-PLAN.md",
+    ".planning/phases/04.3-backend-api-and-flutter-integration/ (empty stub)"
   ],
-  "next_action": "Run /gsd:discuss-phase or /gsd:plan-phase for phase 04.2-backend-data-pipeline. Key inputs: .planning/phases/04.1-live-data-foundation/DB-SCHEMA.sql and API-CONTRACT.md are the frozen contracts.",
-  "context_notes": "Phase 04.1 is fully done and committed (11 commits ahead of origin). Pausing cleanly between phases. The two new phase directories (04.2 and 04.3) are empty stubs created by GSD — no work has started in either. Phase 04.2 builds the scraper service, DB writes, price-history persistence, and scheduled refresh. Phase 04.3 wires the REST API and switches Flutter from mock to remote datasources."
+  "next_action": "Run /gsd:discuss-phase or /gsd:plan-phase for phase 04.3 (backend-api-and-flutter-integration). Phase 04.2 is verified and complete — 26 tests passing, Python backend live with MigrosScraper, price_history, APScheduler, and JSONL logging.",
+  "context_notes": "Phase 04.2 completed fully. The backend now has a working FastAPI app with SQLAlchemy ORM (5 tables: markets, products, market_products, price_history, scrape_logs), MigrosScraper hitting real Migros JSON API, price_history insertion, D-11 failure isolation (one market failure doesn't abort others), APScheduler daily job wired in lifespan, POST /admin/scrape/run admin endpoint, and JSONL scrape logging. 26 tests pass. Phase 04.3 is the Flutter integration phase — wiring the Flutter app to the real backend API (replacing mock datasources with remote datasources that hit the Python FastAPI). The API-CONTRACT.md from phase 04.1 defines the 11 endpoints to implement."
 }
