@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 04.2-02-PLAN.md
-last_updated: "2026-04-02T20:55:49.920Z"
+status: verifying
+stopped_at: Completed 04.2-03-PLAN.md
+last_updated: "2026-04-02T21:00:16.465Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 8
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 19
-  completed_plans: 18
+  completed_plans: 19
   percent: 93
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 Phase: 04.2 (backend-data-pipeline) — EXECUTING
 Plan: 3 of 3
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-02
 
 Progress: [█████████░] 93%
@@ -69,6 +69,7 @@ Progress: [█████████░] 93%
 | Phase 04.1 P01 | 3 | 2 tasks | 2 files |
 | Phase 04.2-backend-data-pipeline P01 | 18 | 2 tasks | 16 files |
 | Phase 04.2-backend-data-pipeline P02 | 3 | 2 tasks | 3 files |
+| Phase 04.2 P03 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -120,6 +121,8 @@ Recent decisions affecting current work:
 - [Phase 04.2-01]: upsert_product() returns market_product.id (Flutter ProductItem.id, D-02), flushes without committing — caller batches commits
 - [Phase 04.2-02]: Migros endpoint: GET /rest/products/search?q={kw}&sayfa={page} returns JSON; prices in kurus (divide by 100 for TL); brand is dict with name key; homepage prefetch obtains Cloudflare cookie
 - [Phase 04.2-02]: 3 search keywords (sut/ekmek/yag) x 2 pages = ~120-180 unique products for demo data; dedup by product id across keywords using seen_ids set
+- [Phase 04.2]: Lifespan pattern replaces @app.on_event — deprecated since FastAPI 0.93; init_db() called before scheduler.start() prevents OperationalError on first startup (Pitfall 4)
+- [Phase 04.2]: run_scrape_cycle imported lazily inside lifespan and admin handler to avoid circular imports at module load time
 
 ### Roadmap Evolution
 
@@ -145,6 +148,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T20:55:49.914Z
-Stopped at: Completed 04.2-02-PLAN.md
+Last session: 2026-04-02T21:00:16.460Z
+Stopped at: Completed 04.2-03-PLAN.md
 Resume file: None
