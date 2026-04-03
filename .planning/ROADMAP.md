@@ -114,12 +114,20 @@ Plans:
 ### Phase 04.3: Backend API and Flutter Integration (INSERTED)
 
 **Goal:** REST API endpointleri acilir; Flutter uygulama products, markets, discounts akislari mock datasource'dan remote datasource'a gecilir; gercek backend verisiyle entegrasyon dogrulanir
-**Requirements**: TBD
+**Requirements**: INTEG-01, INTEG-02, INTEG-03, INTEG-04, QUAL-06
 **Depends on:** Phase 4.2
-**Plans:** 0 plans
+**Success Criteria** (what must be TRUE):
+  1. FastAPI backend tum 11 API-CONTRACT.md route'unu camelCase JSON envelope ile sunar
+  2. Flutter uygulamasi mock datasource yerine remote datasource kullanir (products, markets, discounts)
+  3. productMarketPricesProvider gercek backend'den getProductPrices() ile veri ceker
+  4. FavoritesStore singleton silinmistir, FavoritesNotifier tek favori yoneticisidir (QUAL-06)
+  5. Android emulator uzerinde gercek Migros verisi uctan uca gorunur
+**Plans:** 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 04.3 to break down)
+- [ ] 04.3-01-PLAN.md — FastAPI products/markets/discounts routers + CORS + pytest integration tests
+- [ ] 04.3-02-PLAN.md — Flutter mock-to-remote switch, getProductPrices(), base URL update, QUAL-06 FavoritesStore deletion
+- [ ] 04.3-03-PLAN.md — End-to-end verification: backend API + Flutter emulator integration checkpoint
 
 ### Phase 5: FCM Push Notifications
 **Goal**: Kullanici takip ettigi urun veya indirimde fiyat dususu oldugunda push bildirim alir
@@ -146,5 +154,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 4.2 -> 4.3 -> 5
 | 4. Cart Comparison | 2/2 | In Progress | - |
 | 4.1. Live Data Foundation | 0/1 | Not started | - |
 | 4.2. Backend Data Pipeline | 0/? | Not started | - |
-| 4.3. Backend API and Flutter Integration | 0/? | Not started | - |
+| 4.3. Backend API and Flutter Integration | 0/3 | Not started | - |
 | 5. FCM Push Notifications | 0/? | Not started | - |
