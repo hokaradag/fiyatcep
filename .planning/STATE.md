@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04.3-02-PLAN.md
-last_updated: "2026-04-09T11:26:38.703Z"
+stopped_at: Completed 04.3-01-PLAN.md
+last_updated: "2026-04-09T11:27:15.976Z"
 last_activity: 2026-04-09
 progress:
   total_phases: 8
   completed_phases: 6
   total_plans: 22
-  completed_plans: 20
+  completed_plans: 21
   percent: 93
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 04.3 (backend-api-and-flutter-integration) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-04-09
 
@@ -71,6 +71,7 @@ Progress: [█████████░] 93%
 | Phase 04.2-backend-data-pipeline P02 | 3 | 2 tasks | 3 files |
 | Phase 04.2 P03 | 2 | 2 tasks | 5 files |
 | Phase 04.3 P02 | 3 | 2 tasks | 7 files |
+| Phase 04.3-backend-api-and-flutter-integration P01 | 3 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -126,6 +127,9 @@ Recent decisions affecting current work:
 - [Phase 04.2]: run_scrape_cycle imported lazily inside lifespan and admin handler to avoid circular imports at module load time
 - [Phase 04.3-02]: getProductPrices stub in ProductMockDataSourceImpl returns empty list — mock datasource no longer used in production wiring, stub satisfies interface contract
 - [Phase 04.3-02]: Base URL set to http://10.0.2.2:8000/api/v1 for Android emulator; LAN_IP comment added for physical device testing
+- [Phase 04.3-01]: search routes defined before /{id} routes in each router file — FastAPI matches in definition order; /search after /{id} would match search as an id value
+- [Phase 04.3-01]: JSONResponse returned directly for 404 errors — allows locked error envelope without FastAPI HTTPException wrapping
+- [Phase 04.3-01]: raise_server_exceptions=False on TestClient — allows testing 404 responses without pytest raising for non-2xx
 
 ### Roadmap Evolution
 
@@ -151,6 +155,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-09T11:26:38.697Z
-Stopped at: Completed 04.3-02-PLAN.md
+Last session: 2026-04-09T11:27:15.970Z
+Stopped at: Completed 04.3-01-PLAN.md
 Resume file: None
