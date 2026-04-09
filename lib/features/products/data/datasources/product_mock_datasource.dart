@@ -1,5 +1,6 @@
 import 'package:fiyatcep/core/utils/text_normalizer.dart';
 
+import '../../models/market_price_item.dart';
 import '../../models/price_point.dart';
 import '../../models/product_item.dart';
 import 'product_datasource.dart';
@@ -114,6 +115,12 @@ class ProductMockDataSourceImpl implements ProductRemoteDataSource {
     await Future.delayed(const Duration(milliseconds: 600));
     final products = await getAllProducts();
     return products.where((p) => p.marketId == marketId).toList();
+  }
+
+  @override
+  Future<List<MarketPriceItem>> getProductPrices(String productId) async {
+    await Future.delayed(const Duration(milliseconds: 400));
+    return [];
   }
 
   @override
