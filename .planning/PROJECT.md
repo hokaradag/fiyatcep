@@ -111,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-02 — Phase 04.2 complete (backend-data-pipeline): Python backend bootstrapped (FastAPI + SQLAlchemy ORM, 5 tables), MigrosScraper fetches real product data via JSON API, price_history rows inserted per run (D-07), failure isolation (D-11), APScheduler daily scrape wired in lifespan, POST /admin/scrape/run endpoint, JSONL logging — 26 tests passing. Unblocks Phase 04.3 (Flutter remote integration).*
+*Last updated: 2026-04-09 — Phase 04.3 complete (backend-api-and-flutter-integration): All 11 FastAPI routes implemented with camelCase envelope, 12 pytest integration tests passing. Flutter switched from mock to remote datasources; getProductPrices() added; FavoritesStore deleted (QUAL-06). E2E verified on Android emulator — 178 real Migros products flowing through full stack. 90 Flutter + 38 backend tests passing. Turkish search normalization tracked as follow-up.*
