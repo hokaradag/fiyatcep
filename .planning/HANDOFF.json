@@ -1,89 +1,47 @@
 {
   "version": "1.0",
-  "timestamp": "2026-04-03T10:34:25.616Z",
+  "timestamp": "2026-04-09T12:24:34.806Z",
   "phase": "04.3",
   "phase_name": "backend-api-and-flutter-integration",
   "phase_dir": ".planning/phases/04.3-backend-api-and-flutter-integration",
-  "plan": null,
-  "task": 0,
+  "plan": 3,
+  "task": 6,
   "total_tasks": 6,
-  "status": "paused",
+  "status": "phase_complete",
   "completed_tasks": [
-    {"id": 1, "name": "discuss-phase 04.3 — CONTEXT.md with 15 locked decisions", "status": "done", "commit": "aeb0dbc"},
-    {"id": 2, "name": "plan-phase 04.3 — 3 PLAN.md files, 2 waves, verified PASSED", "status": "done", "commit": "fc49dae"}
+    {"id": "04.3-01/1", "name": "FastAPI routers (products, markets, discounts) + main.py CORS + global error handler", "status": "done", "commit": "4a71925"},
+    {"id": "04.3-01/2", "name": "12 pytest integration tests, all passing", "status": "done", "commit": "b054ed8"},
+    {"id": "04.3-02/1", "name": "Flutter remote datasources active; getProductPrices() added; productMarketPricesProvider wired to API", "status": "done", "commit": "49ff70d"},
+    {"id": "04.3-02/2", "name": "FavoritesStore deleted (QUAL-06); mock imports removed from repository_providers.dart", "status": "done", "commit": "079d5b6"},
+    {"id": "04.3-03/1", "name": "Backend API live-verified — 7 markets, 178 Migros products, correct envelope", "status": "done", "commit": "a8a8da6"},
+    {"id": "04.3-03/2", "name": "Human E2E verified on Android emulator — 8/9 checks pass, approved", "status": "done", "commit": "a8a8da6"}
   ],
-  "remaining_tasks": [
-    {"id": 3, "name": "execute Wave 1 Plan 01 — FastAPI 11 routes + pytest", "status": "not_started"},
-    {"id": 4, "name": "execute Wave 1 Plan 02 — Flutter mock→remote switch + FavoritesStore deletion", "status": "not_started"},
-    {"id": 5, "name": "execute Wave 2 Plan 03 — curl smoke tests + emulator checkpoint", "status": "not_started"},
-    {"id": 6, "name": "verify Phase 04.3 goal achievement", "status": "not_started"}
-  ],
+  "remaining_tasks": [],
   "blockers": [],
-  "human_actions_pending": [
-    {
-      "action": "Run POST /admin/scrape/run against a live server and confirm real Migros products appear in DB",
-      "context": "Phase 04.2 human verification gap — requires live network access to migros.com.tr; cannot verify in CI",
-      "blocking": false
-    },
-    {
-      "action": "Manual Flutter emulator verification in Plan 03 checkpoint — open app, verify Products tab shows real Migros data",
-      "context": "Phase 04.3 Wave 2 requires human to run emulator and visually verify end-to-end integration",
-      "blocking": true
-    }
-  ],
+  "human_actions_pending": [],
   "decisions": [
     {
-      "decision": "All 11 routes from API-CONTRACT.md implemented (9 existing + GET /products/{id} + GET /markets/search)",
-      "rationale": "D-01 from CONTEXT.md — locked to match Flutter expectations exactly",
+      "decision": "Base URL set to http://10.0.2.2:8000/api/v1",
+      "rationale": "Android emulator routes to host machine via 10.0.2.2; LAN_IP comment left for physical device testing",
       "phase": "04.3"
     },
     {
-      "decision": "Locked response envelope: {\"data\": ...} / {\"error\": {\"message\", \"code\"}}",
-      "rationale": "D-03 — Flutter fromJson() depends on this shape; cannot deviate",
+      "decision": "Turkish search normalization deferred as follow-up",
+      "rationale": "Input handling issue (ü→u truncation) and query-side normalization gap found during E2E; non-blocking for core data flow",
       "phase": "04.3"
     },
     {
-      "decision": "priceHistory included in ALL product responses (list + detail)",
-      "rationale": "D-04 — required for price trend display in Flutter UI",
+      "decision": "Price history 'insufficient data' message is expected empty state",
+      "rationale": "Only 1-2 scrape runs completed; UI shows graceful message; no bug",
       "phase": "04.3"
     },
     {
-      "decision": "Flutter base URL = http://10.0.2.2:8000/api/v1",
-      "rationale": "D-06 — Android emulator loopback to host; comment in code for LAN IP swap",
+      "decision": "product_detail_page_test.dart overrides productMarketPricesProvider with stub",
+      "rationale": "TestWidgetsFlutterBinding intercepts HTTP; widget tests must mock remote providers via ProviderScope overrides",
       "phase": "04.3"
-    },
-    {
-      "decision": "repository_providers.dart is the single mock-to-remote flip point",
-      "rationale": "D-09 — change one file to go from mock to remote; minimal blast radius",
-      "phase": "04.3"
-    },
-    {
-      "decision": "FavoritesStore singleton deleted; FavoritesNotifier is sole provider",
-      "rationale": "D-12/D-13 — QUAL-06 cleanup: two parallel patterns existed; consolidate to one",
-      "phase": "04.3"
-    },
-    {
-      "decision": "MigrosScraper uses discovered JSON API endpoint (not HTML scraping)",
-      "rationale": "migros.com.tr returns structured JSON via a category API — more stable than HTML parsing",
-      "phase": "04.2"
-    },
-    {
-      "decision": "APScheduler wired in FastAPI lifespan (not a separate worker process)",
-      "rationale": "Simpler deployment for the current milestone scope; avoids Celery/Redis overhead",
-      "phase": "04.2"
-    },
-    {
-      "decision": "Phase 04.1 artifacts (DB-SCHEMA.sql, API-CONTRACT.md) frozen as source of truth",
-      "rationale": "Phase 04.1 verification passed 6/6. Both artifacts verified wired to Flutter Freezed models and marketBrands map keys.",
-      "phase": "04.1"
     }
   ],
-  "uncommitted_files": [
-    ".planning/phases/04.2-backend-data-pipeline/.gitkeep",
-    ".planning/phases/04.2-backend-data-pipeline/04.2-01-PLAN.md",
-    ".planning/phases/04.2-backend-data-pipeline/04.2-02-PLAN.md",
-    ".planning/phases/04.2-backend-data-pipeline/04.2-03-PLAN.md"
-  ],
-  "next_action": "Run /gsd:execute-phase 04.3. Wave 1 (Plans 01 + 02) runs in parallel — Python backend routes and Flutter datasource switch are independent. Wave 2 (Plan 03) is a manual checkpoint requiring emulator access.",
-  "context_notes": "Phase 04.3 is fully planned. The Python backend (Phase 04.2) is live with SQLAlchemy ORM, 5 tables, MigrosScraper hitting the real Migros JSON API, APScheduler, and 26 tests. Phase 04.3 opens the HTTP surface (11 FastAPI routes) and flips the Flutter app from mock datasources to real API calls via the existing Dio/ApiClient. Plans 01 and 02 are parallel — zero file overlap between Python routers and Dart datasource files. Plan 03 is a human checkpoint requiring emulator verification. The most critical file is repository_providers.dart — one-line change flips the entire app from mock to remote."
+  "uncommitted_files": [],
+  "next_action": "Run /gsd:plan-phase 5 (fcm-push-notifications) in a fresh context window",
+  "context_notes": "Phase 04.3 fully complete and verified. 90 Flutter + 38 backend tests green. Full scraper→DB→API→Flutter chain live on Android emulator with real Migros data. Turkish character search normalization is the only known gap — track as Phase 5.x or backlog item. Next phase is 5 (fcm-push-notifications)."
 }
