@@ -1,17 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'api_client_provider.dart';
 import '../../features/products/data/datasources/product_datasource.dart';
-import '../../features/products/data/datasources/product_mock_datasource.dart';
 import '../../features/products/data/datasources/product_remote_datasource.dart';
 import '../../features/products/data/repositories/product_repository_impl.dart';
 import '../../features/products/domain/repositories/product_repository.dart';
 import '../../features/markets/data/datasources/market_datasource.dart';
-import '../../features/markets/data/datasources/market_mock_datasource.dart';
 import '../../features/markets/data/datasources/market_remote_datasource.dart';
 import '../../features/markets/data/repositories/market_repository_impl.dart';
 import '../../features/markets/domain/repositories/market_repository.dart';
 import '../../features/discounts/data/datasources/discount_datasource.dart';
-import '../../features/discounts/data/datasources/discount_mock_datasource.dart';
 import '../../features/discounts/data/datasources/discount_remote_datasource.dart';
 import '../../features/discounts/data/repositories/discount_repository_impl.dart';
 import '../../features/discounts/domain/repositories/discount_repository.dart';
@@ -24,7 +21,7 @@ final productRemoteDataSourceProvider = Provider<ProductRemoteDataSource>((ref) 
 
 // Product Repository
 final productRepositoryProvider = Provider<ProductRepository>((ref) {
-  return ProductRepositoryImpl(remoteDataSource: ProductMockDataSourceImpl());
+  return ProductRepositoryImpl(remoteDataSource: ref.watch(productRemoteDataSourceProvider));
 });
 
 // UAT: remote datasource providers kept for easy reactivation once API is live
@@ -35,7 +32,7 @@ final marketRemoteDataSourceProvider = Provider<MarketRemoteDataSource>((ref) {
 
 // Market Repository
 final marketRepositoryProvider = Provider<MarketRepository>((ref) {
-  return MarketRepositoryImpl(remoteDataSource: MarketMockDataSourceImpl());
+  return MarketRepositoryImpl(remoteDataSource: ref.watch(marketRemoteDataSourceProvider));
 });
 
 // UAT: remote datasource providers kept for easy reactivation once API is live
@@ -46,5 +43,5 @@ final discountRemoteDataSourceProvider = Provider<DiscountRemoteDataSource>((ref
 
 // Discount Repository
 final discountRepositoryProvider = Provider<DiscountRepository>((ref) {
-  return DiscountRepositoryImpl(remoteDataSource: DiscountMockDataSourceImpl());
+  return DiscountRepositoryImpl(remoteDataSource: ref.watch(discountRemoteDataSourceProvider));
 });

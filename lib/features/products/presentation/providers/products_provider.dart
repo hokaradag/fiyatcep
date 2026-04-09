@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fiyatcep/core/errors/exceptions.dart';
 import '../../models/product_item.dart';
 import '../../models/market_price_item.dart';
-import '../../data/mock_market_prices.dart';
 import '../../../../shared/providers/repository_providers.dart';
 
 final productsProvider = FutureProvider<List<ProductItem>>((ref) async {
@@ -49,13 +48,9 @@ final productMarketPricesProvider =
       ref,
       productId,
     ) async {
-      // Simulate network delay
-      await Future.delayed(const Duration(milliseconds: 400));
-
-      final prices = [...(mockMarketPrices[productId] ?? <MarketPriceItem>[])]
-        ..sort((a, b) => a.price.compareTo(b.price));
-
-      return prices;
+      final dataSource = ref.watch(productRemoteDataSourceProvider);
+      final prices = await dataSource.getProductPrices(productId);
+      return [...prices]..sort((a, b) => a.price.compareTo(b.price));
     });
 
 final productsByMarketProvider =

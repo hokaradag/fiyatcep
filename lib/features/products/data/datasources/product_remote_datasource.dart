@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import '../../models/product_item.dart';
+import '../../models/market_price_item.dart';
 import '../../../../core/network/api_client.dart';
 import '../../../../core/errors/exceptions.dart';
 import 'product_datasource.dart';
@@ -74,6 +75,25 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
           )
           .then(
             (list) => list.map((item) => ProductItem.fromJson(item)).toList(),
+          );
+    } on DioException catch (e) {
+      throw _handleDioException(e);
+    }
+  }
+
+  @override
+  Future<List<MarketPriceItem>> getProductPrices(String productId) async {
+    try {
+      return await apiClient
+          .get(
+            endpoint: '/products/$productId/prices',
+            fromJson: (json) {
+              final list = json['data'] as List? ?? [];
+              return list.cast<Map<String, dynamic>>();
+            },
+          )
+          .then(
+            (list) => list.map((item) => MarketPriceItem.fromJson(item)).toList(),
           );
     } on DioException catch (e) {
       throw _handleDioException(e);
