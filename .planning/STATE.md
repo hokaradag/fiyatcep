@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 04.3 context gathered (discuss mode)
-last_updated: "2026-04-03T10:14:17.202Z"
-last_activity: 2026-04-02
+status: executing
+stopped_at: Completed 04.3-02-PLAN.md
+last_updated: "2026-04-09T11:26:38.703Z"
+last_activity: 2026-04-09
 progress:
   total_phases: 8
   completed_phases: 6
-  total_plans: 19
-  completed_plans: 19
+  total_plans: 22
+  completed_plans: 20
   percent: 93
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmiş fiyat değişimini ve indirim fırsatlarını görünür kılmak — kullanıcı alışveriş kararını vermeden önce gerçek veriye bakabilmeli.
-**Current focus:** Phase 04.2 — backend-data-pipeline
+**Current focus:** Phase 04.3 — backend-api-and-flutter-integration
 
 ## Current Position
 
-Phase: 04.3
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-02
+Phase: 04.3 (backend-api-and-flutter-integration) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
+Last activity: 2026-04-09
 
 Progress: [█████████░] 93%
 
@@ -70,6 +70,7 @@ Progress: [█████████░] 93%
 | Phase 04.2-backend-data-pipeline P01 | 18 | 2 tasks | 16 files |
 | Phase 04.2-backend-data-pipeline P02 | 3 | 2 tasks | 3 files |
 | Phase 04.2 P03 | 2 | 2 tasks | 5 files |
+| Phase 04.3 P02 | 3 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -123,6 +124,8 @@ Recent decisions affecting current work:
 - [Phase 04.2-02]: 3 search keywords (sut/ekmek/yag) x 2 pages = ~120-180 unique products for demo data; dedup by product id across keywords using seen_ids set
 - [Phase 04.2]: Lifespan pattern replaces @app.on_event — deprecated since FastAPI 0.93; init_db() called before scheduler.start() prevents OperationalError on first startup (Pitfall 4)
 - [Phase 04.2]: run_scrape_cycle imported lazily inside lifespan and admin handler to avoid circular imports at module load time
+- [Phase 04.3-02]: getProductPrices stub in ProductMockDataSourceImpl returns empty list — mock datasource no longer used in production wiring, stub satisfies interface contract
+- [Phase 04.3-02]: Base URL set to http://10.0.2.2:8000/api/v1 for Android emulator; LAN_IP comment added for physical device testing
 
 ### Roadmap Evolution
 
@@ -148,6 +151,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T10:14:17.187Z
-Stopped at: Phase 04.3 context gathered (discuss mode)
-Resume file: .planning/phases/04.3-backend-api-and-flutter-integration/04.3-CONTEXT.md
+Last session: 2026-04-09T11:26:38.697Z
+Stopped at: Completed 04.3-02-PLAN.md
+Resume file: None
