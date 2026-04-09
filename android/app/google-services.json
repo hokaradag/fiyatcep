@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "662745603378",
+    "project_id": "fiyatcep",
+    "storage_bucket": "fiyatcep.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662745603378:android:429fd5a10e4fda803dcb2b",
+        "android_client_info": {
+          "package_name": "com.example.fiyatcep"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5wGbTE2gXeARmbtck4pMDXmPmZi_f0r4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

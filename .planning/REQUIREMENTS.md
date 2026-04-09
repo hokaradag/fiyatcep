@@ -14,7 +14,7 @@
 - [x] **QUAL-03**: Geliştirici `home_page`, `product_detail_page`, `market_detail_page` sayfalarını ayrı widget dosyaları olarak okuyabilir (build() metodları küçük widget'lara bölünür)
 - [x] **QUAL-04**: Repository katmanı için unit testler çalıştırılabilir (`ProductRepository`, `MarketRepository`, `DiscountRepository` mock'larla test edilir)
 - [x] **QUAL-05**: Ana kullanıcı akışı için widget testleri çalıştırılabilir (en az ürün listesi ve ürün detay sayfası kapsanır)
-- [ ] **QUAL-06**: Favoriler uygulamanın geri kalanıyla tutarlı Riverpod state yönetimi kullanır (`FavoritesStore` singleton → `FavoritesNotifier` NotifierProvider olarak taşınır)
+- [x] **QUAL-06**: Favoriler uygulamanın geri kalanıyla tutarlı Riverpod state yönetimi kullanır (`FavoritesStore` singleton → `FavoritesNotifier` NotifierProvider olarak taşınır)
 - [x] **QUAL-07**: `CarrefourSA` ismi uygulama genelinde tek bir yazımla kullanılır (tüm tutarsız `Carrefoursa`/`CarrefourSA` varyasyonları normalize edilir)
 
 ### Data Layer (DATA)
@@ -91,7 +91,7 @@ Roadmap oluşturuldu: 2026-03-27
 | QUAL-03 | Phase 1 | Complete |
 | QUAL-04 | Phase 1 | Complete |
 | QUAL-05 | Phase 1 | Complete |
-| QUAL-06 | Phase 1 | Pending |
+| QUAL-06 | Phase 1 | Complete |
 | QUAL-07 | Phase 1 | Complete |
 | DATA-01 | Phase 2 | Complete |
 | DATA-02 | Phase 2 | Complete |
