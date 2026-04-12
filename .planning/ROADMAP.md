@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 4.1: Live Data Foundation** (INSERTED) - API contract, DB schema, product-market matching, price-history model
 - [ ] **Phase 4.2: Backend Data Pipeline** (INSERTED) - Scraper service, DB writes, price-history persistence, scheduled refresh, logging
 - [ ] **Phase 4.3: Backend API and Flutter Integration** (INSERTED) - REST API endpoints, mock→remote datasource switch, end-to-end verification
-- [ ] **Phase 5: FCM Push Notifications** - Firebase push notification SDK, watch list UI, price-drop alerts
+- [x] **Phase 5: FCM Push Notifications** - Firebase push notification SDK, watch list UI, price-drop alerts (completed 2026-04-12)
 
 ## Phase Details
 
@@ -142,7 +142,7 @@ Plans:
 Plans:
 - [x] 05-01-PLAN.md — Firebase SDK setup, Android build config, FCM token provider, notification handlers
 - [x] 05-02-PLAN.md — WatchNotifier with SharedPreferences persistence, backend POST /notifications/subscribe endpoint
-- [ ] 05-03-PLAN.md — Watch UI buttons on product detail page, backend sync wiring, end-to-end verification
+- [x] 05-03-PLAN.md — Watch UI buttons on product detail page, backend sync wiring, end-to-end verification
 **UI hint**: yes
 
 ## Progress
@@ -159,4 +159,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 4.2 -> 4.3 -> 5
 | 4.1. Live Data Foundation | 0/1 | Not started | - |
 | 4.2. Backend Data Pipeline | 0/? | Not started | - |
 | 4.3. Backend API and Flutter Integration | 2/3 | In Progress|  |
-| 5. FCM Push Notifications | 2/3 | In Progress|  |
+| 5. FCM Push Notifications | 3/3 | Complete   | 2026-04-12 |
