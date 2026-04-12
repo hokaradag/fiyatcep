@@ -19,6 +19,7 @@ from app.database import init_db
 from app.routers.admin import router as admin_router
 from app.routers.discounts import router as discounts_router
 from app.routers.markets import router as markets_router
+from app.routers.notifications import router as notifications_router
 from app.routers.products import router as products_router
 
 logging.basicConfig(
@@ -104,6 +105,7 @@ app.include_router(admin_router)
 app.include_router(products_router)
 app.include_router(markets_router)
 app.include_router(discounts_router)
+app.include_router(notifications_router)
 
 
 @app.exception_handler(Exception)
