@@ -60,3 +60,7 @@ backend/*.egg-info/
 # Firebase Admin SDK (SECRET — DO NOT COMMIT)
 backend/*firebase-adminsdk*.json
 backend/firebase-service-account.json
+
+# Firebase app config files (contain API keys — DO NOT COMMIT)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
