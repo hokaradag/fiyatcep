@@ -9,6 +9,7 @@ dependencies = [
     "apscheduler>=3.10,<4",
     "requests",
     "beautifulsoup4",
+    "firebase-admin>=6.0",
 ]
 
 [project.optional-dependencies]

@@ -16,6 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.database import init_db
+from app.notifier import init_firebase_admin
 from app.routers.admin import router as admin_router
 from app.routers.discounts import router as discounts_router
 from app.routers.markets import router as markets_router
@@ -56,6 +57,13 @@ async def lifespan(app: FastAPI):
     # Step 1: Init DB BEFORE scheduler starts (Pitfall 4)
     init_db(SCHEMA_PATH)
     logger.info("Database initialized")
+
+    # Step 1b: Init Firebase Admin SDK for push notifications (NOTIF-03)
+    firebase_ok = init_firebase_admin()
+    if firebase_ok:
+        logger.info("Firebase Admin SDK ready — push notifications enabled")
+    else:
+        logger.warning("Firebase Admin SDK not configured — push notifications disabled")
 
     # Step 2: Register and start daily scrape job (D-08)
     # Import inside lifespan to avoid circular imports at module load time

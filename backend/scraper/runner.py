@@ -11,6 +11,7 @@ import logging
 from sqlalchemy import text
 
 from app.database import SessionLocal
+from app.notifier import detect_and_notify_price_drops
 from scraper.logger import write_scrape_log
 from scraper.migros import MigrosScraper
 
@@ -40,6 +41,13 @@ def run_scrape_cycle() -> list[dict]:
             # Per DB-SCHEMA.sql Notes: update denormalized discount counter per market
             _update_discount_counts(db)
             db.commit()
+            # NOTIF-03: Check for price drops and notify subscribed devices
+            try:
+                notifications_sent = detect_and_notify_price_drops(db)
+                log_entry["notifications_sent"] = notifications_sent
+            except Exception as exc:
+                logger.error("Price-drop notification check failed: %s", exc)
+                log_entry["notifications_sent"] = 0
             results.append(log_entry)
             write_scrape_log(log_entry)
             logger.info(
