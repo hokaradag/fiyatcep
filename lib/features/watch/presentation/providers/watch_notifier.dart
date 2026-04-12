@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../shared/providers/api_client_provider.dart';
 
 /// Simple data holder for watched IDs.
 class WatchList {
@@ -34,7 +36,7 @@ class WatchNotifier extends AsyncNotifier<WatchList> {
     final newState = WatchList(productIds: updated, discountIds: current.discountIds);
     state = AsyncData(newState);
     await _save(newState);
-    // TODO: Plan 03 will add subscribe sync here
+    await _syncWithBackend(newState);
   }
 
   Future<void> toggleDiscount(String discountId) async {
@@ -45,7 +47,7 @@ class WatchNotifier extends AsyncNotifier<WatchList> {
     final newState = WatchList(productIds: current.productIds, discountIds: updated);
     state = AsyncData(newState);
     await _save(newState);
-    // TODO: Plan 03 will add subscribe sync here
+    await _syncWithBackend(newState);
   }
 
   bool isProductWatched(WatchList watchList, String productId) {
@@ -60,6 +62,26 @@ class WatchNotifier extends AsyncNotifier<WatchList> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(_watchedProductIdsKey, watchList.productIds);
     await prefs.setStringList(_watchedDiscountIdsKey, watchList.discountIds);
+  }
+
+  Future<void> _syncWithBackend(WatchList watchList) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('fcm_token');
+      if (token == null) return;
+
+      // Direct Dio call since ApiClient.post requires a fromJson callback;
+      // this is a best-effort fire-and-forget, response body is not needed.
+      // Uses apiBaseUrl constant from api_client_provider.dart (single source of truth).
+      final dio = Dio(BaseOptions(baseUrl: apiBaseUrl));
+      await dio.post('/notifications/subscribe', data: {
+        'fcmToken': token,
+        'productIds': watchList.productIds,
+        'discountIds': watchList.discountIds,
+      });
+    } catch (_) {
+      // Best-effort sync -- don't block watch toggle on network failure
+    }
   }
 }
 
