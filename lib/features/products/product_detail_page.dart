@@ -4,6 +4,7 @@ import '../cart/cart_comparison_page.dart';
 import '../cart/presentation/providers/cart_notifier.dart';
 import '../cart/widgets/cart_app_bar_icon.dart';
 import '../favorites/presentation/providers/favorites_notifier.dart';
+import '../watch/presentation/providers/watch_notifier.dart';
 import 'models/product_item.dart';
 import 'presentation/providers/products_provider.dart';
 import 'widgets/product_info_section.dart';
@@ -133,6 +134,45 @@ class ProductDetailPage extends ConsumerWidget {
                         ),
                         label: Text(
                           inCart ? 'Sepetten Çıkar' : 'Sepete Ekle',
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 12),
+                Consumer(
+                  builder: (context, ref, child) {
+                    final watchList =
+                        ref.watch(watchNotifierProvider).valueOrNull ??
+                        const WatchList();
+                    final isWatched = watchList.productIds.contains(product.id);
+                    final notifier = ref.read(watchNotifierProvider.notifier);
+
+                    return SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          await notifier.toggleProduct(product.id);
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  isWatched
+                                      ? '${product.name} takipten cikarildi'
+                                      : '${product.name} takibe alindi',
+                                ),
+                                duration: const Duration(seconds: 2),
+                              ),
+                            );
+                          }
+                        },
+                        icon: Icon(
+                          isWatched
+                              ? Icons.notifications_active
+                              : Icons.notifications_outlined,
+                        ),
+                        label: Text(
+                          isWatched ? 'Takibi Birak' : 'Takip Et',
                         ),
                       ),
                     );
