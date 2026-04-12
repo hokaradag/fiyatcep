@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-04-12T01:00:32.632Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-04-12T01:01:34.086Z"
 last_activity: 2026-04-12
 progress:
   total_phases: 8
   completed_phases: 7
   total_plans: 25
-  completed_plans: 23
+  completed_plans: 24
   percent: 93
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 05 (fcm-push-notifications) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-04-12
 
@@ -74,6 +74,7 @@ Progress: [█████████░] 93%
 | Phase 04.3-backend-api-and-flutter-integration P01 | 3 | 2 tasks | 6 files |
 | Phase 04.3 P03 | 45 | 2 tasks | 0 files |
 | Phase 05-fcm-push-notifications P01 | 3 | 2 tasks | 8 files |
+| Phase 05-fcm-push-notifications P02 | 4 | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -137,6 +138,9 @@ Recent decisions affecting current work:
 - [Phase 05-01]: navigatorKey exported from notification_handler.dart — single source of truth for global navigation key avoids circular imports
 - [Phase 05-01]: minSdk = 21 hardcoded (not flutter.minSdkVersion) — FCM HTTP v1 API requires API 21+, overrides Flutter default
 - [Phase 05-01]: ProductItem with empty fields used for notification tap navigation — detail page fetches real data via productMarketPricesProvider, only id needed
+- [Phase 05-02]: WatchList is a plain Dart class (not Freezed) — no serialization needed, IDs only; simpler for toggle pattern
+- [Phase 05-02]: device_subscriptions table created via CREATE TABLE IF NOT EXISTS in subscribe endpoint — avoids schema migration complexity for a simple new table
+- [Phase 05-02]: firebase-admin version relaxed to >=6.0 (7.4.0 installed) — original <7 upper bound had no documented incompatibility
 
 ### Roadmap Evolution
 
@@ -162,6 +166,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-12T01:00:32.626Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-04-12T01:01:34.080Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None

@@ -37,9 +37,9 @@
 
 ### Notifications (NOTIF)
 
-- [ ] **NOTIF-01**: Firebase Cloud Messaging Android ve iOS'ta çalışır (firebase_core + firebase_messaging entegre edilir, FCM token yönetimi yapılır)
-- [ ] **NOTIF-02**: Kullanıcı ürün veya indirim detay sayfasından "Takip Et" ile takibe alabilir, "Takibi Bırak" ile çıkabilir
-- [ ] **NOTIF-03**: Takip edilen bir üründe fiyat düşüşü veya yeni indirim olduğunda kullanıcı push bildirim alır (bildirim tıklandığında ilgili ürün sayfasına yönlendirilir)
+- [x] **NOTIF-01**: Firebase Cloud Messaging Android ve iOS'ta çalışır (firebase_core + firebase_messaging entegre edilir, FCM token yönetimi yapılır)
+- [x] **NOTIF-02**: Kullanıcı ürün veya indirim detay sayfasından "Takip Et" ile takibe alabilir, "Takibi Bırak" ile çıkabilir
+- [x] **NOTIF-03**: Takip edilen bir üründe fiyat düşüşü veya yeni indirim olduğunda kullanıcı push bildirim alır (bildirim tıklandığında ilgili ürün sayfasına yönlendirilir)
 
 ---
 
@@ -102,9 +102,9 @@ Roadmap oluşturuldu: 2026-03-27
 | COMP-02 | Phase 3 | Complete |
 | MKTD-01 | Phase 3 | Complete |
 | COMP-03 | Phase 4 | Complete |
-| NOTIF-01 | Phase 5 | Pending |
-| NOTIF-02 | Phase 5 | Pending |
-| NOTIF-03 | Phase 5 | Pending |
+| NOTIF-01 | Phase 5 | Complete |
+| NOTIF-02 | Phase 5 | Complete |
+| NOTIF-03 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 19 total
