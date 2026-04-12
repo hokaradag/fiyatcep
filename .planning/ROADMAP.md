@@ -140,7 +140,7 @@ Plans:
   4. Bildirime tiklandiginda uygulama ilgili urun sayfasina yonlendirir
 **Plans**: 3 plans
 Plans:
-- [ ] 05-01-PLAN.md — Firebase SDK setup, Android build config, FCM token provider, notification handlers
+- [x] 05-01-PLAN.md — Firebase SDK setup, Android build config, FCM token provider, notification handlers
 - [ ] 05-02-PLAN.md — WatchNotifier with SharedPreferences persistence, backend POST /notifications/subscribe endpoint
 - [ ] 05-03-PLAN.md — Watch UI buttons on product detail page, backend sync wiring, end-to-end verification
 **UI hint**: yes
@@ -159,4 +159,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 4.1 -> 4.2 -> 4.3 -> 5
 | 4.1. Live Data Foundation | 0/1 | Not started | - |
 | 4.2. Backend Data Pipeline | 0/? | Not started | - |
 | 4.3. Backend API and Flutter Integration | 2/3 | In Progress|  |
-| 5. FCM Push Notifications | 0/3 | Not started | - |
+| 5. FCM Push Notifications | 1/3 | In Progress|  |

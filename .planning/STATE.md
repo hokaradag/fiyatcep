@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 5 context gathered
-last_updated: "2026-04-09T22:17:18.653Z"
-last_activity: 2026-04-09
+status: executing
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-04-12T01:00:32.632Z"
+last_activity: 2026-04-12
 progress:
   total_phases: 8
   completed_phases: 7
-  total_plans: 22
-  completed_plans: 22
+  total_plans: 25
+  completed_plans: 23
   percent: 93
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmiş fiyat değişimini ve indirim fırsatlarını görünür kılmak — kullanıcı alışveriş kararını vermeden önce gerçek veriye bakabilmeli.
-**Current focus:** Phase 04.3 — backend-api-and-flutter-integration
+**Current focus:** Phase 05 — fcm-push-notifications
 
 ## Current Position
 
-Phase: 5
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-09
+Phase: 05 (fcm-push-notifications) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
+Last activity: 2026-04-12
 
 Progress: [█████████░] 93%
 
@@ -73,6 +73,7 @@ Progress: [█████████░] 93%
 | Phase 04.3 P02 | 3 | 2 tasks | 7 files |
 | Phase 04.3-backend-api-and-flutter-integration P01 | 3 | 2 tasks | 6 files |
 | Phase 04.3 P03 | 45 | 2 tasks | 0 files |
+| Phase 05-fcm-push-notifications P01 | 3 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -133,6 +134,9 @@ Recent decisions affecting current work:
 - [Phase 04.3-01]: raise_server_exceptions=False on TestClient — allows testing 404 responses without pytest raising for non-2xx
 - [Phase 04.3-03]: Price history chart shows graceful empty state for demo-volume data — expected behavior, chart UI correct, will self-resolve as scraper accumulates history
 - [Phase 04.3-03]: Turkish character search normalization is inconsistent (typing 'süt' produces 'st') — non-blocking UX issue, fix: apply TextNormalizer.normalize() to query string in productsProvider
+- [Phase 05-01]: navigatorKey exported from notification_handler.dart — single source of truth for global navigation key avoids circular imports
+- [Phase 05-01]: minSdk = 21 hardcoded (not flutter.minSdkVersion) — FCM HTTP v1 API requires API 21+, overrides Flutter default
+- [Phase 05-01]: ProductItem with empty fields used for notification tap navigation — detail page fetches real data via productMarketPricesProvider, only id needed
 
 ### Roadmap Evolution
 
@@ -158,6 +162,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-09T22:17:18.647Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-fcm-push-notifications/05-CONTEXT.md
+Last session: 2026-04-12T01:00:32.626Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: None
