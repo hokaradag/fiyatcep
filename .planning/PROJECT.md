@@ -32,10 +32,10 @@ Aynı ürün ya da sepet için marketler arası gerçek fiyat farkını, geçmi�
 - [x] COMP-02: Ürün detay sayfasında fiyat geçmişi/trend grafiği görüntülenir
 - [x] COMP-03: Kullanıcı sepet oluşturabilir, sepet toplamını markete göre karşılaştırabilir
 
-**Bildirim Sistemi**
-- [ ] NOTIF-01: Firebase Cloud Messaging (FCM) Android ve iOS için entegre edilir
-- [ ] NOTIF-02: Kullanıcı bir ürün/indirimi takibe alabilir
-- [ ] NOTIF-03: Takip edilen üründe fiyat düşüşü veya yeni indirim olduğunda push bildirim gönderilir
+**Bildirim Sistemi** — Validated in Phase 5: fcm-push-notifications
+- [x] NOTIF-01: Firebase Cloud Messaging (FCM) Android ve iOS için entegre edilir
+- [x] NOTIF-02: Kullanıcı bir ürün/indirimi takibe alabilir
+- [x] NOTIF-03: Takip edilen üründe fiyat düşüşü veya yeni indirim olduğunda push bildirim gönderilir
 
 **Market Detay**
 - [ ] MKTD-01: Market detay sayfasına logo, banner ve marka rengi eklenir
@@ -111,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-09 — Phase 04.3 complete (backend-api-and-flutter-integration): All 11 FastAPI routes implemented with camelCase envelope, 12 pytest integration tests passing. Flutter switched from mock to remote datasources; getProductPrices() added; FavoritesStore deleted (QUAL-06). E2E verified on Android emulator — 178 real Migros products flowing through full stack. 90 Flutter + 38 backend tests passing. Turkish search normalization tracked as follow-up.*
+*Last updated: 2026-04-12 — Phase 05 complete (fcm-push-notifications): FCM SDK integrated (firebase_core + firebase_messaging), WatchNotifier with SharedPreferences persistence, POST /notifications/subscribe backend endpoint, Firebase Admin SDK price-drop detection and FCM send, Takip Et/Takibi Bırak UI wired in product detail page. NOTIF-01, NOTIF-02, NOTIF-03 validated. Human verification pending for live FCM flow (requires google-services.json + Firebase service account). This is the final planned phase of Milestone v1.0.*
