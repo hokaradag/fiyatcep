@@ -64,3 +64,5 @@ backend/firebase-service-account.json
 # Firebase app config files (contain API keys — DO NOT COMMIT)
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+android/app/google-services.json
